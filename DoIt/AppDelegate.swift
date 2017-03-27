@@ -16,8 +16,35 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
+        
+            
+        
+        UINavigationBar.appearance().barTintColor = UIColor(colorLiteralRed: 75/200, green: 156/255, blue: 56/255, alpha: 1)
+//        
+//        
+        UINavigationBar.appearance().titleTextAttributes = [NSForegroundColorAttributeName : UIColor.white]
+//        
+        //UINavigationBar.appearance().tintColor = UIColor.white
+        
+        
+        /*
+        //UINavigationBar.appearance().barTintColor = UIColor(red: 46.0/255.0, green: 14.0/255.0, blue:
+        //74.0/255.0, alpha: 1.0)
+        UINavigationBar.appearance().tintColor = UIColor.white
+        UINavigationBar.appearance().titleTextAttributes = [NSForegroundColorAttributeName : UIColor(colorLiteralRed: 51/200, green: 90/255, blue:
+            149/255, alpha: 1)]        
+        
+       UINavigationBar.appearance().barTintColor = UIColor.white
         // Override point for customization after application launch.
+ */
+ 
+
+ 
         return true
+    }
+    
+    func adaptivePresentationStyle(for controller: UIPresentationController, traitCollection: UITraitCollection) -> UIModalPresentationStyle {
+        return .none
     }
 
     func applicationWillResignActive(_ application: UIApplication) {
