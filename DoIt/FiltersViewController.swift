@@ -18,7 +18,7 @@ class FiltersViewController: UIViewController, UIPopoverPresentationControllerDe
     
     @IBOutlet weak var isImportantSwitch: UISwitch!
     
-    @IBOutlet weak var sortControl: UISegmentedControl!
+    //@IBOutlet weak var sortControl: UISegmentedControl!
     
     @IBOutlet weak var applyButton: UIBarButtonItem!
     
@@ -35,7 +35,7 @@ class FiltersViewController: UIViewController, UIPopoverPresentationControllerDe
     // 0:today 1:week 2:past 3:imp 4:audio
     var filterSelections : [Bool] = [false, false, false, false, false]
     //1:priority 2:duedate 3:created
-    var sortSelection : Int? = 0
+    //var sortSelection : Int? = 0
     
     
     override func viewDidLoad() {
@@ -46,7 +46,7 @@ class FiltersViewController: UIViewController, UIPopoverPresentationControllerDe
      
          filterView.layer.cornerRadius = 5
         
-        UINavigationBar.appearance().barTintColor = UIColor.white
+       UINavigationBar.appearance().barTintColor = UIColor.white
         //
         //
         UINavigationBar.appearance().titleTextAttributes = [NSForegroundColorAttributeName : UIColor.darkGray]
@@ -55,7 +55,7 @@ class FiltersViewController: UIViewController, UIPopoverPresentationControllerDe
             dueTodaySwitch.isEnabled = false
         }
         
-        if filterSelections == [false, false, false, false, false] && sortSelection == 0 {
+        if filterSelections == [false, false, false, false, false] {
             resetButton.isEnabled = false
         } else {
             resetButton.isEnabled = true
@@ -78,11 +78,11 @@ class FiltersViewController: UIViewController, UIPopoverPresentationControllerDe
         pastDueSwitch.isOn = filterSelections[2]
         isImportantSwitch.isOn = filterSelections[3]
         audioSwitch.isOn = filterSelections[4]
-        sortControl.selectedSegmentIndex = sortSelection!
+        //sortControl.selectedSegmentIndex = sortSelection!
     }
     
     func defaultFilterState() {
-        sortSelection = 0
+        //sortSelection = 0
         filterSelections[0] = false
         filterSelections[1] = false
         filterSelections[2] = false
@@ -99,7 +99,7 @@ class FiltersViewController: UIViewController, UIPopoverPresentationControllerDe
         
         let nextVC = segue.destination as! TasksViewController
         nextVC.filterSelections = filterSelections
-        nextVC.sortSelection = sortSelection
+       // nextVC.sortSelection = sortSelection
         
         
     }
@@ -109,7 +109,7 @@ class FiltersViewController: UIViewController, UIPopoverPresentationControllerDe
     
     @IBAction func applyButtonTapped(_ sender: Any) {
         
-        performSegue(withIdentifier: "unwindToTasksWithFilter", sender: [filterSelections, sortSelection])
+        performSegue(withIdentifier: "unwindToTasksWithFilter", sender: filterSelections)
         
     }
     
@@ -130,7 +130,7 @@ class FiltersViewController: UIViewController, UIPopoverPresentationControllerDe
         }else {
             filterSelections[0] = false
         }
-        if filterSelections == [false, false, false, false, false] && sortSelection == 0 {
+        if filterSelections == [false, false, false, false, false] {
             resetButton.isEnabled = false
         } else {
             resetButton.isEnabled = true
@@ -155,7 +155,7 @@ class FiltersViewController: UIViewController, UIPopoverPresentationControllerDe
             dueTodaySwitch.isEnabled = true
         }
         
-        if filterSelections == [false, false, false, false, false] && sortSelection == 0 {
+        if filterSelections == [false, false, false, false, false] {
             resetButton.isEnabled = false
         } else {
             resetButton.isEnabled = true
@@ -174,7 +174,7 @@ class FiltersViewController: UIViewController, UIPopoverPresentationControllerDe
             filterSelections[2] = false
         }
         
-        if filterSelections == [false, false, false, false, false] && sortSelection == 0 {
+        if filterSelections == [false, false, false, false, false] {
             resetButton.isEnabled = false
         } else {
             resetButton.isEnabled = true
@@ -191,7 +191,7 @@ class FiltersViewController: UIViewController, UIPopoverPresentationControllerDe
             filterSelections[3] = false
         }
         
-        if filterSelections == [false, false, false, false, false] && sortSelection == 0 {
+        if filterSelections == [false, false, false, false, false]  {
             resetButton.isEnabled = false
         } else {
             resetButton.isEnabled = true
@@ -211,7 +211,7 @@ class FiltersViewController: UIViewController, UIPopoverPresentationControllerDe
             filterSelections[4] = false
         }
         
-        if filterSelections == [false, false, false, false, false] && sortSelection == 0 {
+        if filterSelections == [false, false, false, false, false]  {
             resetButton.isEnabled = false
         } else {
             resetButton.isEnabled = true
@@ -220,29 +220,29 @@ class FiltersViewController: UIViewController, UIPopoverPresentationControllerDe
     }
     
     
-    @IBAction func sortControlTapped(_ sender: Any) {
-       
-
-        applyButton.title = "Apply"
-        if sortControl.selectedSegmentIndex == 0 {
-            sortSelection = 0
-        }
-        
-        if sortControl.selectedSegmentIndex == 1 {
-            sortSelection = 1
-        }
-        
-        if sortControl.selectedSegmentIndex == 2 {
-            sortSelection = 2
-        }
-        
-        if filterSelections == [false, false, false, false, false] && sortSelection == 0 {
-            resetButton.isEnabled = false
-        } else {
-            resetButton.isEnabled = true
-        }
-
-    }
+//    @IBAction func sortControlTapped(_ sender: Any) {
+//       
+//
+//        applyButton.title = "Apply"
+//        if sortControl.selectedSegmentIndex == 0 {
+//            sortSelection = 0
+//        }
+//        
+//        if sortControl.selectedSegmentIndex == 1 {
+//            sortSelection = 1
+//        }
+//        
+//        if sortControl.selectedSegmentIndex == 2 {
+//            sortSelection = 2
+//        }
+//        
+//        if filterSelections == [false, false, false, false, false] && sortSelection == 0 {
+//            resetButton.isEnabled = false
+//        } else {
+//            resetButton.isEnabled = true
+//        }
+//
+//    }
     
 
 }

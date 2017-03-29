@@ -15,6 +15,12 @@
 		791C93191E5968D20027B49B /* TasksViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 799790CE1E3D97FA00781A22 /* TasksViewController.swift */; };
 		791C931E1E60BA060027B49B /* CompletedTasksButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 791C931D1E60BA050027B49B /* CompletedTasksButtonView.swift */; };
 		792E21F61E8A137700669DCE /* SortViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 792E21F51E8A137700669DCE /* SortViewController.swift */; };
+		792E21F81E8B65B200669DCE /* Low Importance Filled-50.png in Resources */ = {isa = PBXBuildFile; fileRef = 792E21F71E8B65B200669DCE /* Low Importance Filled-50.png */; };
+		792E21FA1E8B65B900669DCE /* Low Importance-50.png in Resources */ = {isa = PBXBuildFile; fileRef = 792E21F91E8B65B900669DCE /* Low Importance-50.png */; };
+		792E21FC1E8B65C100669DCE /* Circled Play Filled-50.png in Resources */ = {isa = PBXBuildFile; fileRef = 792E21FB1E8B65C100669DCE /* Circled Play Filled-50.png */; };
+		792E21FE1E8B65CA00669DCE /* Circled Play-50.png in Resources */ = {isa = PBXBuildFile; fileRef = 792E21FD1E8B65CA00669DCE /* Circled Play-50.png */; };
+		792E22001E8B65D200669DCE /* Clock Filled-50.png in Resources */ = {isa = PBXBuildFile; fileRef = 792E21FF1E8B65D200669DCE /* Clock Filled-50.png */; };
+		792E22021E8B65DB00669DCE /* Clock-50.png in Resources */ = {isa = PBXBuildFile; fileRef = 792E22011E8B65DB00669DCE /* Clock-50.png */; };
 		7940EA171E8769050045962E /* Tasklist-50.png in Resources */ = {isa = PBXBuildFile; fileRef = 7940EA161E8769050045962E /* Tasklist-50.png */; };
 		797005691E819CA90094806E /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 79BA1CCC1E819A9E00691417 /* Info.plist */; };
 		797005711E81C1B20094806E /* IntentHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 797005701E81C1B20094806E /* IntentHandler.swift */; };
@@ -102,6 +108,12 @@
 		791C93101E58D84D0027B49B /* TaskPageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TaskPageViewController.swift; sourceTree = "<group>"; };
 		791C931D1E60BA050027B49B /* CompletedTasksButtonView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CompletedTasksButtonView.swift; path = ../CompletedTasksButtonView.swift; sourceTree = "<group>"; };
 		792E21F51E8A137700669DCE /* SortViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SortViewController.swift; path = ../SortViewController.swift; sourceTree = "<group>"; };
+		792E21F71E8B65B200669DCE /* Low Importance Filled-50.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Low Importance Filled-50.png"; path = "../../../Downloads/Low Importance Filled-50.png"; sourceTree = "<group>"; };
+		792E21F91E8B65B900669DCE /* Low Importance-50.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Low Importance-50.png"; path = "../../../Downloads/Low Importance-50.png"; sourceTree = "<group>"; };
+		792E21FB1E8B65C100669DCE /* Circled Play Filled-50.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Circled Play Filled-50.png"; path = "../../../Downloads/Circled Play Filled-50.png"; sourceTree = "<group>"; };
+		792E21FD1E8B65CA00669DCE /* Circled Play-50.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Circled Play-50.png"; path = "../../../Downloads/Circled Play-50.png"; sourceTree = "<group>"; };
+		792E21FF1E8B65D200669DCE /* Clock Filled-50.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Clock Filled-50.png"; path = "../../../Downloads/Clock Filled-50.png"; sourceTree = "<group>"; };
+		792E22011E8B65DB00669DCE /* Clock-50.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Clock-50.png"; path = "../../../Downloads/Clock-50.png"; sourceTree = "<group>"; };
 		7940EA161E8769050045962E /* Tasklist-50.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Tasklist-50.png"; path = "../../../Downloads/Tasklist-50.png"; sourceTree = "<group>"; };
 		797005681E819B150094806E /* ListWidget.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = ListWidget.entitlements; sourceTree = "<group>"; };
 		7970056E1E81C1B20094806E /* DoItsSiri.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = DoItsSiri.appex; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -251,12 +263,18 @@
 				7940EA161E8769050045962E /* Tasklist-50.png */,
 				798D45681E87776A00855238 /* Speaker-50.png */,
 				798D456A1E87777100855238 /* Exclamation Mark-50.png */,
+				792E21F91E8B65B900669DCE /* Low Importance-50.png */,
 				798D45621E87745200855238 /* High Priority-50.png */,
 				798D45701E89E32A00855238 /* Sorting Options-50.png */,
+				792E22011E8B65DB00669DCE /* Clock-50.png */,
 				798D45721E89E36D00855238 /* Expand Arrow-50.png */,
+				792E21FF1E8B65D200669DCE /* Clock Filled-50.png */,
 				798D45661E8776A300855238 /* Audio Wave-50.png */,
 				798D45601E8772DC00855238 /* Delete-50.png */,
+				792E21FD1E8B65CA00669DCE /* Circled Play-50.png */,
+				792E21FB1E8B65C100669DCE /* Circled Play Filled-50.png */,
 				79916B701E8762600020AC96 /* Filter-50.png */,
+				792E21F71E8B65B200669DCE /* Low Importance Filled-50.png */,
 			);
 			name = Images;
 			sourceTree = "<group>";
@@ -497,8 +515,10 @@
 			files = (
 				797005691E819CA90094806E /* Info.plist in Resources */,
 				79916B711E8762600020AC96 /* Filter-50.png in Resources */,
+				792E21FC1E8B65C100669DCE /* Circled Play Filled-50.png in Resources */,
 				798D45651E8775AC00855238 /* Headphones-50.png in Resources */,
 				799790DA1E3D97FA00781A22 /* LaunchScreen.storyboard in Resources */,
+				792E22021E8B65DB00669DCE /* Clock-50.png in Resources */,
 				798D45711E89E32A00855238 /* Sorting Options-50.png in Resources */,
 				798D45631E87745200855238 /* High Priority-50.png in Resources */,
 				799790D71E3D97FA00781A22 /* Assets.xcassets in Resources */,
@@ -506,12 +526,16 @@
 				799790D21E3D97FA00781A22 /* Main.storyboard in Resources */,
 				798D45731E89E36D00855238 /* Expand Arrow-50.png in Resources */,
 				798D456B1E87777100855238 /* Exclamation Mark-50.png in Resources */,
+				792E21FE1E8B65CA00669DCE /* Circled Play-50.png in Resources */,
 				798D45691E87776A00855238 /* Speaker-50.png in Resources */,
 				798D456D1E8779D600855238 /* Happy-50.png in Resources */,
 				79916B731E87626A0020AC96 /* Filter Filled-50.png in Resources */,
+				792E21FA1E8B65B900669DCE /* Low Importance-50.png in Resources */,
+				792E21F81E8B65B200669DCE /* Low Importance Filled-50.png in Resources */,
 				7940EA171E8769050045962E /* Tasklist-50.png in Resources */,
 				798D456F1E877A6100855238 /* Cool-50.png in Resources */,
 				798D45611E8772DC00855238 /* Delete-50.png in Resources */,
+				792E22001E8B65D200669DCE /* Clock Filled-50.png in Resources */,
 				798D45671E8776A300855238 /* Audio Wave-50.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -25,6 +25,9 @@ class SortViewController: UIViewController {
     
     @IBOutlet weak var createdDateSwitch: UISwitch!
     
+    @IBOutlet weak var applyButton: UIBarButtonItem!
+    
+    @IBOutlet weak var resetButton: UIBarButtonItem!
     
     
     var sortSelection : Int? = 0
@@ -41,6 +44,8 @@ class SortViewController: UIViewController {
         UINavigationBar.appearance().titleTextAttributes = [NSForegroundColorAttributeName : UIColor.darkGray]
     
     determineSortState()
+        
+        applyButton.title = "Cancel"
     
     }
     
@@ -67,7 +72,7 @@ class SortViewController: UIViewController {
             prioritySwitch.isOn = true
             dueDateSwitch.isOn = false
             createdDateSwitch.isOn = false
-            prioritySwitch.isEnabled = false
+           // prioritySwitch.isEnabled = false
         }
         
         if sortSelection == 1 {
@@ -75,21 +80,21 @@ class SortViewController: UIViewController {
             prioritySwitch.isOn = false
             dueDateSwitch.isOn = true
             createdDateSwitch.isOn = false
-            dueDateSwitch.isEnabled = false
+           // dueDateSwitch.isEnabled = false
         }
         if sortSelection == 2{
             taskNameSwitch.isOn = false
             prioritySwitch.isOn = false
             dueDateSwitch.isOn = false
             createdDateSwitch.isOn = true
-            createdDateSwitch.isEnabled = false
+            //createdDateSwitch.isEnabled = false
         }
         if sortSelection == 3 {
             taskNameSwitch.isOn = true
             prioritySwitch.isOn = false
             dueDateSwitch.isOn = false
             createdDateSwitch.isOn = false
-            taskNameSwitch.isEnabled = false
+           // taskNameSwitch.isEnabled = false
         }
     }
     
@@ -99,10 +104,14 @@ class SortViewController: UIViewController {
         if taskNameSwitch.isOn == true {
             sortSelection = 3
             determineSortState()
-            taskNameSwitch.isEnabled = false
-            prioritySwitch.isEnabled = true
-            dueDateSwitch.isEnabled = true
-            createdDateSwitch.isEnabled = true
+            applyButton.title = "Apply"
+//            taskNameSwitch.isEnabled = false
+//            prioritySwitch.isEnabled = true
+//            dueDateSwitch.isEnabled = true
+//            createdDateSwitch.isEnabled = true
+        } else {
+            taskNameSwitch.isOn = true
+        
         }
     }
     
@@ -110,10 +119,13 @@ class SortViewController: UIViewController {
         if prioritySwitch.isOn == true {
             sortSelection = 0
             determineSortState()
-            taskNameSwitch.isEnabled = true
-            prioritySwitch.isEnabled = false
-            dueDateSwitch.isEnabled = true
-            createdDateSwitch.isEnabled = true
+            applyButton.title = "Apply"
+//            taskNameSwitch.isEnabled = true
+//            prioritySwitch.isEnabled = false
+//            dueDateSwitch.isEnabled = true
+//            createdDateSwitch.isEnabled = true
+        } else {
+            prioritySwitch.isOn = true
         }
     }
     
@@ -122,10 +134,13 @@ class SortViewController: UIViewController {
         if dueDateSwitch.isOn == true {
             sortSelection = 1
             determineSortState()
-            taskNameSwitch.isEnabled = true
-            prioritySwitch.isEnabled = true
-            dueDateSwitch.isEnabled = false
-            createdDateSwitch.isEnabled = true
+            applyButton.title = "Apply"
+//            taskNameSwitch.isEnabled = true
+//            prioritySwitch.isEnabled = true
+//            dueDateSwitch.isEnabled = false
+//            createdDateSwitch.isEnabled = true
+        } else {
+            dueDateSwitch.isOn = true
         }
     }
     
@@ -135,10 +150,13 @@ class SortViewController: UIViewController {
         if createdDateSwitch.isOn == true {
             sortSelection = 2
             determineSortState()
-            taskNameSwitch.isEnabled = true
-            prioritySwitch.isEnabled = true
-            dueDateSwitch.isEnabled = true
-            createdDateSwitch.isEnabled = false
+            applyButton.title = "Apply"
+//            taskNameSwitch.isEnabled = true
+//            prioritySwitch.isEnabled = true
+//            dueDateSwitch.isEnabled = true
+//            createdDateSwitch.isEnabled = false
+        } else {
+            createdDateSwitch.isOn = true
         }
     }
     
@@ -148,10 +166,11 @@ class SortViewController: UIViewController {
         
         sortSelection = 3
         determineSortState()
-        taskNameSwitch.isEnabled = false
-        prioritySwitch.isEnabled = true
-        dueDateSwitch.isEnabled = true
-        createdDateSwitch.isEnabled = true
+//        taskNameSwitch.isEnabled = false
+//        prioritySwitch.isEnabled = true
+//        dueDateSwitch.isEnabled = true
+//        createdDateSwitch.isEnabled = true
+        applyButton.title = "Apply"
     }
     
     

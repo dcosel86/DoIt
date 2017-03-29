@@ -75,6 +75,12 @@ class TasksViewController: UIViewController, UITableViewDataSource, UITableViewD
     
     @IBOutlet weak var filterExpand: UIImageView!
     
+    
+    
+    
+    
+    
+    
     var tasks : [Task] = []
      // 0:today 1:week 2:past 3:imp 4:audio
     var filterSelections : [Bool] = [false, false, false, false, false]
@@ -687,7 +693,7 @@ class TasksViewController: UIViewController, UITableViewDataSource, UITableViewD
             pop?.delegate = vc
             let nextVC = segue.destination as! FiltersViewController
             nextVC.filterSelections = filterSelections
-            nextVC.sortSelection = sortSelection
+            //nextVC.sortSelection = sortSelection
         }
         
         if segue.identifier == "showSort" {
@@ -2107,7 +2113,7 @@ class TasksViewController: UIViewController, UITableViewDataSource, UITableViewD
    
     @IBAction func filterButtonTapped(_ sender: Any) {
         
-         performSegue(withIdentifier: "popover", sender: [filterSelections, sortSelection])
+         performSegue(withIdentifier: "popover", sender: filterSelections)
          maskView.isHidden = false
         
     }

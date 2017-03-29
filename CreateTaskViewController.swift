@@ -61,6 +61,12 @@ class CreateTaskViewController: UIViewController, UITextFieldDelegate, UIPickerV
     
     @IBOutlet weak var recordStopButton: UIButton!
     
+    @IBOutlet weak var dueDateButton: UIButton!
+    
+    @IBOutlet weak var audioNoteButton: UIButton!
+    
+    @IBOutlet weak var importantButton: UIButton!
+    
     
     
     //functions
@@ -85,6 +91,10 @@ class CreateTaskViewController: UIViewController, UITextFieldDelegate, UIPickerV
         
         getCategories()
         getTasks()
+        determineButtonFill()
+        
+       
+        
     
         
     
@@ -122,11 +132,29 @@ class CreateTaskViewController: UIViewController, UITextFieldDelegate, UIPickerV
             addButton.isHidden = true
             didItButton.isHidden = false
             didItButton.isEnabled = true
+            
+//            if task?.dueDate != nil {
+//                dueDateButton.setImage(UIImage(named: "Clock Filled-50.png"), for: UIControlState.normal)
+//            } else {
+//                print ("no due date")
+//            }
+            
+//            if task?.important == true {
+//                importantButton.setImage(UIImage(named: "Low Importance Filled-50.png"), for: UIControlState.normal)
+//            } else {
+//                print ("not important")
+//            }
+            
+            
             if task?.audioNote != nil {
                 playRecordView.isHidden = false
                 addAudioNoteButton.isHidden = true
                 addAudioNoteButton.isEnabled = false
                 setUpRecorder()
+                
+                
+//                audioNoteButton.setImage(UIImage(named: "Circled Play Filled-50.png"), for: UIControlState.normal)
+                
             } else {
                 playRecordView.isHidden = true
                 addAudioNoteButton.isHidden = false
@@ -270,6 +298,51 @@ class CreateTaskViewController: UIViewController, UITextFieldDelegate, UIPickerV
         
     }
     
+    func determineButtonFill() {
+    
+        
+    //set play image tint
+        
+        if task?.audioNote != nil {
+            let origPlayImage = UIImage(named: "Circled Play Filled-50.png")
+            let tintedPlayImage = origPlayImage?.withRenderingMode(.alwaysTemplate)
+            audioNoteButton.setImage(tintedPlayImage, for: .normal)
+            audioNoteButton.tintColor = UIColor(colorLiteralRed: 75/200, green: 156/255, blue: 56/255, alpha: 1)
+        } else {
+    let origPlayImage = UIImage(named: "Circled Play-50.png")
+    let tintedPlayImage = origPlayImage?.withRenderingMode(.alwaysTemplate)
+    audioNoteButton.setImage(tintedPlayImage, for: .normal)
+    audioNoteButton.tintColor = UIColor.lightGray
+        }
+    
+    //set urgent image tint
+        if task?.important == true {
+            let origUrgentImage = UIImage(named: "Low importance Filled-50.png")
+            let tintedUrgentImage = origUrgentImage?.withRenderingMode(.alwaysTemplate)
+            importantButton.setImage(tintedUrgentImage, for: .normal)
+            importantButton.tintColor = UIColor(colorLiteralRed: 75/200, green: 156/255, blue: 56/255, alpha: 1)
+            
+        } else {
+    let origUrgentImage = UIImage(named: "Low importance-50.png")
+    let tintedUrgentImage = origUrgentImage?.withRenderingMode(.alwaysTemplate)
+    importantButton.setImage(tintedUrgentImage, for: .normal)
+    importantButton.tintColor = UIColor.lightGray
+        }
+    
+    //set urgent image tint
+        if task?.dueDate != nil {
+            let origDatetImage = UIImage(named: "Clock Filled-50.png")
+            let tintedDateImage = origDatetImage?.withRenderingMode(.alwaysTemplate)
+            dueDateButton.setImage(tintedDateImage, for: .normal)
+            dueDateButton.tintColor = UIColor(colorLiteralRed: 75/200, green: 156/255, blue: 56/255, alpha: 1)
+        }else {
+    let origDatetImage = UIImage(named: "Clock-50.png")
+    let tintedDateImage = origDatetImage?.withRenderingMode(.alwaysTemplate)
+    dueDateButton.setImage(tintedDateImage, for: .normal)
+    dueDateButton.tintColor = UIColor.lightGray
+        }
+
+    }
     
     @IBAction func dateChanged(_ sender: Any) {
         if task != nil {
