@@ -14,6 +14,7 @@
 		791C93111E58D84D0027B49B /* TaskPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 791C93101E58D84D0027B49B /* TaskPageViewController.swift */; };
 		791C93191E5968D20027B49B /* TasksViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 799790CE1E3D97FA00781A22 /* TasksViewController.swift */; };
 		791C931E1E60BA060027B49B /* CompletedTasksButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 791C931D1E60BA050027B49B /* CompletedTasksButtonView.swift */; };
+		792E21F61E8A137700669DCE /* SortViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 792E21F51E8A137700669DCE /* SortViewController.swift */; };
 		7940EA171E8769050045962E /* Tasklist-50.png in Resources */ = {isa = PBXBuildFile; fileRef = 7940EA161E8769050045962E /* Tasklist-50.png */; };
 		797005691E819CA90094806E /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 79BA1CCC1E819A9E00691417 /* Info.plist */; };
 		797005711E81C1B20094806E /* IntentHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 797005701E81C1B20094806E /* IntentHandler.swift */; };
@@ -34,6 +35,8 @@
 		798D456B1E87777100855238 /* Exclamation Mark-50.png in Resources */ = {isa = PBXBuildFile; fileRef = 798D456A1E87777100855238 /* Exclamation Mark-50.png */; };
 		798D456D1E8779D600855238 /* Happy-50.png in Resources */ = {isa = PBXBuildFile; fileRef = 798D456C1E8779D600855238 /* Happy-50.png */; };
 		798D456F1E877A6100855238 /* Cool-50.png in Resources */ = {isa = PBXBuildFile; fileRef = 798D456E1E877A6100855238 /* Cool-50.png */; };
+		798D45711E89E32A00855238 /* Sorting Options-50.png in Resources */ = {isa = PBXBuildFile; fileRef = 798D45701E89E32A00855238 /* Sorting Options-50.png */; };
+		798D45731E89E36D00855238 /* Expand Arrow-50.png in Resources */ = {isa = PBXBuildFile; fileRef = 798D45721E89E36D00855238 /* Expand Arrow-50.png */; };
 		79916B6F1E8741F70020AC96 /* ViewListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79916B6E1E8741F70020AC96 /* ViewListView.swift */; };
 		79916B711E8762600020AC96 /* Filter-50.png in Resources */ = {isa = PBXBuildFile; fileRef = 79916B701E8762600020AC96 /* Filter-50.png */; };
 		79916B731E87626A0020AC96 /* Filter Filled-50.png in Resources */ = {isa = PBXBuildFile; fileRef = 79916B721E87626A0020AC96 /* Filter Filled-50.png */; };
@@ -98,6 +101,7 @@
 		791C930E1E581DF00027B49B /* CompletedTasksTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CompletedTasksTableViewCell.swift; sourceTree = "<group>"; };
 		791C93101E58D84D0027B49B /* TaskPageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TaskPageViewController.swift; sourceTree = "<group>"; };
 		791C931D1E60BA050027B49B /* CompletedTasksButtonView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CompletedTasksButtonView.swift; path = ../CompletedTasksButtonView.swift; sourceTree = "<group>"; };
+		792E21F51E8A137700669DCE /* SortViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SortViewController.swift; path = ../SortViewController.swift; sourceTree = "<group>"; };
 		7940EA161E8769050045962E /* Tasklist-50.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Tasklist-50.png"; path = "../../../Downloads/Tasklist-50.png"; sourceTree = "<group>"; };
 		797005681E819B150094806E /* ListWidget.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = ListWidget.entitlements; sourceTree = "<group>"; };
 		7970056E1E81C1B20094806E /* DoItsSiri.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = DoItsSiri.appex; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -120,6 +124,8 @@
 		798D456A1E87777100855238 /* Exclamation Mark-50.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Exclamation Mark-50.png"; path = "../../../Downloads/Exclamation Mark-50.png"; sourceTree = "<group>"; };
 		798D456C1E8779D600855238 /* Happy-50.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Happy-50.png"; path = "../../../Downloads/Happy-50.png"; sourceTree = "<group>"; };
 		798D456E1E877A6100855238 /* Cool-50.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Cool-50.png"; path = "../../../Downloads/Cool-50.png"; sourceTree = "<group>"; };
+		798D45701E89E32A00855238 /* Sorting Options-50.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Sorting Options-50.png"; path = "../../../Downloads/Sorting Options-50.png"; sourceTree = "<group>"; };
+		798D45721E89E36D00855238 /* Expand Arrow-50.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Expand Arrow-50.png"; path = "../../../Downloads/Expand Arrow-50.png"; sourceTree = "<group>"; };
 		79916B6E1E8741F70020AC96 /* ViewListView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewListView.swift; sourceTree = "<group>"; };
 		79916B701E8762600020AC96 /* Filter-50.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Filter-50.png"; path = "../../Filter-50.png"; sourceTree = "<group>"; };
 		79916B721E87626A0020AC96 /* Filter Filled-50.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Filter Filled-50.png"; path = "../../Filter Filled-50.png"; sourceTree = "<group>"; };
@@ -246,6 +252,8 @@
 				798D45681E87776A00855238 /* Speaker-50.png */,
 				798D456A1E87777100855238 /* Exclamation Mark-50.png */,
 				798D45621E87745200855238 /* High Priority-50.png */,
+				798D45701E89E32A00855238 /* Sorting Options-50.png */,
+				798D45721E89E36D00855238 /* Expand Arrow-50.png */,
 				798D45661E8776A300855238 /* Audio Wave-50.png */,
 				798D45601E8772DC00855238 /* Delete-50.png */,
 				79916B701E8762600020AC96 /* Filter-50.png */,
@@ -289,6 +297,7 @@
 				799790CC1E3D97FA00781A22 /* AppDelegate.swift */,
 				791C93101E58D84D0027B49B /* TaskPageViewController.swift */,
 				799C08821E7F453D00011B8C /* AddItemViewController.swift */,
+				792E21F51E8A137700669DCE /* SortViewController.swift */,
 				793BAF071E747A3A00005662 /* Filters */,
 				79D5BD0B1E63C64900E84148 /* Categories */,
 				791C931C1E5BDF8C0027B49B /* Create/Update Tasks */,
@@ -490,10 +499,12 @@
 				79916B711E8762600020AC96 /* Filter-50.png in Resources */,
 				798D45651E8775AC00855238 /* Headphones-50.png in Resources */,
 				799790DA1E3D97FA00781A22 /* LaunchScreen.storyboard in Resources */,
+				798D45711E89E32A00855238 /* Sorting Options-50.png in Resources */,
 				798D45631E87745200855238 /* High Priority-50.png in Resources */,
 				799790D71E3D97FA00781A22 /* Assets.xcassets in Resources */,
 				798D455F1E876FD300855238 /* Plus-50.png in Resources */,
 				799790D21E3D97FA00781A22 /* Main.storyboard in Resources */,
+				798D45731E89E36D00855238 /* Expand Arrow-50.png in Resources */,
 				798D456B1E87777100855238 /* Exclamation Mark-50.png in Resources */,
 				798D45691E87776A00855238 /* Speaker-50.png in Resources */,
 				798D456D1E8779D600855238 /* Happy-50.png in Resources */,
@@ -546,6 +557,7 @@
 				791C93191E5968D20027B49B /* TasksViewController.swift in Sources */,
 				79D5BD061E6336D600E84148 /* CreateTaskView.swift in Sources */,
 				791C930F1E581DF00027B49B /* CompletedTasksTableViewCell.swift in Sources */,
+				792E21F61E8A137700669DCE /* SortViewController.swift in Sources */,
 				79916B6F1E8741F70020AC96 /* ViewListView.swift in Sources */,
 				798491C41E63CE6A00E4337C /* CategoryTableViewCell.swift in Sources */,
 				799C08831E7F453D00011B8C /* AddItemViewController.swift in Sources */,

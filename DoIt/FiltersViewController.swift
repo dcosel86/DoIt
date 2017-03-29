@@ -28,6 +28,7 @@ class FiltersViewController: UIViewController, UIPopoverPresentationControllerDe
     
     @IBOutlet weak var audioSwitch: UISwitch!
     
+    @IBOutlet weak var filterView: UIView!
     
     
     
@@ -43,12 +44,12 @@ class FiltersViewController: UIViewController, UIPopoverPresentationControllerDe
         
         applyButton.title = "Cancel"
      
+         filterView.layer.cornerRadius = 5
         
-        
-        UINavigationBar.appearance().barTintColor = UIColor(colorLiteralRed: 75/200, green: 156/255, blue: 56/255, alpha: 1)
+        UINavigationBar.appearance().barTintColor = UIColor.white
         //
         //
-        UINavigationBar.appearance().titleTextAttributes = [NSForegroundColorAttributeName : UIColor.white]
+        UINavigationBar.appearance().titleTextAttributes = [NSForegroundColorAttributeName : UIColor.darkGray]
         
         if filterSelections[1] == true {
             dueTodaySwitch.isEnabled = false

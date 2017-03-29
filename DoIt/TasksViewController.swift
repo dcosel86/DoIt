@@ -39,7 +39,10 @@ class TasksViewController: UIViewController, UITableViewDataSource, UITableViewD
     
 //    @IBOutlet weak var categoriesButton: UIBarButtonItem!
     
-    @IBOutlet weak var filterButton: UIBarButtonItem!
+//    @IBOutlet weak var filterButton: UIBarButtonItem!
+    
+    @IBOutlet weak var filterButton: UIButton!
+    
    
   
     @IBOutlet weak var addButton: UIBarButtonItem!
@@ -52,15 +55,31 @@ class TasksViewController: UIViewController, UITableViewDataSource, UITableViewD
 
     @IBOutlet weak var listDragView: UIView!
     
-    @IBOutlet weak var sortNameLabel: UILabel!
+   // @IBOutlet weak var sortNameLabel: UILabel!
     
     
+    @IBOutlet weak var sortView: UIView!
+    
+    @IBOutlet weak var sortImage: UIImageView!
+    @IBOutlet weak var sortLabel: UILabel!
+    
+    @IBOutlet weak var sortExpand: UIImageView!
+    @IBOutlet weak var sortButton: UIButton!
+    
+    @IBOutlet weak var filterView: UIView!
+    
+    @IBOutlet weak var filterLabel: UILabel!
+    
+    
+    @IBOutlet weak var filterImage: UIImageView!
+    
+    @IBOutlet weak var filterExpand: UIImageView!
     
     var tasks : [Task] = []
      // 0:today 1:week 2:past 3:imp 4:audio
     var filterSelections : [Bool] = [false, false, false, false, false]
     //1:priority 2:duedate 3:created
-    var sortSelection : Int? = 0
+    var sortSelection : Int? = 3
     var category : Category? = nil
     var categories : [Category] = []
     var completedTasks : [Task] = []
@@ -78,6 +97,15 @@ class TasksViewController: UIViewController, UITableViewDataSource, UITableViewD
         tableView.delegate = self
         tableView.dataSource = self
         
+      
+        
+         filterView.layer.cornerRadius = 3
+               filterView.layer.borderWidth = 1
+                filterView.layer.borderColor = UIColor.lightGray.cgColor
+        
+        sortView.layer.cornerRadius = 3
+        sortView.layer.borderWidth = 1
+        sortView.layer.borderColor = UIColor.lightGray.cgColor
        
         
      // listDragView.layer.cornerRadius = 10
@@ -87,6 +115,8 @@ class TasksViewController: UIViewController, UITableViewDataSource, UITableViewD
         listDragView.layer.shadowOffset = CGSize(width: 2, height: 0)
         listDragView.layer.shadowRadius = 2
         listDragView.layer.shadowOpacity = 0.5
+        
+        
         
         
         
@@ -394,7 +424,7 @@ class TasksViewController: UIViewController, UITableViewDataSource, UITableViewD
             cell.dueDateLabel.isHidden = false
             cell.createdDateLabel.isHidden = true
             cell.priorityLabel.isHidden = true
-        }else {
+        }else if sortSelection == 2 {
             cell.dueDateLabel.isHidden = true
             cell.createdDateLabel.isHidden = false
             cell.priorityLabel.isHidden = true
@@ -414,6 +444,10 @@ class TasksViewController: UIViewController, UITableViewDataSource, UITableViewD
             }
             
             
+        } else {
+            cell.dueDateLabel.isHidden = true
+            cell.createdDateLabel.isHidden = true
+            cell.priorityLabel.isHidden = true
         }
         
         
@@ -656,6 +690,12 @@ class TasksViewController: UIViewController, UITableViewDataSource, UITableViewD
             nextVC.sortSelection = sortSelection
         }
         
+        if segue.identifier == "showSort" {
+            let nextVC = segue.destination as! SortViewController
+            
+            nextVC.sortSelection = sortSelection
+        }
+        
         
     }
     
@@ -734,7 +774,7 @@ class TasksViewController: UIViewController, UITableViewDataSource, UITableViewD
    
     func taskCount () {
         
-        if filterSelections[0] == false && filterSelections[1] == false && filterSelections[2] == false && filterSelections[3] == false && filterSelections[4] == false {
+//        if filterSelections[0] == false && filterSelections[1] == false && filterSelections[2] == false && filterSelections[3] == false && filterSelections[4] == false {
         if tasks.count > 1 {
             taskNumber.isHidden = false
         taskNumber.text = "\(tasks.count) more tasks remaining"
@@ -753,9 +793,9 @@ class TasksViewController: UIViewController, UITableViewDataSource, UITableViewD
             editsButton.isEnabled = false
            
         }
-        }else {
-            print ("I have a filter")
-        }
+//        }else {
+//            print ("I have a filter")
+//        }
     }
     
     func editMode() {
@@ -772,7 +812,7 @@ class TasksViewController: UIViewController, UITableViewDataSource, UITableViewD
            // categoriesButton.isEnabled = true
             didEmButton.tintColor = UIColor.clear
             completedButton.isEnabled = true
-            sortNameLabel.isHidden = false
+            //sortNameLabel.isHidden = false
             if completedTasks.count > 0 {
             completedTasksButtonView.isHidden = false
             }
@@ -786,7 +826,7 @@ class TasksViewController: UIViewController, UITableViewDataSource, UITableViewD
             filterButton.isEnabled = false
             addButton.isEnabled = false
             taskNumber.isHidden = true
-            sortNameLabel.isHidden = true
+            //sortNameLabel.isHidden = true
            // categoriesButton.isEnabled = false
             didEmButton.tintColor = UIColor(colorLiteralRed: 75/200, green: 156/255, blue: 56/255, alpha: 1)
             completedButton.isEnabled = false
@@ -856,13 +896,21 @@ class TasksViewController: UIViewController, UITableViewDataSource, UITableViewD
         
     }
     
+    
+    @IBAction func unwindToTasksWithSort(segue: UIStoryboardSegue ) {
+        
+        startUpProcedures()
+        
+       
+        
+    }
+    
+    
     @IBAction func unwindToTasksWithFilter(segue: UIStoryboardSegue ) {
         
       startUpProcedures()
         
-//        determineFilters()
-//        tableView.reloadData()
-//        determineSortOrder()
+
         
     }
     
@@ -901,6 +949,9 @@ class TasksViewController: UIViewController, UITableViewDataSource, UITableViewD
             
             print (tasks)
             
+            filterLabel.text = "Show All"
+            filterLabel.textColor = UIColor.black
+            
         } catch {}
     }
     
@@ -915,6 +966,9 @@ class TasksViewController: UIViewController, UITableViewDataSource, UITableViewD
                 NSFetchRequest<NSFetchRequestResult>) as! [Task]
             
             taskCount()
+            
+            filterLabel.text = "Show All"
+            filterLabel.textColor = UIColor.black
         } catch {}
     }
     
@@ -939,8 +993,8 @@ class TasksViewController: UIViewController, UITableViewDataSource, UITableViewD
             tasks = try context.fetch(request as!
                 NSFetchRequest<NSFetchRequestResult>) as! [Task]
             
-            taskNumber.text = "Filter: Important (\(tasks.count))"
-            taskNumber.textColor = UIColor.red
+            filterLabel.text = "Urgent"
+            filterLabel.textColor = UIColor.red
         } catch {}
 
     }
@@ -971,8 +1025,8 @@ class TasksViewController: UIViewController, UITableViewDataSource, UITableViewD
             tasks = try context.fetch(request as!
                 NSFetchRequest<NSFetchRequestResult>) as! [Task]
             
-            taskNumber.text = "Filter: Due Today (\(tasks.count))"
-            taskNumber.textColor = UIColor.red
+            filterLabel.text = "Due Today"
+            filterLabel.textColor = UIColor.red
         } catch {}
     }
     
@@ -1002,8 +1056,8 @@ class TasksViewController: UIViewController, UITableViewDataSource, UITableViewD
             tasks = try context.fetch(request as!
                 NSFetchRequest<NSFetchRequestResult>) as! [Task]
             
-            taskNumber.text = "Filter: Due this week (\(tasks.count))"
-            taskNumber.textColor = UIColor.red
+            filterLabel.text = "Due this week"
+            filterLabel.textColor = UIColor.red
         } catch {}
     }
     
@@ -1026,8 +1080,8 @@ class TasksViewController: UIViewController, UITableViewDataSource, UITableViewD
             tasks = try context.fetch(request as!
                 NSFetchRequest<NSFetchRequestResult>) as! [Task]
             
-            taskNumber.text = "Filter: Past Due (\(tasks.count))"
-            taskNumber.textColor = UIColor.red
+            filterLabel.text = "Past Due"
+            filterLabel.textColor = UIColor.red
         } catch {}
     }
     
@@ -1051,8 +1105,8 @@ class TasksViewController: UIViewController, UITableViewDataSource, UITableViewD
             tasks = try context.fetch(request as!
                 NSFetchRequest<NSFetchRequestResult>) as! [Task]
             
-            taskNumber.text = "Filter: Past Due, Important (\(tasks.count))"
-            taskNumber.textColor = UIColor.red
+            filterLabel.text = "Past Due, Urgent"
+            filterLabel.textColor = UIColor.red
         } catch {}
     }
 
@@ -1081,8 +1135,8 @@ class TasksViewController: UIViewController, UITableViewDataSource, UITableViewD
         do{
             tasks = try context.fetch(request as!
                 NSFetchRequest<NSFetchRequestResult>) as! [Task]
-            taskNumber.text = "Filter: Due this week, Important (\(tasks.count))"
-            taskNumber.textColor = UIColor.red
+            filterLabel.text = "Due this week, Urgent"
+            filterLabel.textColor = UIColor.red
         } catch {}
     }
 
@@ -1113,8 +1167,8 @@ class TasksViewController: UIViewController, UITableViewDataSource, UITableViewD
         do{
             tasks = try context.fetch(request as!
                 NSFetchRequest<NSFetchRequestResult>) as! [Task]
-            taskNumber.text = "Filter: Due today, Important (\(tasks.count))"
-            taskNumber.textColor = UIColor.red
+            filterLabel.text = "Due today, Urgent"
+            filterLabel.textColor = UIColor.red
         } catch {}
     }
 
@@ -1145,8 +1199,8 @@ class TasksViewController: UIViewController, UITableViewDataSource, UITableViewD
         do{
             tasks = try context.fetch(request as!
                 NSFetchRequest<NSFetchRequestResult>) as! [Task]
-            taskNumber.text = "Filter: Past Due, Due this week, Important (\(tasks.count))"
-            taskNumber.textColor = UIColor.red
+            filterLabel.text = "Past Due, Due this week, Urgent"
+            filterLabel.textColor = UIColor.red
         } catch {}
     }
 
@@ -1177,8 +1231,8 @@ class TasksViewController: UIViewController, UITableViewDataSource, UITableViewD
         do{
             tasks = try context.fetch(request as!
                 NSFetchRequest<NSFetchRequestResult>) as! [Task]
-            taskNumber.text = "Filter: Past Due, Due today, Important (\(tasks.count))"
-            taskNumber.textColor = UIColor.red
+            filterLabel.text = "Past Due, Due today, Urgent"
+            filterLabel.textColor = UIColor.red
         } catch {}
     }
 
@@ -1208,8 +1262,8 @@ class TasksViewController: UIViewController, UITableViewDataSource, UITableViewD
         do{
             tasks = try context.fetch(request as!
                 NSFetchRequest<NSFetchRequestResult>) as! [Task]
-            taskNumber.text = "Filter: Past Due, Due this week (\(tasks.count))"
-            taskNumber.textColor = UIColor.red
+            filterLabel.text = "Past Due, Due this week"
+            filterLabel.textColor = UIColor.red
         } catch {}
 
     }
@@ -1240,8 +1294,8 @@ class TasksViewController: UIViewController, UITableViewDataSource, UITableViewD
         do{
             tasks = try context.fetch(request as!
                 NSFetchRequest<NSFetchRequestResult>) as! [Task]
-            taskNumber.text = "Filter: Past Due, Due today (\(tasks.count))"
-            taskNumber.textColor = UIColor.red
+            filterLabel.text = "Past Due, Due today"
+            filterLabel.textColor = UIColor.red
         } catch {}
         
     }
@@ -1276,8 +1330,8 @@ class TasksViewController: UIViewController, UITableViewDataSource, UITableViewD
         do{
             tasks = try context.fetch(request as!
                 NSFetchRequest<NSFetchRequestResult>) as! [Task]
-            taskNumber.text = "Filter: Past Due, Due today, Important, audio note (\(tasks.count))"
-            taskNumber.textColor = UIColor.red
+            filterLabel.text = "Past Due, Due today, Urgent, audio"
+            filterLabel.textColor = UIColor.red
         } catch {}
     }
     
@@ -1312,8 +1366,8 @@ class TasksViewController: UIViewController, UITableViewDataSource, UITableViewD
         do{
             tasks = try context.fetch(request as!
                 NSFetchRequest<NSFetchRequestResult>) as! [Task]
-            taskNumber.text = "Filter: Past Due, Due today, audio note (\(tasks.count))"
-            taskNumber.textColor = UIColor.red
+            filterLabel.text = "Past Due, Due today, audio"
+            filterLabel.textColor = UIColor.red
         } catch {}
     }
 
@@ -1346,8 +1400,8 @@ class TasksViewController: UIViewController, UITableViewDataSource, UITableViewD
         do{
             tasks = try context.fetch(request as!
                 NSFetchRequest<NSFetchRequestResult>) as! [Task]
-            taskNumber.text = "Filter: Past Due, Important, audio note (\(tasks.count))"
-            taskNumber.textColor = UIColor.red
+            filterLabel.text = "Past Due, Important, audio"
+            filterLabel.textColor = UIColor.red
         } catch {}
     }
     
@@ -1379,8 +1433,8 @@ class TasksViewController: UIViewController, UITableViewDataSource, UITableViewD
         do{
             tasks = try context.fetch(request as!
                 NSFetchRequest<NSFetchRequestResult>) as! [Task]
-            taskNumber.text = "Filter: Past Due, audio note (\(tasks.count))"
-            taskNumber.textColor = UIColor.red
+            filterLabel.text = "Past Due, audio"
+            filterLabel.textColor = UIColor.red
         } catch {}
     }
 
@@ -1415,8 +1469,8 @@ class TasksViewController: UIViewController, UITableViewDataSource, UITableViewD
         do{
             tasks = try context.fetch(request as!
                 NSFetchRequest<NSFetchRequestResult>) as! [Task]
-            taskNumber.text = "Filter: Due today, Important, audio note (\(tasks.count))"
-            taskNumber.textColor = UIColor.red
+            filterLabel.text = "Due today, Urgent, audio"
+            filterLabel.textColor = UIColor.red
         } catch {}
     }
     
@@ -1450,8 +1504,8 @@ class TasksViewController: UIViewController, UITableViewDataSource, UITableViewD
         do{
             tasks = try context.fetch(request as!
                 NSFetchRequest<NSFetchRequestResult>) as! [Task]
-            taskNumber.text = "Filter: Due today, audio note (\(tasks.count))"
-            taskNumber.textColor = UIColor.red
+            filterLabel.text = "Due today, audio"
+            filterLabel.textColor = UIColor.red
         } catch {}
     }
 
@@ -1484,8 +1538,8 @@ class TasksViewController: UIViewController, UITableViewDataSource, UITableViewD
         do{
             tasks = try context.fetch(request as!
                 NSFetchRequest<NSFetchRequestResult>) as! [Task]
-            taskNumber.text = "Filter: Due this week, Important, audio note (\(tasks.count))"
-            taskNumber.textColor = UIColor.red
+            filterLabel.text = "Due this week, Urgent, audio"
+            filterLabel.textColor = UIColor.red
         } catch {}
     }
     
@@ -1516,8 +1570,8 @@ class TasksViewController: UIViewController, UITableViewDataSource, UITableViewD
         do{
             tasks = try context.fetch(request as!
                 NSFetchRequest<NSFetchRequestResult>) as! [Task]
-            taskNumber.text = "Filter: Due this week, audio note (\(tasks.count))"
-            taskNumber.textColor = UIColor.red
+            filterLabel.text = "Due this week, audio"
+            filterLabel.textColor = UIColor.red
         } catch {}
     }
 
@@ -1554,8 +1608,8 @@ class TasksViewController: UIViewController, UITableViewDataSource, UITableViewD
         do{
             tasks = try context.fetch(request as!
                 NSFetchRequest<NSFetchRequestResult>) as! [Task]
-            taskNumber.text = "Filter: Past due, Due this week, Important, audio note (\(tasks.count))"
-            taskNumber.textColor = UIColor.red
+            filterLabel.text = "Past due, Due this week, Urgent, audio"
+            filterLabel.textColor = UIColor.red
         } catch {}
     }
     
@@ -1587,8 +1641,8 @@ class TasksViewController: UIViewController, UITableViewDataSource, UITableViewD
         do{
             tasks = try context.fetch(request as!
                 NSFetchRequest<NSFetchRequestResult>) as! [Task]
-            taskNumber.text = "Filter: Past due, Due this week, audio note (\(tasks.count))"
-            taskNumber.textColor = UIColor.red
+            filterLabel.text = "Past due, Due this week, audio"
+            filterLabel.textColor = UIColor.red
         } catch {}
     }
     
@@ -1616,8 +1670,8 @@ class TasksViewController: UIViewController, UITableViewDataSource, UITableViewD
         do{
             tasks = try context.fetch(request as!
                 NSFetchRequest<NSFetchRequestResult>) as! [Task]
-            taskNumber.text = "Filter: Audio note (\(tasks.count))"
-            taskNumber.textColor = UIColor.red
+            filterLabel.text = "Audio"
+            filterLabel.textColor = UIColor.red
         } catch {}
     }
 
@@ -1632,11 +1686,41 @@ class TasksViewController: UIViewController, UITableViewDataSource, UITableViewD
         
        
         
-           self.navigationItem.rightBarButtonItem?.tintColor = UIColor.red
+        
+        
+        filterView.backgroundColor = UIColor(colorLiteralRed: 75/200, green: 156/255, blue: 56/255, alpha: 1)
+        
+         filterLabel.textColor = UIColor.white
+        
+        filterLabel.layer.borderColor = UIColor.white.cgColor
+        
+       
+        
+        filterImage.image = filterImage.image!.withRenderingMode(.alwaysTemplate)
+        filterImage.tintColor = UIColor.white
+        
+        filterExpand.image = filterExpand.image!.withRenderingMode(.alwaysTemplate)
+        filterExpand.tintColor = UIColor.white
           
         
      }else {
-        self.navigationItem.rightBarButtonItem?.tintColor = UIColor.white
+        
+        filterView.backgroundColor = UIColor.white
+        
+         filterLabel.textColor = UIColor.black
+        
+        filterLabel.layer.borderColor = UIColor.lightGray.cgColor
+        
+        filterImage.tintColor = UIColor.black
+        
+        filterExpand.tintColor = UIColor.black
+        
+        filterImage.image = filterImage.image!.withRenderingMode(.alwaysTemplate)
+        filterImage.tintColor = UIColor.black
+        
+        filterExpand.image = filterExpand.image!.withRenderingMode(.alwaysTemplate)
+        filterExpand.tintColor = UIColor.black
+        
     }
     
     }
@@ -1663,13 +1747,13 @@ class TasksViewController: UIViewController, UITableViewDataSource, UITableViewD
 //                cell.createdDateLabel.isHidden = true
 //                cell.priorityLabel.isHidden = false
             }
-            sortNameLabel.text = "Sort: Priority"
+            sortLabel.text = "Priority"
         }
         
         if sortSelection == 1 {
             tasks.sort(by: {(($0.dueDate?.timeIntervalSinceNow)!) < (($1.dueDate?.timeIntervalSinceNow)!)})
             
-            sortNameLabel.text = "Sort: Due Date"
+            sortLabel.text = "Due Date"
             
 //            cell.dueDateLabel.isHidden = false
 //            cell.priorityLabel.isHidden = true
@@ -1682,8 +1766,58 @@ class TasksViewController: UIViewController, UITableViewDataSource, UITableViewD
 //            cell.priorityLabel.isHidden = true
 //            cell.createdDateLabel.isHidden = false
 //            cell.dueDateLabel.isHidden = true
-            sortNameLabel.text = "Sort: Created Date"
+            sortLabel.text = "Created Date"
         }
+        
+        if sortSelection == 3 {
+            self.tasks.sort(by: {
+                $0.taskName! < $1.taskName!
+            })
+            sortLabel.text = "Task Name"
+        }
+        
+        
+        if sortSelection != 3 {
+            
+            
+            
+            
+            
+            sortView.backgroundColor = UIColor(colorLiteralRed: 75/200, green: 156/255, blue: 56/255, alpha: 1)
+            
+            sortLabel.textColor = UIColor.white
+            
+            sortLabel.layer.borderColor = UIColor.white.cgColor
+            
+            
+            
+            sortImage.image = sortImage.image!.withRenderingMode(.alwaysTemplate)
+            sortImage.tintColor = UIColor.white
+            
+            sortExpand.image = sortExpand.image!.withRenderingMode(.alwaysTemplate)
+            sortExpand.tintColor = UIColor.white
+            
+            
+        }else {
+            
+            sortView.backgroundColor = UIColor.white
+            
+            sortLabel.textColor = UIColor.black
+            
+            sortLabel.layer.borderColor = UIColor.lightGray.cgColor
+            
+            sortImage.tintColor = UIColor.black
+            
+            sortExpand.tintColor = UIColor.black
+            
+            sortImage.image = sortImage.image!.withRenderingMode(.alwaysTemplate)
+            sortImage.tintColor = UIColor.black
+            
+            sortExpand.image = sortExpand.image!.withRenderingMode(.alwaysTemplate)
+            sortExpand.tintColor = UIColor.black
+            
+        }
+
         
         
     }
@@ -1761,7 +1895,7 @@ class TasksViewController: UIViewController, UITableViewDataSource, UITableViewD
        // filterButton.isEnabled = false
         addButton.isEnabled = true
         dragToCreateView.isHidden = false
-        sortNameLabel.isHidden = true
+        //sortNameLabel.isHidden = true
     
     }else {
         tableView.isHidden = false
@@ -1771,7 +1905,7 @@ class TasksViewController: UIViewController, UITableViewDataSource, UITableViewD
         //filterButton.isEnabled = true
         addButton.isEnabled = true
         dragToCreateView.isHidden = true
-        sortNameLabel.isHidden = false
+        //sortNameLabel.isHidden = false
         
         }
     
@@ -1970,13 +2104,30 @@ class TasksViewController: UIViewController, UITableViewDataSource, UITableViewD
     }
     
     
+   
+    @IBAction func filterButtonTapped(_ sender: Any) {
+        
+         performSegue(withIdentifier: "popover", sender: [filterSelections, sortSelection])
+         maskView.isHidden = false
+        
+    }
+    
+    
+    @IBAction func sortButtonTapped(_ sender: Any) {
+        
+        performSegue(withIdentifier: "showSort", sender: [filterSelections, sortSelection])
+        maskView.isHidden = false
+    }
+    
+    
+    
     
  
 
-    @IBAction func filterButtonTapped(_ sender: Any) {
-        performSegue(withIdentifier: "popover", sender: [filterSelections, sortSelection])
-       // maskView.isHidden = false
-    }
+//    @IBAction func filterButtonTapped(_ sender: Any) {
+//        performSegue(withIdentifier: "popover", sender: [filterSelections, sortSelection])
+//       // maskView.isHidden = false
+//    }
     
 //    func getSelectedCategory() {
 //        let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
