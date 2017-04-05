@@ -49,6 +49,9 @@ class FiltersViewController: UIViewController, UIPopoverPresentationControllerDe
        UINavigationBar.appearance().barTintColor = UIColor.white
         //
         //
+        
+        
+        
         UINavigationBar.appearance().titleTextAttributes = [NSForegroundColorAttributeName : UIColor.darkGray]
         
         if filterSelections[1] == true {

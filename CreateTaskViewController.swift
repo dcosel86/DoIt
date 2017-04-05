@@ -24,6 +24,14 @@ class CreateTaskViewController: UIViewController, UITextFieldDelegate, UIPickerV
     var audioPlayer : AVAudioPlayer? = nil
     var audioURL : URL?
     var selectedCategory : Category? = nil
+    var important : Bool? = nil
+    let alert = UIAlertController(title: "Delete Audio Note", message: "This will delete the audio note associated with this task", preferredStyle: .actionSheet)
+   var updater : CADisplayLink! = nil
+   var toggleState = 1
+    var audioTime : TimeInterval? = 0.0
+    var playedTimer : String = "00:00 / 00:00"
+   
+    
    
     
     
@@ -31,7 +39,7 @@ class CreateTaskViewController: UIViewController, UITextFieldDelegate, UIPickerV
     //outlets
     
     
-    @IBOutlet weak var addAudioNoteButton: UIButton!
+   // @IBOutlet weak var addAudioNoteButton: UIButton!
     
     
     @IBOutlet weak var playRecordView: UIView!
@@ -40,7 +48,7 @@ class CreateTaskViewController: UIViewController, UITextFieldDelegate, UIPickerV
     
     @IBOutlet weak var taskNameTextField: UITextField!
     
-    @IBOutlet weak var importantSwitch: UISwitch!
+    //@IBOutlet weak var importantSwitch: UISwitch!
     
     @IBOutlet weak var notesTextField: UITextView!
     
@@ -67,15 +75,32 @@ class CreateTaskViewController: UIViewController, UITextFieldDelegate, UIPickerV
     
     @IBOutlet weak var importantButton: UIButton!
     
+    @IBOutlet weak var dueDateLabel: UILabel!
+    
+   // @IBOutlet weak var audioLabel: UILabel!
+    
+    @IBOutlet weak var taskNotesLabel: UILabel!
+    
+    @IBOutlet weak var audioBar: UISlider!
+    
+    
+    @IBOutlet weak var playedTime: UILabel!
+    
+    @IBOutlet weak var recordingMessage: UILabel!
+    
+    @IBOutlet weak var colorView: UIView!
     
     
     //functions
     
     override func viewDidLoad() {
+        
+        
         UINavigationBar.appearance().barTintColor = UIColor.lightGray
         
         
         createTaskView.layer.cornerRadius = 10
+        colorView.layer.cornerRadius = 10
         
         UINavigationBar.appearance().titleTextAttributes = [NSForegroundColorAttributeName : UIColor.white]
         
@@ -91,12 +116,34 @@ class CreateTaskViewController: UIViewController, UITextFieldDelegate, UIPickerV
         
         getCategories()
         getTasks()
-        determineButtonFill()
-        
        
+        self.hideKeyboardWhenTappedAround()
+           
+        notesTextField.selectedRange = NSMakeRange(2, 0)
         
-    
+        //notesTextField.selectedRange = NSMakeRange(2, 0);
+//        if audioURL != nil {
+//        _ = Timer.scheduledTimer(timeInterval: 0.01, target: self, selector: #selector(CreateTaskViewController.updateSlider), userInfo: nil, repeats: true)
+//       
+//        }
         
+        let upThumbImage : UIImage = UIImage(named: "circleSlider.png")!
+        let size = CGSize(width: 30, height: 30)
+        UIGraphicsBeginImageContext(size)
+        upThumbImage.draw(in: CGRect(x:0, y:0, width:size.width, height:size.height))
+        let resizeImage = UIGraphicsGetImageFromCurrentImageContext()
+        UIGraphicsEndImageContext()
+        
+        audioBar.setThumbImage(resizeImage, for: .normal)
+        
+        recordingMessage.isHidden = true
+        recordingMessage.text = "Recording in progress . . . . ."
+        
+        let origPlayImage = UIImage(named: "Play Filled-50.png")
+        let tintedPlayImage = origPlayImage?.withRenderingMode(.alwaysTemplate)
+        
+        let origRecordImage = UIImage(named: "Record Filled-50.png")
+        let tintedRecordImage = origRecordImage?.withRenderingMode(.alwaysTemplate)
     
         
         //load date picker
@@ -111,20 +158,28 @@ class CreateTaskViewController: UIViewController, UITextFieldDelegate, UIPickerV
         //load category picker
         categoryTextField.inputView = UIView()
         
-        
+        categoryPicker.isHidden = true
         
         
         
         if task != nil {
+            
+            if task?.dueDate != nil{
             let dateFromTask = task?.dueDate
             let dateFormatter = DateFormatter()
             dateFormatter.dateStyle = .long
             let dateToShow = "\(dateFormatter.string(from: dateFromTask as! Date))"
+                dueDateLabel.isHidden = false
+                dateFieldText.isHidden = false
+                dateFieldText.text = dateToShow
+            }
+            
             taskNameTextField.text = task?.taskName
             notesTextField.text = task?.taskNotes
-            importantSwitch.isOn = (task?.important)!
+//            importantSwitch.isOn = (task?.important)!
             
-            dateFieldText.text = dateToShow
+            important = task?.important
+           
             task!.taskPriority = task!.taskPriority
             task?.audioNote = task?.audioNote
             addButton.setTitle("Update", for: .normal)
@@ -145,20 +200,52 @@ class CreateTaskViewController: UIViewController, UITextFieldDelegate, UIPickerV
 //                print ("not important")
 //            }
             
+            if task?.dueDate != nil {
+                dueDateLabel.isHidden = false
+                dateFieldText.isHidden = false
+            } else {
+                dueDateLabel.isHidden = true
+                dateFieldText.isHidden = true
+            }
+            
             
             if task?.audioNote != nil {
                 playRecordView.isHidden = false
-                addAudioNoteButton.isHidden = true
-                addAudioNoteButton.isEnabled = false
-                setUpRecorder()
+               // audioLabel.isHidden = false
+//                addAudioNoteButton.isHidden = true
+//                addAudioNoteButton.isEnabled = false
+               // setUpRecorder()
+                
+                recordStopButton.setImage(tintedRecordImage, for: .normal)
+                recordStopButton.tintColor = UIColor.red
+                playPauseButton.tintColor = UIColor.darkGray
+                playPauseButton.isEnabled = true
+//                _ = Timer.scheduledTimer(timeInterval: 0.01, target: self, selector: #selector(CreateTaskViewController.updateSlider), userInfo: nil, repeats: true)
+                
+                do {
+                    
+                    try audioPlayer = AVAudioPlayer(data: task!.audioNote! as Data)
+                    audioBar.maximumValue = Float((audioPlayer?.duration)!)
+                } catch {
+                    
+                    print("error")
+                }
+                
+                updateTime()
                 
                 
+                
+               // audioBar.maximumValue = Float((audioPlayer?.duration)!)
 //                audioNoteButton.setImage(UIImage(named: "Circled Play Filled-50.png"), for: UIControlState.normal)
                 
             } else {
                 playRecordView.isHidden = true
-                addAudioNoteButton.isHidden = false
-                addAudioNoteButton.isEnabled = true
+                playedTime.text = "00:00 / 00:00"
+                
+                //audioLabel.isHidden = true
+                
+//                addAudioNoteButton.isHidden = false
+                //addAudioNoteButton.isEnabled = true
             }
             if task?.taskCategory != nil {
                 categoryTextField.text = "\(task!.taskCategory!.categoryName!)"
@@ -168,25 +255,36 @@ class CreateTaskViewController: UIViewController, UITextFieldDelegate, UIPickerV
             }
             
             
-            
+        determineButtonFill()
         
         }
         else {
+            important = false
              addButton.setTitle("Add", for: .normal)
             addButton.isEnabled = false
             addButton.isHidden = false
             didItButton.isHidden = true
             didItButton.isEnabled = false
             playRecordView.isHidden = true
-            addAudioNoteButton.isHidden = false
-            addAudioNoteButton.isEnabled = true
+            //audioLabel.isHidden = true
+//            categoryPicker.isHidden = true
+            dateFieldText.isHidden = true
+            dueDateLabel.isHidden = true
+            //addAudioNoteButton.isHidden = false
+           // addAudioNoteButton.isEnabled = true
             if selectedCategory != nil {
                 categoryTextField.text = selectedCategory?.categoryName
                 determineIndexOfSelectedCategory()
             }else {
             categoryTextField.text = "\(categories[0].categoryName!)"
+                
             }
+            
+            determineButtonFill()
         }
+        
+        colorView.backgroundColor = selectedCategory?.color as! UIColor
+        
 
     }
 
@@ -195,10 +293,12 @@ class CreateTaskViewController: UIViewController, UITextFieldDelegate, UIPickerV
     
     override func viewWillAppear(_ animated: Bool) {
       
-       categoryPicker.isHidden = true
+       
         
         if selectedCategory != nil {
        determineIndexOfSelectedCategory()
+            
+            
            
         }
     }
@@ -230,6 +330,7 @@ class CreateTaskViewController: UIViewController, UITextFieldDelegate, UIPickerV
         let category = categories[row]
         let selectedCategory = (category.categoryName)
         categoryTextField.text = "\(selectedCategory!)"
+        colorView.backgroundColor = category.color as! UIColor
     }
     
     
@@ -300,46 +401,66 @@ class CreateTaskViewController: UIViewController, UITextFieldDelegate, UIPickerV
     
     func determineButtonFill() {
     
+        taskNotesLabel.translatesAutoresizingMaskIntoConstraints = false
+        let verticalNoteLabelSpace = NSLayoutConstraint(item: dateFieldText, attribute: .top, relatedBy: .equal, toItem: taskNotesLabel, attribute: .bottom, multiplier: 1, constant: -155)
+        let leftNoteLabelConstraint = taskNotesLabel.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 20)
         
+        let verticalNoteLabelSpace2 = NSLayoutConstraint(item: dateFieldText, attribute: .top, relatedBy: .equal, toItem: taskNotesLabel, attribute: .bottom, multiplier: 1, constant: 5)
+        let leftNoteLabelConstraint2 = taskNotesLabel.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 20)
     //set play image tint
         
-        if task?.audioNote != nil {
-            let origPlayImage = UIImage(named: "Circled Play Filled-50.png")
-            let tintedPlayImage = origPlayImage?.withRenderingMode(.alwaysTemplate)
-            audioNoteButton.setImage(tintedPlayImage, for: .normal)
+        if playRecordView.isHidden == false {
+            let origAudioImage = UIImage(named: "Circled Play Filled-50.png")
+            let tintedAudioImage = origAudioImage?.withRenderingMode(.alwaysTemplate)
+            audioNoteButton.setImage(tintedAudioImage, for: .normal)
             audioNoteButton.tintColor = UIColor(colorLiteralRed: 75/200, green: 156/255, blue: 56/255, alpha: 1)
         } else {
-    let origPlayImage = UIImage(named: "Circled Play-50.png")
-    let tintedPlayImage = origPlayImage?.withRenderingMode(.alwaysTemplate)
-    audioNoteButton.setImage(tintedPlayImage, for: .normal)
+    let origAudioImage = UIImage(named: "Circled Play-50.png")
+    let tintedAudioImage = origAudioImage?.withRenderingMode(.alwaysTemplate)
+    audioNoteButton.setImage(tintedAudioImage, for: .normal)
     audioNoteButton.tintColor = UIColor.lightGray
         }
     
     //set urgent image tint
-        if task?.important == true {
-            let origUrgentImage = UIImage(named: "Low importance Filled-50.png")
+        if important == true {
+            let origUrgentImage = UIImage(named: "High importance Filled-50.png")
             let tintedUrgentImage = origUrgentImage?.withRenderingMode(.alwaysTemplate)
             importantButton.setImage(tintedUrgentImage, for: .normal)
             importantButton.tintColor = UIColor(colorLiteralRed: 75/200, green: 156/255, blue: 56/255, alpha: 1)
             
         } else {
-    let origUrgentImage = UIImage(named: "Low importance-50.png")
+    let origUrgentImage = UIImage(named: "High importance-50.png")
     let tintedUrgentImage = origUrgentImage?.withRenderingMode(.alwaysTemplate)
     importantButton.setImage(tintedUrgentImage, for: .normal)
     importantButton.tintColor = UIColor.lightGray
+            print ("I did it!")
         }
     
     //set urgent image tint
-        if task?.dueDate != nil {
+        if dateFieldText.isHidden == false {
             let origDatetImage = UIImage(named: "Clock Filled-50.png")
             let tintedDateImage = origDatetImage?.withRenderingMode(.alwaysTemplate)
             dueDateButton.setImage(tintedDateImage, for: .normal)
             dueDateButton.tintColor = UIColor(colorLiteralRed: 75/200, green: 156/255, blue: 56/255, alpha: 1)
+            
+
+            
+            NSLayoutConstraint.activate([verticalNoteLabelSpace, leftNoteLabelConstraint])
+            
+
+            
+            
         }else {
     let origDatetImage = UIImage(named: "Clock-50.png")
     let tintedDateImage = origDatetImage?.withRenderingMode(.alwaysTemplate)
     dueDateButton.setImage(tintedDateImage, for: .normal)
     dueDateButton.tintColor = UIColor.lightGray
+            
+           
+            
+            NSLayoutConstraint.deactivate([verticalNoteLabelSpace, leftNoteLabelConstraint])
+            
+            
         }
 
     }
@@ -364,21 +485,10 @@ class CreateTaskViewController: UIViewController, UITextFieldDelegate, UIPickerV
             didItButton.isHidden = true
         }
     }
-    
-    
-    
-    @IBAction func notesFieldTapped(_ sender: Any) {
-        notesTextField.isEditable = true
-        if task != nil {
-            addButton.setTitle("Update", for: .normal)
-            addButton.isEnabled = true
-            addButton.isHidden = false
-            didItButton.isEnabled = false
-            didItButton.isHidden = true
-        }
 
-    }
+    
    
+    
     @IBAction func taskNameChnaged(_ sender: Any) {
         addButton.isEnabled = true
         if task != nil {
@@ -391,15 +501,115 @@ class CreateTaskViewController: UIViewController, UITextFieldDelegate, UIPickerV
     }
     
     
-    @IBAction func impSwitchTapped(_ sender: Any) {
+    @IBAction func dateButtonTapped(_ sender: Any) {
+        
         if task != nil {
-             addButton.setTitle("Update", for: .normal)
+            addButton.setTitle("Update", for: .normal)
             addButton.isEnabled = true
             addButton.isHidden = false
             didItButton.isEnabled = false
             didItButton.isHidden = true
         }
+
+        
+        
+        
+        if dateFieldText.isHidden == true {
+            dueDateLabel.isHidden = false
+            dateFieldText.isHidden = false
+            datePickerView.isHidden = false
+            let dateFormatter = DateFormatter()
+            
+            dateFormatter.dateStyle = DateFormatter.Style.long
+            
+            dateFormatter.timeStyle = DateFormatter.Style.none
+            
+            dateFieldText.text = dateFormatter.string(for: Date())
+            
+            
+        }  else {
+            dueDateLabel.isHidden = true
+            dateFieldText.isHidden = true
+            dateFieldText.text = nil
+           
+          
+        }
+        determineButtonFill()
+        
+    
+        
     }
+    
+    
+    
+    @IBAction func audioNoteButtonTapped(_ sender: Any) {
+        
+        let origRecordImage = UIImage(named: "Record Filled-50.png")
+        let tintedRecordImage = origRecordImage?.withRenderingMode(.alwaysTemplate)
+        
+        
+        
+         if ((task?.audioNote == nil) && (audioURL == nil) && (playRecordView.isHidden == false)) == true {
+            
+            playRecordView.isHidden = true
+            determineButtonFill()
+            
+        }
+        
+        
+       else if ((task?.audioNote == nil) && (audioURL == nil) && (playRecordView.isHidden == true)) == true {
+//        if audioURL == nil {
+        playRecordView.isHidden = false
+            //audioLabel.isHidden = false
+            recordStopButton.setImage(tintedRecordImage, for: .normal)
+            recordStopButton.tintColor = UIColor.red
+            playPauseButton.isEnabled = false
+        //addAudioNoteButton.isHidden = true
+        //addAudioNoteButton.isEnabled = false
+        //setUpRecorder()
+            determineButtonFill()
+        } else {
+            
+        self.present(self.alert, animated: true, completion: nil)
+            
+        self.alert.addAction(UIAlertAction(title: "Sure go ahead", style: .default, handler: { (action) in
+        
+        self.playRecordView.isHidden = true
+           // self.audioLabel.isHidden = true
+        //addAudioNoteButton.isHidden = false
+        //addAudioNoteButton.isEnabled = true
+            
+            
+            if self.audioURL != nil {
+        self.audioURL = nil
+            }
+            if self.task?.audioNote != nil {
+            self.task?.audioNote = nil
+            }
+            self.determineButtonFill()
+            
+
+            
+        }))
+            self.alert.addAction(UIAlertAction(title: "Cancel", style: .default, handler: { (action) in
+                
+                self.determineButtonFill()
+                
+            }))
+        }
+       
+    }
+    
+    
+//    @IBAction func impSwitchTapped(_ sender: Any) {
+//        if task != nil {
+//             addButton.setTitle("Update", for: .normal)
+//            addButton.isEnabled = true
+//            addButton.isHidden = false
+//            didItButton.isEnabled = false
+//            didItButton.isHidden = true
+//        }
+//    }
     
     @IBAction func cancelButtonTapped(_ sender: Any) {
         self.performSegue(withIdentifier: "unwindToTasks", sender: self)
@@ -415,6 +625,27 @@ class CreateTaskViewController: UIViewController, UITextFieldDelegate, UIPickerV
     }
     
     
+    
+    
+    @IBAction func importantButtonTapped(_ sender: Any) {
+        
+        if important == true {
+            self.important = false
+        } else {
+            self.important = true
+        }
+        
+        if task != nil{
+        addButton.setTitle("Update", for: .normal)
+        addButton.isEnabled = true
+        addButton.isHidden = false
+        didItButton.isEnabled = false
+        didItButton.isHidden = true
+        }
+        
+        determineButtonFill()
+        
+    }
     
     
     
@@ -462,21 +693,42 @@ class CreateTaskViewController: UIViewController, UITextFieldDelegate, UIPickerV
                  dateFormatter.dateFormat = "MM-dd-yyyy"
                  let dateToSave = dateFormatter.date(from: dateString!)
                 
-                
-                if audioURL != nil {
+                if ((task?.audioNote != nil) && (audioURL != nil)) == true {
                     task2.audioNote = NSData(contentsOf: audioURL!)
+                } else if ((task?.audioNote != nil) && (audioURL == nil)) == true{
+                    task2.audioNote = task?.audioNote
+                } else if ((task?.audioNote == nil) && (audioURL != nil)) == true{
+                    task2.audioNote = NSData(contentsOf: audioURL!)
+                    print ("YOOO")
                 } else {
                     try task2.audioNote? = NSData(contentsOf: audioURL!)
+
                 }
+                
+                
+                
+//                if task?.audioNote != nil {
+//                    task2.audioNote = task?.audioNote
+//                }
+//                else if audioURL != nil {
+//                    task2.audioNote = NSData(contentsOf: audioURL!)
+//                } else {
+//                    try task2.audioNote? = NSData(contentsOf: audioURL!)
+//                }
 
                 task2.taskName = taskNameTextField.text
                 task2.taskNotes = notesTextField.text
-                task2.important = importantSwitch.isOn
+                task2.important = important!
                 task2.completed = false
                 task2.taskPriority = task!.taskPriority
                 
+                if dateToSave != nil {
+                    task2.dueDate = dateToSave as NSDate?
+                }else {
+                    task2.dueDate = nil
+                }
+
                 
-                task2.dueDate = dateToSave as NSDate?
                 
                 task2.setValue(category2, forKey: "taskCategory")
                 
@@ -520,12 +772,15 @@ class CreateTaskViewController: UIViewController, UITextFieldDelegate, UIPickerV
             
             
             task.taskName = taskNameTextField.text!
-            task.important = importantSwitch.isOn
+            task.important = important!
             task.taskNotes = notesTextField.text
             task.completed = false
                 
-               
+                if dateToSave != nil {
             task.dueDate = dateToSave as NSDate?
+                }else {
+                    task.dueDate = nil
+                }
             task.setValue(category, forKey: "taskCategory")
             task.createdDate = NSDate()
                 if audioURL != nil {
@@ -534,7 +789,7 @@ class CreateTaskViewController: UIViewController, UITextFieldDelegate, UIPickerV
                     try task.audioNote? = NSData(contentsOf: audioURL!)
                 }
             
-            if importantSwitch.isOn {
+            if important == true {
                 task.taskPriority = -1
             }else {
                 task.taskPriority = Int64((tasks.count))
@@ -634,9 +889,9 @@ class CreateTaskViewController: UIViewController, UITextFieldDelegate, UIPickerV
     
     func setUpRecorder() {
         
-        if task != nil {
-        playPauseButton.isEnabled = true
-        }
+//        if task != nil {
+//        //playPauseButton.isEnabled = true
+//        }
         
         //create audio session
         do {
@@ -668,36 +923,96 @@ class CreateTaskViewController: UIViewController, UITextFieldDelegate, UIPickerV
     }
     
     
-    @IBAction func addAudioNoteButtonTapped(_ sender: Any) {
-        playRecordView.isHidden = false
-        addAudioNoteButton.isHidden = true
-        addAudioNoteButton.isEnabled = false
-        setUpRecorder()
-    }
+//    @IBAction func addAudioNoteButtonTapped(_ sender: Any) {
+//        playRecordView.isHidden = false
+//        addAudioNoteButton.isHidden = true
+//        addAudioNoteButton.isEnabled = false
+//        setUpRecorder()
+//    }
     
+//    
+//    @IBAction func deleteAudioNoteButtonTapped(_ sender: Any) {
+//        playRecordView.isHidden = true
+//        addAudioNoteButton.isHidden = false
+//        addAudioNoteButton.isEnabled = true
+//        
+//        audioURL = nil
+//        
+//    }
     
-    @IBAction func deleteAudioNoteButtonTapped(_ sender: Any) {
-        playRecordView.isHidden = true
-        addAudioNoteButton.isHidden = false
-        addAudioNoteButton.isEnabled = true
-        
-        audioURL = nil
-        
-    }
-    
+//    
+//    func determineLayout() {
+//        
+//       
+//        
+//       taskNotesLabel.translatesAutoresizingMaskIntoConstraints = false
+//       dueDateLabel.translatesAutoresizingMaskIntoConstraints = false
+//        
+//        if dateFieldText.isHidden == false {
+//            
+//            let verticalSpace = NSLayoutConstraint(item: taskNotesLabel, attribute: .top, relatedBy: .equal, toItem: categoryTextField, attribute: .bottom, multiplier: 1, constant: 0)
+//            NSLayoutConstraint.activate([verticalSpace])
+//            
+//        }
+//        
+//        
+//        
+//    }
     
 
     @IBAction func recordStopTapped(_ sender: Any) {
+        
+        let origRecordImage = UIImage(named: "Record Filled-50.png")
+        let tintedRecordImage = origRecordImage?.withRenderingMode(.alwaysTemplate)
+        let origStopImage = UIImage(named: "Stop Filled-50.png")
+        let tintedStopImage = origStopImage?.withRenderingMode(.alwaysTemplate)
+        let origPlayImage = UIImage(named: "Play Filled-50.png")
+        let tintedPlayImage = origPlayImage?.withRenderingMode(.alwaysTemplate)
+        
+        if task != nil {
+        addButton.setTitle("Update", for: .normal)
+        addButton.isEnabled = true
+        addButton.isHidden = false
+        didItButton.isEnabled = false
+        didItButton.isHidden = true
+        }
+            
+            
+        if audioURL == nil {
+            setUpRecorder()
+           
+        }
+        
+        var recordingTimer = Timer.scheduledTimer(timeInterval: 0.5, target: self, selector: #selector(CreateTaskViewController.recordingInProgress),
+                                         userInfo: nil, repeats: true)
+        
+        
         if audioRecorder!.isRecording {
             audioRecorder!.stop()
-            recordStopButton.setTitle("⏺", for: .normal)
+            
+        
+            recordStopButton.setImage(tintedRecordImage, for: .normal)
+            recordStopButton.tintColor = UIColor.red
+            
+            
+            
+            
             playPauseButton.isEnabled = true
-            addButton.isEnabled = true
+           playPauseButton.setImage(tintedPlayImage, for: .normal)
+            playPauseButton.tintColor = UIColor.darkGray
             
         } else {
             audioRecorder!.record()
-            recordStopButton.setTitle("⏹", for: .normal)
+            
+            recordStopButton.setImage(tintedStopImage, for: .normal)
+            recordStopButton.tintColor = UIColor.darkGray
+            playPauseButton.isEnabled = false
+            
+            
             }
+        
+        
+        
 }
     
 
@@ -705,55 +1020,326 @@ class CreateTaskViewController: UIViewController, UITextFieldDelegate, UIPickerV
     
     @IBAction func playPauseTapped(_ sender: Any) {
         
+        let origPlayImage = UIImage(named: "Play Filled-50.png")
+        let tintedPlayImage = origPlayImage?.withRenderingMode(.alwaysTemplate)
+        let origPauseImage = UIImage(named: "Pause Filled-50.png")
+        let tintedPauseImage = origPauseImage?.withRenderingMode(.alwaysTemplate)
         
-        if task != nil {
+        
+        if ((task?.audioNote != nil) && (audioURL != nil)) == true {
+            do {
+                
+                try audioPlayer = AVAudioPlayer(contentsOf: audioURL!)
+                audioBar.maximumValue = Float((audioPlayer?.duration)!)
+                
+                
+            } catch {
+                
+                print("error")
+            }
+
+        }
+        
+       else if ((task?.audioNote == nil) && (audioURL != nil)) == true {
             
-            if task?.audioNote != nil{
+            
             
             do {
-                try audioPlayer = AVAudioPlayer(data: task!.audioNote! as Data)
-            } catch {}
                 
-            } else if task?.audioNote == nil {
-                do {
-                    try audioPlayer = AVAudioPlayer(contentsOf: audioURL!)
-                    audioPlayer!.play()
-                } catch {
-                    
-                }
-            }
-            
-                if audioPlayer!.isPlaying == false {
-                    audioPlayer!.play()
-                playPauseButton.setTitle("⏸", for: .normal)
-                    print("hello")
-                } else {
-                    audioPlayer!.pause()
-                    playPauseButton.setTitle("▶️", for: .normal)
-                    print("hi")
+                try audioPlayer = AVAudioPlayer(contentsOf: audioURL!)
+                audioBar.maximumValue = Float((audioPlayer?.duration)!)
 
+                
+            } catch {
+                
+                print("error")
             }
             
         }
         
+        else {
+            do {
+                
+                try audioPlayer = AVAudioPlayer(data: task!.audioNote! as Data)
+                audioBar.maximumValue = Float((audioPlayer?.duration)!)
+            } catch {
+                
+                print("error")
+            }
+
+        }
         
-        if task == nil {
+            if toggleState == 1 {
+                audioPlayer?.currentTime = audioTime!
+                audioPlayer?.play()
+                toggleState = 2
+                playPauseButton.setImage(tintedPauseImage, for: .normal)
+                playPauseButton.tintColor = UIColor.darkGray
+                recordStopButton.isEnabled = false
+            }else {
+              
+                audioTime = TimeInterval(audioBar.value)
+                audioPlayer?.currentTime = audioTime!
+                
+                audioPlayer?.pause()
+                
+              
+                toggleState = 1
+                playPauseButton.setImage(tintedPlayImage, for: .normal)
+                playPauseButton.tintColor = UIColor.darkGray
+                recordStopButton.isEnabled = true
+            }
+        
+            
+            
+        var updateTimer = Timer.scheduledTimer(timeInterval: 0.01, target: self, selector: #selector(CreateTaskViewController.updateSlider),
+                                               userInfo: nil, repeats: true)
+        
+        var timer = Timer.scheduledTimer(timeInterval: 0.5, target: self, selector: #selector(CreateTaskViewController.updatePlayImage),
+                                         userInfo: nil, repeats: true)
+        
+        var coutnerTimer = Timer.scheduledTimer(timeInterval: 0.5, target: self, selector: Selector("updateTime"), userInfo: nil, repeats: true)
+        
+        
        
-        do {
-            try audioPlayer = AVAudioPlayer(contentsOf: audioURL!)
-            audioPlayer!.play()
-        } catch {
-            
-        }
-        }
+        
+        
+//         if (audioPlayer?.isPlaying) == true{
+//            
+//            audioPlayer?.pause()
+//            playPauseButton.setImage(tintedPlayImage, for: .normal)
+//            playPauseButton.tintColor = UIColor.black
+//            print ("YO!")
+//            
+//         } else{
+//            
+//         
+//        updater = CADisplayLink(target: self, selector: #selector(CreateTaskViewController.trackAudio))
+//        updater.preferredFramesPerSecond = 1
+//        updater.add(to: RunLoop.current, forMode: RunLoopMode.commonModes)
+//        // let fileURL = NSURL(string: toPass)
+//        do {
+//        try audioPlayer = AVAudioPlayer(contentsOf: audioURL!)
+////        audioPlayer = AVAudioPlayer(contentsOf: audioURL, error: nil)
+//        //audioPlayer?.numberOfLoops = 0 // play indefinitely
+//        audioPlayer?.prepareToPlay()
+//        //audioPlayer?.delegate = self
+//        audioPlayer?.play()
+//        //startTime.text = "\(player.currentTime)"
+//        audioBar.minimumValue = 0
+//        audioBar.maximumValue = 100 // Percentage
+//            
+//            if (audioPlayer?.isPlaying)!{
+//                playPauseButton.setImage(tintedPauseImage, for: .normal)
+//                playPauseButton.tintColor = UIColor.black
+//            }
+//            
+//        }catch { }
+//
+//            
+//            
+//        }
+//        
+        
+//        if task?.audioNote != nil {
+//            
+//            do {
+//                try audioPlayer = AVAudioPlayer(data: task!.audioNote! as Data)
+//                if audioPlayer!.isPlaying == false {
+//                    audioPlayer!.play()
+//                    playPauseButton.setImage(tintedPauseImage, for: .normal)
+//                    playPauseButton.tintColor = UIColor.black
+//                    
+//                    print ("hey")
+//                    
+//                } else if audioPlayer!.isPlaying == true {
+//                    print ("YO!")
+//                    audioPlayer!.pause()
+//                    playPauseButton.setImage(tintedPlayImage, for: .normal)
+//                    playPauseButton.tintColor = UIColor.black
+//                    
+//                }
+//
+//                
+//            } catch {}
+//                
+//        }
+//            
+//        else {
+//           
+//            
+//            
+//            do {
+//                try audioPlayer = AVAudioPlayer(contentsOf: audioURL!)
+//                if audioPlayer!.isPlaying == false {
+//                    self.audioPlayer!.play()
+//                    playPauseButton.setImage(tintedPauseImage, for: .normal)
+//                    playPauseButton.tintColor = UIColor.black
+//                    print ("hey")
+//                    
+//                } }catch {}
+//        
+//        
+//                do {
+//                try audioPlayer = AVAudioPlayer(contentsOf: audioURL!)
+//                
+//                if audioPlayer!.isPlaying == true {
+//                    self.audioPlayer!.stop()
+//                    playPauseButton.setImage(tintedPlayImage, for: .normal)
+//                    playPauseButton.tintColor = UIColor.black
+//                    print ("YO!")
+//                }
+//
+//                }catch {}
+//
+//        }
+//        
+    
     }
     
     
     
+    
+    
+    
+//    @IBAction func playAudio(sender: AnyObject) {
+//        playPauseButton.isSelected = !(playPauseButton.isSelected)
+//        if playButton.selected {
+//            
+//            
+//            updater = CADisplayLink(target: self, selector: #selector(CreateTaskViewController.trackAudio))
+//            updater.preferredFramesPerSecond = 1
+//            updater.addToRunLoop(NSRunLoop.currentRunLoop(), forMode: NSRunLoopCommonModes)
+//           // let fileURL = NSURL(string: toPass)
+//            audioPlayer = AVAudioPlayer(contentsOf: audioURL, error: nil)
+//            audioPlayer?.numberOfLoops = -1 // play indefinitely
+//            audioPlayer?.prepareToPlay()
+//            audioPlayer?.delegate = self
+//            audioPlayer?.play()
+//            //startTime.text = "\(player.currentTime)"
+//            audioBar.minimumValue = 0
+//            audioBar.maximumValue = 100 // Percentage
+//        } else {
+//            audioPlayer.stop()
+//        }
+//    }
+    
+//    func updateTime() {
+//        var currentTime = Int(audioPlayer?.currentTime)
+//        var duration = Int(audioPlayer?.duration)
+//        var total = currentTime - duration
+//        var totalString = String(total)
+//        
+//        var minutes = currentTime/60
+//        var seconds = currentTime - minutes / 60
+//        
+//    }
+    
+    
+    @IBAction func scrubAudio(sender: AnyObject) {
+        audioPlayer?.stop()
+        audioTime = TimeInterval(audioBar.value)
+        audioPlayer?.currentTime = audioTime!
+       
 
+       
+//        audioPlayer?.prepareToPlay()
+//        audioPlayer?.play()
     }
+    
+    func updatePlayImage() {
+        
+        if audioPlayer?.isPlaying == false
+        {
+            let origPlayImage = UIImage(named: "Play Filled-50.png")
+            let tintedPlayImage = origPlayImage?.withRenderingMode(.alwaysTemplate)
+            playPauseButton.setImage(tintedPlayImage, for: .normal)
+            playPauseButton.tintColor = UIColor.darkGray
+            toggleState = 1
+            audioTime = TimeInterval(audioBar.value)
+            audioPlayer?.currentTime = audioTime!
+            recordStopButton.isEnabled = true
+        }
+        
+    }
+    
+    func updateTime() {
+        var currentTime = Int((audioPlayer?.currentTime)!)
+        var duration = Int((audioPlayer?.duration)!)
+        var total = currentTime - duration
+        var totalString = String(total)
+        var totalMinutes = duration/60
+        var totalSeconds = duration - totalMinutes/60
+        var minutes = currentTime/60
+        var seconds = currentTime - minutes / 60
+       
+        playedTimer = NSString(format: "%02d:%02d / %02d:%02d", minutes,seconds, totalMinutes, totalSeconds) as String
+        
+       
+        
+        playedTime.text = playedTimer
+    
+    }
+    
+    func recordingInProgress() {
+        
+        if (audioRecorder?.isRecording)! {
+            audioBar.isHidden = true
+            playedTime.isHidden = true
+            recordingMessage.isHidden = false
+        } else {
+            audioBar.isHidden = false
+            playedTime.isHidden = false
+            recordingMessage.isHidden = true
+        }
+        
+        if recordingMessage.text == "Recording in progress . . . . ." {
+            recordingMessage.text = "Recording in progress"
+        } else if recordingMessage.text == "Recording in progress"{
+            recordingMessage.text = "Recording in progress ."
+        } else if recordingMessage.text == "Recording in progress ."{
+            recordingMessage.text = "Recording in progress . ."
+        } else if recordingMessage.text == "Recording in progress . ." {
+            recordingMessage.text = "Recording in progress . . ."
+        } else if recordingMessage.text == "Recording in progress . . ." {
+            recordingMessage.text = "Recording in progress . . . ."
+        } else if recordingMessage.text == "Recording in progress . . . ." {
+            recordingMessage.text = "Recording in progress . . . . ."
+        }
+
+        
+        
+        
+    }
+
+    
+    func updateSlider() {
+        audioBar.value = Float((audioPlayer?.currentTime)!)
+    }
+    
+    
+    func trackAudio() {
+        let normalizedTime = Float((audioPlayer?.currentTime)! * 100.0 / updater.duration)
+        audioBar.value = normalizedTime
+    }
+    
+//    @IBAction func cancelClicked(sender: AnyObject) {
+//        player.stop()
+//        updater.invalidate()
+//        dismissViewControllerAnimated(true, completion: nil)
+//        
+//    }
+    
+ 
+    
     
    
     
+    }
     
+
+
+
+
+
 

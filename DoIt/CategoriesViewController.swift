@@ -18,6 +18,16 @@ class CategoriesViewController: UIViewController, UITableViewDataSource, UITable
     @IBOutlet weak var listDragView: UIView!
     @IBOutlet weak var listView: UIView!
     @IBOutlet weak var categoryTextField: UITextField!
+    
+//    @IBOutlet weak var colorPicker: UIView!
+    
+    @IBOutlet weak var selectedColorView: ColorCircleView!
+  
+    
+
+    
+   
+    
    
    // @IBOutlet weak var allDisclosureArrow: UILabel!
     
@@ -26,6 +36,8 @@ class CategoriesViewController: UIViewController, UITableViewDataSource, UITable
     var task : Task? = nil
     var category : Category? = nil
     let alert = UIAlertController(title: "Are you sure?", message: "Deleting a list will move all associated tasks to the Misc list", preferredStyle: .actionSheet)
+//    let colors : [UIColor] = [UIColor.red, UIColor.blue, UIColor.green, UIColor.darkGray, UIColor.brown]
+    var selectedColor : UIColor = UIColor.white
     
     
     override func viewDidLoad() {
@@ -34,16 +46,20 @@ class CategoriesViewController: UIViewController, UITableViewDataSource, UITable
         categoriesTableView.delegate = self
         categoriesTableView.dataSource = self
         self.categoryTextField.delegate = self
+        
+//        colorPicker.backgroundColor = colors[1]
 
         
         
-        // listDragView.layer.cornerRadius = 10
+        
+        
+         listDragView.layer.cornerRadius = 5
 //        listDragView.layer.borderWidth = 1
 //        listDragView.layer.borderColor = UIColor.black.cgColor
-        listDragView.layer.shadowColor = UIColor.white.cgColor
-        listDragView.layer.shadowOffset = CGSize(width: 2, height: 2)
-        listDragView.layer.shadowRadius = 1
-        listDragView.layer.shadowOpacity = 0.5
+//        listDragView.layer.shadowColor = UIColor.white.cgColor
+//        listDragView.layer.shadowOffset = CGSize(width: 2, height: 2)
+//        listDragView.layer.shadowRadius = 1
+//        listDragView.layer.shadowOpacity = 0.5
         
 //        listView.layer.shadowColor = UIColor.black.cgColor
 //        listView.layer.shadowOffset = CGSize(width: 2, height: 2)
@@ -73,6 +89,8 @@ class CategoriesViewController: UIViewController, UITableViewDataSource, UITable
     
       
         getTasks()
+        self.selectedColorView.backgroundColor = selectedColor
+        
 //        allDisclosureArrow.text = "\(tasks.count) >"
     }
     
@@ -89,6 +107,11 @@ class CategoriesViewController: UIViewController, UITableViewDataSource, UITable
         
         cell.categoryNameLabel.text = "\(category.categoryName!)"
 //        cell.disclosureArrow.text = "\(category.categoryTasks!.count) >"
+        
+       // cell.layer.borderColor = UIColor.groupTableViewBackground.cgColor
+        //cell.layer.borderWidth = 4
+        
+        cell.categoryColor.backgroundColor = category.color as! UIColor?
         
         return cell
    
@@ -285,6 +308,9 @@ class CategoriesViewController: UIViewController, UITableViewDataSource, UITable
 
         category.categoryName = newCategoryName.text
         category.createdDate = NSDate()
+        category.color = selectedColor
+            
+            print(category.color)
         //category.isSelected = false
     
         
@@ -328,11 +354,42 @@ class CategoriesViewController: UIViewController, UITableViewDataSource, UITable
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
        
-        
+        if segue.identifier == "unwindToSelectedCategory" {
         let nextVC = segue.destination as! TasksViewController
         nextVC.category = sender as? Category
+            nextVC.selectedColor = self.selectedColor
+        }
         
     }
+    
+//    @IBAction func tapColorPicker(_ sender: UITapGestureRecognizer) {
+//        
+//        if colorPicker.backgroundColor == colors[0] {
+//        colorPicker.backgroundColor = colors[1]
+//        } else if colorPicker.backgroundColor == colors[1]{
+//            colorPicker.backgroundColor = colors[2]
+//        }else if colorPicker.backgroundColor == colors[2]{
+//            colorPicker.backgroundColor = colors[3]
+//        } else if colorPicker.backgroundColor == colors[3]{
+//        colorPicker.backgroundColor = colors[4]
+//        } else if colorPicker.backgroundColor == colors[4]{
+//            colorPicker.backgroundColor = colors[0]
+//        }
+//
+//
+//
+//        
+//    }
+    
+    
+    @IBAction func unwindToCatsFromColors(segue: UIStoryboardSegue) {
+
+   self.selectedColorView.backgroundColor = selectedColor
+        
+                 print(selectedColor)
+    }
+    
+    
     
     
     

@@ -46,6 +46,12 @@ class SortViewController: UIViewController {
     determineSortState()
         
         applyButton.title = "Cancel"
+        
+        if sortSelection != 3 {
+            resetButton.isEnabled = true
+        }else {
+            resetButton.isEnabled = false
+        }
     
     }
     
@@ -72,6 +78,7 @@ class SortViewController: UIViewController {
             prioritySwitch.isOn = true
             dueDateSwitch.isOn = false
             createdDateSwitch.isOn = false
+            resetButton.isEnabled = true
            // prioritySwitch.isEnabled = false
         }
         
@@ -80,6 +87,7 @@ class SortViewController: UIViewController {
             prioritySwitch.isOn = false
             dueDateSwitch.isOn = true
             createdDateSwitch.isOn = false
+            resetButton.isEnabled = true
            // dueDateSwitch.isEnabled = false
         }
         if sortSelection == 2{
@@ -87,6 +95,7 @@ class SortViewController: UIViewController {
             prioritySwitch.isOn = false
             dueDateSwitch.isOn = false
             createdDateSwitch.isOn = true
+            resetButton.isEnabled = true
             //createdDateSwitch.isEnabled = false
         }
         if sortSelection == 3 {
@@ -94,6 +103,7 @@ class SortViewController: UIViewController {
             prioritySwitch.isOn = false
             dueDateSwitch.isOn = false
             createdDateSwitch.isOn = false
+            resetButton.isEnabled = false
            // taskNameSwitch.isEnabled = false
         }
     }

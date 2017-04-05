@@ -11,12 +11,27 @@ import UIKit
 class CategoryTableViewCell: UITableViewCell {
     
     
+   // @IBOutlet weak var contentView: UIView!
     
     
     @IBOutlet weak var categoryNameLabel: UILabel!
     
     
     @IBOutlet weak var disclosureArrow: UILabel!
+    
+    @IBOutlet weak var categoryColor: UIView!
+    
+    
+    override func prepareForReuse() {
+
+        
+//        let layer = self.layer
+//        
+//        layer.borderColor = UIColor.black.cgColor
+//        layer.borderWidth = 2
+        
+        
+    }
     
 
     override func awakeFromNib() {

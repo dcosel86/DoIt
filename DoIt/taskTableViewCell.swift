@@ -26,11 +26,21 @@ class taskTableViewCell: UITableViewCell {
     
     @IBOutlet weak var audioLabel: UIImageView!
     
+    @IBOutlet weak var dueDateImage: UIImageView!
     
     
     
     override func prepareForReuse() {
         let layer = self.layer
+        
+        
+       
+        
+        importantLabel.image = importantLabel.image!.withRenderingMode(.alwaysTemplate)
+        importantLabel.tintColor = UIColor.red
+       
+ 
+
         
       
         

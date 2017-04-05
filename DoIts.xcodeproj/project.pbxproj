@@ -21,6 +21,22 @@
 		792E21FE1E8B65CA00669DCE /* Circled Play-50.png in Resources */ = {isa = PBXBuildFile; fileRef = 792E21FD1E8B65CA00669DCE /* Circled Play-50.png */; };
 		792E22001E8B65D200669DCE /* Clock Filled-50.png in Resources */ = {isa = PBXBuildFile; fileRef = 792E21FF1E8B65D200669DCE /* Clock Filled-50.png */; };
 		792E22021E8B65DB00669DCE /* Clock-50.png in Resources */ = {isa = PBXBuildFile; fileRef = 792E22011E8B65DB00669DCE /* Clock-50.png */; };
+		792E22041E8CADB600669DCE /* High Importance Filled-50.png in Resources */ = {isa = PBXBuildFile; fileRef = 792E22031E8CADB600669DCE /* High Importance Filled-50.png */; };
+		792E22061E8CADBD00669DCE /* High Importance-50.png in Resources */ = {isa = PBXBuildFile; fileRef = 792E22051E8CADBD00669DCE /* High Importance-50.png */; };
+		792E220B1E8CADCC00669DCE /* Stop-50.png in Resources */ = {isa = PBXBuildFile; fileRef = 792E22071E8CADCC00669DCE /* Stop-50.png */; };
+		792E220C1E8CADCC00669DCE /* Pause-50.png in Resources */ = {isa = PBXBuildFile; fileRef = 792E22081E8CADCC00669DCE /* Pause-50.png */; };
+		792E220D1E8CADCC00669DCE /* Record-50.png in Resources */ = {isa = PBXBuildFile; fileRef = 792E22091E8CADCC00669DCE /* Record-50.png */; };
+		792E220E1E8CADCC00669DCE /* Play-50.png in Resources */ = {isa = PBXBuildFile; fileRef = 792E220A1E8CADCC00669DCE /* Play-50.png */; };
+		792E22101E8F68EF00669DCE /* Play Filled-50.png in Resources */ = {isa = PBXBuildFile; fileRef = 792E220F1E8F68EF00669DCE /* Play Filled-50.png */; };
+		792E22121E8F68F900669DCE /* Stop Filled-50.png in Resources */ = {isa = PBXBuildFile; fileRef = 792E22111E8F68F900669DCE /* Stop Filled-50.png */; };
+		792E22141E8F690000669DCE /* Record Filled-50.png in Resources */ = {isa = PBXBuildFile; fileRef = 792E22131E8F690000669DCE /* Record Filled-50.png */; };
+		792E22161E8F806800669DCE /* Alarm Clock-50.png in Resources */ = {isa = PBXBuildFile; fileRef = 792E22151E8F806800669DCE /* Alarm Clock-50.png */; };
+		792E22181E8F8F0200669DCE /* clear_background.png in Resources */ = {isa = PBXBuildFile; fileRef = 792E22171E8F8F0200669DCE /* clear_background.png */; };
+		792E221A1E8F93B000669DCE /* Open Folder-50.png in Resources */ = {isa = PBXBuildFile; fileRef = 792E22191E8F93B000669DCE /* Open Folder-50.png */; };
+		792E221C1E8F959100669DCE /* Folder-50.png in Resources */ = {isa = PBXBuildFile; fileRef = 792E221B1E8F959100669DCE /* Folder-50.png */; };
+		792E221E1E91CA3E00669DCE /* chromeThumb.png in Resources */ = {isa = PBXBuildFile; fileRef = 792E221D1E91CA3E00669DCE /* chromeThumb.png */; };
+		792E22201E91D90100669DCE /* Pause Filled-50.png in Resources */ = {isa = PBXBuildFile; fileRef = 792E221F1E91D90100669DCE /* Pause Filled-50.png */; };
+		792E22221E93316500669DCE /* circleSlider.png in Resources */ = {isa = PBXBuildFile; fileRef = 792E22211E93316500669DCE /* circleSlider.png */; };
 		7940EA171E8769050045962E /* Tasklist-50.png in Resources */ = {isa = PBXBuildFile; fileRef = 7940EA161E8769050045962E /* Tasklist-50.png */; };
 		797005691E819CA90094806E /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 79BA1CCC1E819A9E00691417 /* Info.plist */; };
 		797005711E81C1B20094806E /* IntentHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 797005701E81C1B20094806E /* IntentHandler.swift */; };
@@ -58,6 +74,8 @@
 		79BA1CCF1E819A9E00691417 /* ListWidget.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 79BA1CC41E819A9E00691417 /* ListWidget.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		79D5BD061E6336D600E84148 /* CreateTaskView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79D5BD051E6336D600E84148 /* CreateTaskView.swift */; };
 		79D5BD0A1E63C63F00E84148 /* CategoriesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79D5BD091E63C63F00E84148 /* CategoriesViewController.swift */; };
+		79F4AE6D1E946C2E00CE65FB /* ColorsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79F4AE6C1E946C2D00CE65FB /* ColorsViewController.swift */; };
+		79F4AE6F1E94707F00CE65FB /* ColorCircleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79F4AE6E1E94707F00CE65FB /* ColorCircleView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -114,6 +132,22 @@
 		792E21FD1E8B65CA00669DCE /* Circled Play-50.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Circled Play-50.png"; path = "../../../Downloads/Circled Play-50.png"; sourceTree = "<group>"; };
 		792E21FF1E8B65D200669DCE /* Clock Filled-50.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Clock Filled-50.png"; path = "../../../Downloads/Clock Filled-50.png"; sourceTree = "<group>"; };
 		792E22011E8B65DB00669DCE /* Clock-50.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Clock-50.png"; path = "../../../Downloads/Clock-50.png"; sourceTree = "<group>"; };
+		792E22031E8CADB600669DCE /* High Importance Filled-50.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "High Importance Filled-50.png"; path = "../../../Downloads/High Importance Filled-50.png"; sourceTree = "<group>"; };
+		792E22051E8CADBD00669DCE /* High Importance-50.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "High Importance-50.png"; path = "../../../Downloads/High Importance-50.png"; sourceTree = "<group>"; };
+		792E22071E8CADCC00669DCE /* Stop-50.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Stop-50.png"; path = "../../../Downloads/Stop-50.png"; sourceTree = "<group>"; };
+		792E22081E8CADCC00669DCE /* Pause-50.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Pause-50.png"; path = "../../../Downloads/Pause-50.png"; sourceTree = "<group>"; };
+		792E22091E8CADCC00669DCE /* Record-50.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Record-50.png"; path = "../../../Downloads/Record-50.png"; sourceTree = "<group>"; };
+		792E220A1E8CADCC00669DCE /* Play-50.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Play-50.png"; path = "../../../Downloads/Play-50.png"; sourceTree = "<group>"; };
+		792E220F1E8F68EF00669DCE /* Play Filled-50.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Play Filled-50.png"; path = "../../../Downloads/Play Filled-50.png"; sourceTree = "<group>"; };
+		792E22111E8F68F900669DCE /* Stop Filled-50.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Stop Filled-50.png"; path = "../../../Downloads/Stop Filled-50.png"; sourceTree = "<group>"; };
+		792E22131E8F690000669DCE /* Record Filled-50.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Record Filled-50.png"; path = "../../../Downloads/Record Filled-50.png"; sourceTree = "<group>"; };
+		792E22151E8F806800669DCE /* Alarm Clock-50.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Alarm Clock-50.png"; path = "../../../Downloads/Alarm Clock-50.png"; sourceTree = "<group>"; };
+		792E22171E8F8F0200669DCE /* clear_background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = clear_background.png; path = ../../clear_background.png; sourceTree = "<group>"; };
+		792E22191E8F93B000669DCE /* Open Folder-50.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Open Folder-50.png"; path = "../../../Downloads/Open Folder-50.png"; sourceTree = "<group>"; };
+		792E221B1E8F959100669DCE /* Folder-50.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Folder-50.png"; path = "../../../Downloads/Folder-50.png"; sourceTree = "<group>"; };
+		792E221D1E91CA3E00669DCE /* chromeThumb.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = chromeThumb.png; path = ../../chromeThumb.png; sourceTree = "<group>"; };
+		792E221F1E91D90100669DCE /* Pause Filled-50.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Pause Filled-50.png"; path = "../../../Downloads/Pause Filled-50.png"; sourceTree = "<group>"; };
+		792E22211E93316500669DCE /* circleSlider.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = circleSlider.png; path = ../../circleSlider.png; sourceTree = "<group>"; };
 		7940EA161E8769050045962E /* Tasklist-50.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Tasklist-50.png"; path = "../../../Downloads/Tasklist-50.png"; sourceTree = "<group>"; };
 		797005681E819B150094806E /* ListWidget.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = ListWidget.entitlements; sourceTree = "<group>"; };
 		7970056E1E81C1B20094806E /* DoItsSiri.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = DoItsSiri.appex; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -158,6 +192,8 @@
 		79BA1CCC1E819A9E00691417 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		79D5BD051E6336D600E84148 /* CreateTaskView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateTaskView.swift; sourceTree = "<group>"; };
 		79D5BD091E63C63F00E84148 /* CategoriesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CategoriesViewController.swift; sourceTree = "<group>"; };
+		79F4AE6C1E946C2D00CE65FB /* ColorsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ColorsViewController.swift; path = ../ColorsViewController.swift; sourceTree = "<group>"; };
+		79F4AE6E1E94707F00CE65FB /* ColorCircleView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ColorCircleView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -255,9 +291,22 @@
 		79916B741E8762700020AC96 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				792E22151E8F806800669DCE /* Alarm Clock-50.png */,
+				792E22071E8CADCC00669DCE /* Stop-50.png */,
+				792E22111E8F68F900669DCE /* Stop Filled-50.png */,
+				792E22211E93316500669DCE /* circleSlider.png */,
+				792E22081E8CADCC00669DCE /* Pause-50.png */,
+				792E221F1E91D90100669DCE /* Pause Filled-50.png */,
+				792E22091E8CADCC00669DCE /* Record-50.png */,
+				792E221D1E91CA3E00669DCE /* chromeThumb.png */,
+				792E22131E8F690000669DCE /* Record Filled-50.png */,
+				792E220A1E8CADCC00669DCE /* Play-50.png */,
+				792E220F1E8F68EF00669DCE /* Play Filled-50.png */,
 				798D456C1E8779D600855238 /* Happy-50.png */,
 				798D456E1E877A6100855238 /* Cool-50.png */,
 				798D455E1E876FD300855238 /* Plus-50.png */,
+				792E22031E8CADB600669DCE /* High Importance Filled-50.png */,
+				792E22051E8CADBD00669DCE /* High Importance-50.png */,
 				798D45641E8775AC00855238 /* Headphones-50.png */,
 				79916B721E87626A0020AC96 /* Filter Filled-50.png */,
 				7940EA161E8769050045962E /* Tasklist-50.png */,
@@ -270,9 +319,12 @@
 				798D45721E89E36D00855238 /* Expand Arrow-50.png */,
 				792E21FF1E8B65D200669DCE /* Clock Filled-50.png */,
 				798D45661E8776A300855238 /* Audio Wave-50.png */,
+				792E22191E8F93B000669DCE /* Open Folder-50.png */,
 				798D45601E8772DC00855238 /* Delete-50.png */,
 				792E21FD1E8B65CA00669DCE /* Circled Play-50.png */,
 				792E21FB1E8B65C100669DCE /* Circled Play Filled-50.png */,
+				792E221B1E8F959100669DCE /* Folder-50.png */,
+				792E22171E8F8F0200669DCE /* clear_background.png */,
 				79916B701E8762600020AC96 /* Filter-50.png */,
 				792E21F71E8B65B200669DCE /* Low Importance Filled-50.png */,
 			);
@@ -316,6 +368,7 @@
 				791C93101E58D84D0027B49B /* TaskPageViewController.swift */,
 				799C08821E7F453D00011B8C /* AddItemViewController.swift */,
 				792E21F51E8A137700669DCE /* SortViewController.swift */,
+				79F4AE6C1E946C2D00CE65FB /* ColorsViewController.swift */,
 				793BAF071E747A3A00005662 /* Filters */,
 				79D5BD0B1E63C64900E84148 /* Categories */,
 				791C931C1E5BDF8C0027B49B /* Create/Update Tasks */,
@@ -351,6 +404,7 @@
 			children = (
 				79D5BD091E63C63F00E84148 /* CategoriesViewController.swift */,
 				798491C31E63CE6A00E4337C /* CategoryTableViewCell.swift */,
+				79F4AE6E1E94707F00CE65FB /* ColorCircleView.swift */,
 			);
 			name = Categories;
 			sourceTree = "<group>";
@@ -515,25 +569,41 @@
 			files = (
 				797005691E819CA90094806E /* Info.plist in Resources */,
 				79916B711E8762600020AC96 /* Filter-50.png in Resources */,
+				792E22041E8CADB600669DCE /* High Importance Filled-50.png in Resources */,
+				792E221C1E8F959100669DCE /* Folder-50.png in Resources */,
+				792E221E1E91CA3E00669DCE /* chromeThumb.png in Resources */,
 				792E21FC1E8B65C100669DCE /* Circled Play Filled-50.png in Resources */,
+				792E22141E8F690000669DCE /* Record Filled-50.png in Resources */,
 				798D45651E8775AC00855238 /* Headphones-50.png in Resources */,
 				799790DA1E3D97FA00781A22 /* LaunchScreen.storyboard in Resources */,
 				792E22021E8B65DB00669DCE /* Clock-50.png in Resources */,
 				798D45711E89E32A00855238 /* Sorting Options-50.png in Resources */,
+				792E220E1E8CADCC00669DCE /* Play-50.png in Resources */,
 				798D45631E87745200855238 /* High Priority-50.png in Resources */,
 				799790D71E3D97FA00781A22 /* Assets.xcassets in Resources */,
 				798D455F1E876FD300855238 /* Plus-50.png in Resources */,
+				792E22201E91D90100669DCE /* Pause Filled-50.png in Resources */,
 				799790D21E3D97FA00781A22 /* Main.storyboard in Resources */,
+				792E22121E8F68F900669DCE /* Stop Filled-50.png in Resources */,
 				798D45731E89E36D00855238 /* Expand Arrow-50.png in Resources */,
 				798D456B1E87777100855238 /* Exclamation Mark-50.png in Resources */,
 				792E21FE1E8B65CA00669DCE /* Circled Play-50.png in Resources */,
+				792E22101E8F68EF00669DCE /* Play Filled-50.png in Resources */,
 				798D45691E87776A00855238 /* Speaker-50.png in Resources */,
 				798D456D1E8779D600855238 /* Happy-50.png in Resources */,
 				79916B731E87626A0020AC96 /* Filter Filled-50.png in Resources */,
 				792E21FA1E8B65B900669DCE /* Low Importance-50.png in Resources */,
+				792E220C1E8CADCC00669DCE /* Pause-50.png in Resources */,
+				792E22181E8F8F0200669DCE /* clear_background.png in Resources */,
+				792E221A1E8F93B000669DCE /* Open Folder-50.png in Resources */,
+				792E22061E8CADBD00669DCE /* High Importance-50.png in Resources */,
+				792E220D1E8CADCC00669DCE /* Record-50.png in Resources */,
 				792E21F81E8B65B200669DCE /* Low Importance Filled-50.png in Resources */,
+				792E22221E93316500669DCE /* circleSlider.png in Resources */,
 				7940EA171E8769050045962E /* Tasklist-50.png in Resources */,
 				798D456F1E877A6100855238 /* Cool-50.png in Resources */,
+				792E220B1E8CADCC00669DCE /* Stop-50.png in Resources */,
+				792E22161E8F806800669DCE /* Alarm Clock-50.png in Resources */,
 				798D45611E8772DC00855238 /* Delete-50.png in Resources */,
 				792E22001E8B65D200669DCE /* Clock Filled-50.png in Resources */,
 				798D45671E8776A300855238 /* Audio Wave-50.png in Resources */,
@@ -578,10 +648,12 @@
 				791C93111E58D84D0027B49B /* TaskPageViewController.swift in Sources */,
 				791C931E1E60BA060027B49B /* CompletedTasksButtonView.swift in Sources */,
 				799790CD1E3D97FA00781A22 /* AppDelegate.swift in Sources */,
+				79F4AE6D1E946C2E00CE65FB /* ColorsViewController.swift in Sources */,
 				791C93191E5968D20027B49B /* TasksViewController.swift in Sources */,
 				79D5BD061E6336D600E84148 /* CreateTaskView.swift in Sources */,
 				791C930F1E581DF00027B49B /* CompletedTasksTableViewCell.swift in Sources */,
 				792E21F61E8A137700669DCE /* SortViewController.swift in Sources */,
+				79F4AE6F1E94707F00CE65FB /* ColorCircleView.swift in Sources */,
 				79916B6F1E8741F70020AC96 /* ViewListView.swift in Sources */,
 				798491C41E63CE6A00E4337C /* CategoryTableViewCell.swift in Sources */,
 				799C08831E7F453D00011B8C /* AddItemViewController.swift in Sources */,

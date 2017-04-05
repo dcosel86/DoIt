@@ -75,6 +75,7 @@ class TasksViewController: UIViewController, UITableViewDataSource, UITableViewD
     
     @IBOutlet weak var filterExpand: UIImageView!
     
+    @IBOutlet weak var folderImage: UIImageView!
     
     
     
@@ -94,6 +95,7 @@ class TasksViewController: UIViewController, UITableViewDataSource, UITableViewD
     var fromAddList = false
     var fromAddTask = false
     var tasksDueToday : [Task]? = nil
+    var selectedColor : UIColor? = nil
     
     
     
@@ -103,7 +105,9 @@ class TasksViewController: UIViewController, UITableViewDataSource, UITableViewD
         tableView.delegate = self
         tableView.dataSource = self
         
-      
+        //listDragView.layer.cornerRadius = 5
+        
+      //listDragView.layer.cornerRadius = 10
         
          filterView.layer.cornerRadius = 3
                filterView.layer.borderWidth = 1
@@ -114,13 +118,13 @@ class TasksViewController: UIViewController, UITableViewDataSource, UITableViewD
         sortView.layer.borderColor = UIColor.lightGray.cgColor
        
         
-     // listDragView.layer.cornerRadius = 10
-//       listDragView.layer.borderWidth = 1
-//        listDragView.layer.borderColor = UIColor.lightGray.cgColor
-        listDragView.layer.shadowColor = UIColor.darkGray.cgColor
-        listDragView.layer.shadowOffset = CGSize(width: 2, height: 0)
-        listDragView.layer.shadowRadius = 2
-        listDragView.layer.shadowOpacity = 0.5
+        listDragView.layer.cornerRadius = 5
+       listDragView.layer.borderWidth = 1
+       listDragView.layer.borderColor = UIColor.clear.cgColor
+//        listDragView.layer.shadowColor = UIColor.black.cgColor
+//        listDragView.layer.shadowOffset = CGSize(width: 2, height: 0)
+//        listDragView.layer.shadowRadius = 2
+//        listDragView.layer.shadowOpacity = 0.5
         
         
         
@@ -136,13 +140,18 @@ class TasksViewController: UIViewController, UITableViewDataSource, UITableViewD
         
        
         
-        self.navigationItem.leftBarButtonItem?.tintColor = UIColor.white
+        //self.navigationItem.leftBarButtonItem?.tintColor = UIColor.white
         editsButton.tintColor = UIColor.black
         
-        UINavigationBar.appearance().barTintColor = UIColor(colorLiteralRed: 75/200, green: 156/255, blue: 56/255, alpha: 1)
-        //
-        //
-        UINavigationBar.appearance().titleTextAttributes = [NSForegroundColorAttributeName : UIColor.white]
+       // UINavigationBar.appearance().barTintColor = UIColor(colorLiteralRed: 75/200, green: 156/255, blue: 56/255, alpha: 1)
+            
+          //  category?.color as! UIColor?
+            
+            
+   
+        
+        
+      //  UINavigationBar.appearance().titleTextAttributes = [NSForegroundColorAttributeName : UIColor.red]
         
       
 //        
@@ -175,6 +184,8 @@ class TasksViewController: UIViewController, UITableViewDataSource, UITableViewD
         
       getCategories()
         
+        
+        
         if categories.count > 0 {
             print("I have a category")
             startUpProcedures()
@@ -187,14 +198,18 @@ class TasksViewController: UIViewController, UITableViewDataSource, UITableViewD
             
             MiscCategory.categoryName = "Misc"
             MiscCategory.createdDate = NSDate()
+            MiscCategory.color = UIColor.magenta
             //MiscCategory.isSelected = true
          
             
             (UIApplication.shared.delegate as! AppDelegate).saveContext()
             
             category = MiscCategory
+        
             
             startUpProcedures()
+            
+            UINavigationBar.appearance().barTintColor = category?.color as! UIColor?
         }
         
 
@@ -281,6 +296,10 @@ class TasksViewController: UIViewController, UITableViewDataSource, UITableViewD
 //        }
 //    
 //    }
+        
+      //  listDragView.backgroundColor = category?.color as! UIColor?
+        
+        
     }
     
    // func autoGoToTask() {
@@ -354,16 +373,17 @@ class TasksViewController: UIViewController, UITableViewDataSource, UITableViewD
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "protoCell") as! taskTableViewCell
         let task = tasks[indexPath.row]
-        let dateFromTask = task.dueDate
         let dateFromCreation = task.createdDate
         
         let startOfToday = calendar.startOfDay(for: Date())
-        let startOfTask = calendar.startOfDay(for: dateFromTask as! Date)
-        let startOfCreated = calendar.startOfDay(for: dateFromCreation as! Date)
-        
         let dateFormatter = DateFormatter()
         dateFormatter.dateStyle = .short
+        let startOfCreated = calendar.startOfDay(for: dateFromCreation as! Date)
         
+        
+        if task.dueDate != nil {
+        let dateFromTask = task.dueDate
+        let startOfTask = calendar.startOfDay(for: dateFromTask as! Date)
         //let createdDateToShow = dateFormatter.string(from: dateFromCreation as! Date)
        // let dateToShow = dateFormatter.string(from: dateFromTask as! Date)
         let todaysDate = dateFormatter.string(from: Date())
@@ -385,7 +405,10 @@ class TasksViewController: UIViewController, UITableViewDataSource, UITableViewD
             cell.dueDateLabel.textColor = UIColor.lightGray
             }
         
-        
+        } else {
+            cell.dueDateLabel.text = "Due: N/A"
+            cell.dueDateLabel.textColor = UIColor.lightGray
+        }
 
         
         /*
@@ -395,6 +418,12 @@ class TasksViewController: UIViewController, UITableViewDataSource, UITableViewD
             cell.dueDateLabel.isHidden = false
         }
         */
+        
+        if task.dueDate == nil {
+            cell.dueDateImage.isHidden = true
+        }else {
+            cell.dueDateImage.isHidden = false
+        }
         
         if task.audioNote == nil {
             cell.audioLabel.isHidden = true
@@ -877,8 +906,30 @@ class TasksViewController: UIViewController, UITableViewDataSource, UITableViewD
         
         maskView.isHidden = true
         //saveSelectedCategory()
-        print (category?.categoryName)
+        print (selectedColor)
         startUpProcedures()
+        selectedColor = category?.color as! UIColor
+        listDragView.backgroundColor = selectedColor
+      
+        if selectedColor == UIColor.white {
+            
+            listDragView.layer.borderColor = UIColor.lightGray.cgColor
+            listDragView.layer.borderWidth = 1
+            listDragView.layer.opacity = 0.7
+            folderImage.image = folderImage.image!.withRenderingMode(.alwaysTemplate)
+            folderImage.tintColor = UIColor.darkGray
+            
+        } else {
+            listDragView.layer.borderColor = UIColor.clear.cgColor
+            listDragView.layer.borderWidth = 1
+             listDragView.layer.opacity = 0.7
+            folderImage.image = folderImage.image!.withRenderingMode(.alwaysTemplate)
+            folderImage.tintColor = UIColor.white
+        }
+        
+        
+      
+        
 //        getTasksForCategory()
 //        getCompletedTasks()
 //        noTasks()
@@ -1694,7 +1745,9 @@ class TasksViewController: UIViewController, UITableViewDataSource, UITableViewD
         
         
         
-        filterView.backgroundColor = UIColor(colorLiteralRed: 75/200, green: 156/255, blue: 56/255, alpha: 1)
+        filterView.backgroundColor = UIColor.darkGray
+        
+        //(colorLiteralRed: 75/200, green: 156/255, blue: 56/255, alpha: 1)
         
          filterLabel.textColor = UIColor.white
         
@@ -1757,7 +1810,10 @@ class TasksViewController: UIViewController, UITableViewDataSource, UITableViewD
         }
         
         if sortSelection == 1 {
-            tasks.sort(by: {(($0.dueDate?.timeIntervalSinceNow)!) < (($1.dueDate?.timeIntervalSinceNow)!)})
+            
+            
+            
+            tasks.sorted(by: {(($0.dueDate?.timeIntervalSinceNow)!) < (($1.dueDate?.timeIntervalSinceNow)!)})
             
             sortLabel.text = "Due Date"
             
@@ -1789,7 +1845,9 @@ class TasksViewController: UIViewController, UITableViewDataSource, UITableViewD
             
             
             
-            sortView.backgroundColor = UIColor(colorLiteralRed: 75/200, green: 156/255, blue: 56/255, alpha: 1)
+            sortView.backgroundColor = UIColor.darkGray
+            
+            //(colorLiteralRed: 75/200, green: 156/255, blue: 56/255, alpha: 1)
             
             sortLabel.textColor = UIColor.white
             
@@ -2218,4 +2276,17 @@ class TasksViewController: UIViewController, UITableViewDataSource, UITableViewD
 
 
 
+}
+
+
+extension UIViewController {
+    func hideKeyboardWhenTappedAround() {
+        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(UIViewController.dismissKeyboard))
+        tap.cancelsTouchesInView = false
+        view.addGestureRecognizer(tap)
+    }
+    
+    func dismissKeyboard() {
+        view.endEditing(true)
+    }
 }

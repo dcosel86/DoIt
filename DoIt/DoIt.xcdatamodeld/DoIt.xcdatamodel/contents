@@ -2,6 +2,7 @@
 <model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="11759" systemVersion="16D32" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
     <entity name="Category" representedClassName="Category" syncable="YES" codeGenerationType="class">
         <attribute name="categoryName" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="color" optional="YES" attributeType="Transformable" syncable="YES"/>
         <attribute name="createdDate" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
         <relationship name="categoryTasks" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Task" inverseName="taskCategory" inverseEntity="Task" syncable="YES"/>
     </entity>
@@ -18,7 +19,7 @@
     </entity>
     <configuration name="Configuration"/>
     <elements>
-        <element name="Category" positionX="-405" positionY="-54" width="128" height="90"/>
+        <element name="Category" positionX="-405" positionY="-54" width="128" height="105"/>
         <element name="Task" positionX="-720" positionY="-324" width="128" height="180"/>
     </elements>
 </model>
