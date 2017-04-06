@@ -917,14 +917,23 @@ class TasksViewController: UIViewController, UITableViewDataSource, UITableViewD
             listDragView.layer.borderWidth = 1
             listDragView.layer.opacity = 0.7
             folderImage.image = folderImage.image!.withRenderingMode(.alwaysTemplate)
-            folderImage.tintColor = UIColor.darkGray
+            folderImage.tintColor = UIColor.black
             
+        } else if selectedColor == UIColor(colorLiteralRed: 255/200, green: 255/255, blue: 102/255, alpha: 1) {
+            listDragView.layer.borderColor = UIColor.lightGray.cgColor
+            listDragView.layer.borderWidth = 1
+            listDragView.layer.opacity = 0.7
+            folderImage.image = folderImage.image!.withRenderingMode(.alwaysTemplate)
+            folderImage.tintColor = UIColor.black
         } else {
             listDragView.layer.borderColor = UIColor.clear.cgColor
             listDragView.layer.borderWidth = 1
-             listDragView.layer.opacity = 0.7
+            listDragView.layer.opacity = 0.7
             folderImage.image = folderImage.image!.withRenderingMode(.alwaysTemplate)
             folderImage.tintColor = UIColor.white
+            
+            
+            
         }
         
         

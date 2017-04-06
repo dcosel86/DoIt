@@ -256,6 +256,7 @@ class CreateTaskViewController: UIViewController, UITextFieldDelegate, UIPickerV
             
             
         determineButtonFill()
+            determineTintOfTask()
         
         }
         else {
@@ -281,6 +282,7 @@ class CreateTaskViewController: UIViewController, UITextFieldDelegate, UIPickerV
             }
             
             determineButtonFill()
+            determineTintOfTask()
         }
         
         colorView.backgroundColor = selectedCategory?.color as! UIColor
@@ -328,9 +330,41 @@ class CreateTaskViewController: UIViewController, UITextFieldDelegate, UIPickerV
         
         
         let category = categories[row]
-        let selectedCategory = (category.categoryName)
-        categoryTextField.text = "\(selectedCategory!)"
+        let selectedsCategory = (category.categoryName)
+        categoryTextField.text = "\(selectedsCategory!)"
         colorView.backgroundColor = category.color as! UIColor
+        if category.color == UIColor.white {
+            
+            didItButton.tintColor = UIColor.darkGray
+            cancelButton.tintColor = UIColor.darkGray
+            audioNoteButton.tintColor = UIColor.darkGray
+            importantButton.tintColor = UIColor.darkGray
+            dueDateButton.tintColor = UIColor.darkGray
+            addButton.tintColor = UIColor.darkGray
+            
+            
+        } else if category.color == UIColor(colorLiteralRed: 255/200, green: 255/255, blue: 102/255, alpha: 1) {
+            didItButton.tintColor = UIColor.darkGray
+            cancelButton.tintColor = UIColor.darkGray
+            audioNoteButton.tintColor = UIColor.darkGray
+            importantButton.tintColor = UIColor.darkGray
+            dueDateButton.tintColor = UIColor.darkGray
+            addButton.tintColor = UIColor.darkGray
+            
+            
+        } else {
+            
+            didItButton.tintColor = UIColor.white
+            cancelButton.tintColor = UIColor.white
+            audioNoteButton.tintColor = UIColor.white
+            addButton.tintColor = UIColor.white
+            
+            importantButton.tintColor = UIColor.white
+            dueDateButton.tintColor = UIColor.white
+            
+            
+        }
+
     }
     
     
@@ -413,12 +447,14 @@ class CreateTaskViewController: UIViewController, UITextFieldDelegate, UIPickerV
             let origAudioImage = UIImage(named: "Circled Play Filled-50.png")
             let tintedAudioImage = origAudioImage?.withRenderingMode(.alwaysTemplate)
             audioNoteButton.setImage(tintedAudioImage, for: .normal)
-            audioNoteButton.tintColor = UIColor(colorLiteralRed: 75/200, green: 156/255, blue: 56/255, alpha: 1)
+            //audioNoteButton.tintColor = UIColor.lightGray
+            
+            //(colorLiteralRed: 75/200, green: 156/255, blue: 56/255, alpha: 1)
         } else {
     let origAudioImage = UIImage(named: "Circled Play-50.png")
     let tintedAudioImage = origAudioImage?.withRenderingMode(.alwaysTemplate)
     audioNoteButton.setImage(tintedAudioImage, for: .normal)
-    audioNoteButton.tintColor = UIColor.lightGray
+    //audioNoteButton.tintColor = UIColor.lightGray
         }
     
     //set urgent image tint
@@ -426,13 +462,15 @@ class CreateTaskViewController: UIViewController, UITextFieldDelegate, UIPickerV
             let origUrgentImage = UIImage(named: "High importance Filled-50.png")
             let tintedUrgentImage = origUrgentImage?.withRenderingMode(.alwaysTemplate)
             importantButton.setImage(tintedUrgentImage, for: .normal)
-            importantButton.tintColor = UIColor(colorLiteralRed: 75/200, green: 156/255, blue: 56/255, alpha: 1)
+            //importantButton.tintColor = UIColor.lightGray
+            
+            //(colorLiteralRed: 75/200, green: 156/255, blue: 56/255, alpha: 1)
             
         } else {
     let origUrgentImage = UIImage(named: "High importance-50.png")
     let tintedUrgentImage = origUrgentImage?.withRenderingMode(.alwaysTemplate)
     importantButton.setImage(tintedUrgentImage, for: .normal)
-    importantButton.tintColor = UIColor.lightGray
+    //importantButton.tintColor = UIColor.lightGray
             print ("I did it!")
         }
     
@@ -441,7 +479,9 @@ class CreateTaskViewController: UIViewController, UITextFieldDelegate, UIPickerV
             let origDatetImage = UIImage(named: "Clock Filled-50.png")
             let tintedDateImage = origDatetImage?.withRenderingMode(.alwaysTemplate)
             dueDateButton.setImage(tintedDateImage, for: .normal)
-            dueDateButton.tintColor = UIColor(colorLiteralRed: 75/200, green: 156/255, blue: 56/255, alpha: 1)
+            //dueDateButton.tintColor = UIColor.lightGray
+            
+            //(colorLiteralRed: 75/200, green: 156/255, blue: 56/255, alpha: 1)
             
 
             
@@ -454,7 +494,7 @@ class CreateTaskViewController: UIViewController, UITextFieldDelegate, UIPickerV
     let origDatetImage = UIImage(named: "Clock-50.png")
     let tintedDateImage = origDatetImage?.withRenderingMode(.alwaysTemplate)
     dueDateButton.setImage(tintedDateImage, for: .normal)
-    dueDateButton.tintColor = UIColor.lightGray
+   // dueDateButton.tintColor = UIColor.lightGray
             
            
             
@@ -535,6 +575,7 @@ class CreateTaskViewController: UIViewController, UITextFieldDelegate, UIPickerV
           
         }
         determineButtonFill()
+        determineTintOfTask()
         
     
         
@@ -553,6 +594,7 @@ class CreateTaskViewController: UIViewController, UITextFieldDelegate, UIPickerV
             
             playRecordView.isHidden = true
             determineButtonFill()
+            determineTintOfTask()
             
         }
         
@@ -568,6 +610,7 @@ class CreateTaskViewController: UIViewController, UITextFieldDelegate, UIPickerV
         //addAudioNoteButton.isEnabled = false
         //setUpRecorder()
             determineButtonFill()
+            determineTintOfTask()
         } else {
             
         self.present(self.alert, animated: true, completion: nil)
@@ -587,6 +630,7 @@ class CreateTaskViewController: UIViewController, UITextFieldDelegate, UIPickerV
             self.task?.audioNote = nil
             }
             self.determineButtonFill()
+            self.determineTintOfTask()
             
 
             
@@ -594,6 +638,7 @@ class CreateTaskViewController: UIViewController, UITextFieldDelegate, UIPickerV
             self.alert.addAction(UIAlertAction(title: "Cancel", style: .default, handler: { (action) in
                 
                 self.determineButtonFill()
+                self.determineTintOfTask()
                 
             }))
         }
@@ -612,6 +657,8 @@ class CreateTaskViewController: UIViewController, UITextFieldDelegate, UIPickerV
 //    }
     
     @IBAction func cancelButtonTapped(_ sender: Any) {
+        audioRecorder?.stop()
+        audioPlayer?.stop()
         self.performSegue(withIdentifier: "unwindToTasks", sender: self)
     }
     
@@ -644,6 +691,7 @@ class CreateTaskViewController: UIViewController, UITextFieldDelegate, UIPickerV
         }
         
         determineButtonFill()
+        determineTintOfTask()
         
     }
     
@@ -653,6 +701,8 @@ class CreateTaskViewController: UIViewController, UITextFieldDelegate, UIPickerV
     
     
     @IBAction func tapOutOfCreate(_ sender: Any) {
+        audioRecorder?.stop()
+        audioPlayer?.stop()
         self.performSegue(withIdentifier: "unwindToTasks", sender: self)
     }
     
@@ -662,6 +712,8 @@ class CreateTaskViewController: UIViewController, UITextFieldDelegate, UIPickerV
     
     
     @IBAction func didItButtonTapped(_ sender: Any) {
+        audioRecorder?.stop()
+        audioPlayer?.stop()
        let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
        task!.completed = true
         
@@ -674,6 +726,9 @@ class CreateTaskViewController: UIViewController, UITextFieldDelegate, UIPickerV
     
     
     @IBAction func addButtonTapped(_ sender: Any) {
+        
+        audioRecorder?.stop()
+        audioPlayer?.stop()
         
         if task != nil {
             //access core data
@@ -834,6 +889,8 @@ class CreateTaskViewController: UIViewController, UITextFieldDelegate, UIPickerV
     
     
     @IBAction func pageSwiped(_ sender: UISwipeGestureRecognizer) {
+        audioRecorder?.stop()
+        audioPlayer?.stop()
         self.performSegue(withIdentifier: "unwindToTasks", sender: self)
     }
 
@@ -1331,6 +1388,47 @@ class CreateTaskViewController: UIViewController, UITextFieldDelegate, UIPickerV
 //    }
     
  
+    
+    func determineTintOfTask() {
+       
+        if selectedCategory?.color == UIColor.white {
+            
+            didItButton.tintColor = UIColor.darkGray
+            cancelButton.tintColor = UIColor.darkGray
+            audioNoteButton.tintColor = UIColor.darkGray
+            importantButton.tintColor = UIColor.darkGray
+            dueDateButton.tintColor = UIColor.darkGray
+             addButton.tintColor = UIColor.darkGray
+            
+            
+        } else if selectedCategory?.color == UIColor(colorLiteralRed: 255/200, green: 255/255, blue: 102/255, alpha: 1) {
+            didItButton.tintColor = UIColor.darkGray
+            cancelButton.tintColor = UIColor.darkGray
+            audioNoteButton.tintColor = UIColor.darkGray
+            importantButton.tintColor = UIColor.darkGray
+            dueDateButton.tintColor = UIColor.darkGray
+            addButton.tintColor = UIColor.darkGray
+            
+            
+        } else {
+          
+            didItButton.tintColor = UIColor.white
+            cancelButton.tintColor = UIColor.white
+            audioNoteButton.tintColor = UIColor.white
+            addButton.tintColor = UIColor.white
+            
+            importantButton.tintColor = UIColor.white
+            dueDateButton.tintColor = UIColor.white
+            
+            
+        }
+
+        
+        
+        
+        
+    
+    }
     
     
    

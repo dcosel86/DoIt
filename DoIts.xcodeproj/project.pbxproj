@@ -39,13 +39,6 @@
 		792E22221E93316500669DCE /* circleSlider.png in Resources */ = {isa = PBXBuildFile; fileRef = 792E22211E93316500669DCE /* circleSlider.png */; };
 		7940EA171E8769050045962E /* Tasklist-50.png in Resources */ = {isa = PBXBuildFile; fileRef = 7940EA161E8769050045962E /* Tasklist-50.png */; };
 		797005691E819CA90094806E /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 79BA1CCC1E819A9E00691417 /* Info.plist */; };
-		797005711E81C1B20094806E /* IntentHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 797005701E81C1B20094806E /* IntentHandler.swift */; };
-		797005791E81C1B20094806E /* IntentsUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 797005781E81C1B20094806E /* IntentsUI.framework */; };
-		7970057C1E81C1B20094806E /* IntentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7970057B1E81C1B20094806E /* IntentViewController.swift */; };
-		7970057F1E81C1B20094806E /* MainInterface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7970057D1E81C1B20094806E /* MainInterface.storyboard */; };
-		797005831E81C1B20094806E /* DoItsSiriUI.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 797005771E81C1B20094806E /* DoItsSiriUI.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
-		797005861E81C1B20094806E /* DoItsSiri.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 7970056E1E81C1B20094806E /* DoItsSiri.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
-		7970058E1E81C4A40094806E /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7970058D1E81C4A40094806E /* CoreLocation.framework */; };
 		798491C41E63CE6A00E4337C /* CategoryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 798491C31E63CE6A00E4337C /* CategoryTableViewCell.swift */; };
 		798491D61E668A3C00E4337C /* FiltersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 798491D51E668A3C00E4337C /* FiltersViewController.swift */; };
 		798D455F1E876FD300855238 /* Plus-50.png in Resources */ = {isa = PBXBuildFile; fileRef = 798D455E1E876FD300855238 /* Plus-50.png */; };
@@ -68,39 +61,11 @@
 		799790D71E3D97FA00781A22 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 799790D61E3D97FA00781A22 /* Assets.xcassets */; };
 		799790DA1E3D97FA00781A22 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 799790D81E3D97FA00781A22 /* LaunchScreen.storyboard */; };
 		799C08831E7F453D00011B8C /* AddItemViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 799C08821E7F453D00011B8C /* AddItemViewController.swift */; };
-		79BA1CC51E819A9E00691417 /* NotificationCenter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 79BA1CAB1E80B4C600691417 /* NotificationCenter.framework */; };
-		79BA1CC81E819A9E00691417 /* TodayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79BA1CC71E819A9E00691417 /* TodayViewController.swift */; };
-		79BA1CCB1E819A9E00691417 /* MainInterface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 79BA1CC91E819A9E00691417 /* MainInterface.storyboard */; };
-		79BA1CCF1E819A9E00691417 /* ListWidget.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 79BA1CC41E819A9E00691417 /* ListWidget.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		79D5BD061E6336D600E84148 /* CreateTaskView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79D5BD051E6336D600E84148 /* CreateTaskView.swift */; };
 		79D5BD0A1E63C63F00E84148 /* CategoriesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79D5BD091E63C63F00E84148 /* CategoriesViewController.swift */; };
 		79F4AE6D1E946C2E00CE65FB /* ColorsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79F4AE6C1E946C2D00CE65FB /* ColorsViewController.swift */; };
 		79F4AE6F1E94707F00CE65FB /* ColorCircleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79F4AE6E1E94707F00CE65FB /* ColorCircleView.swift */; };
 /* End PBXBuildFile section */
-
-/* Begin PBXContainerItemProxy section */
-		797005811E81C1B20094806E /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 799790C11E3D97F900781A22 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 797005761E81C1B20094806E;
-			remoteInfo = DoItsSiriUI;
-		};
-		797005841E81C1B20094806E /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 799790C11E3D97F900781A22 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 7970056D1E81C1B20094806E;
-			remoteInfo = DoItsSiri;
-		};
-		79BA1CCD1E819A9E00691417 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 799790C11E3D97F900781A22 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 79BA1CC31E819A9E00691417;
-			remoteInfo = ListWidget;
-		};
-/* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
 		79BA1CBA1E80B4C600691417 /* Embed App Extensions */ = {
@@ -109,9 +74,6 @@
 			dstPath = "";
 			dstSubfolderSpec = 13;
 			files = (
-				79BA1CCF1E819A9E00691417 /* ListWidget.appex in Embed App Extensions */,
-				797005831E81C1B20094806E /* DoItsSiriUI.appex in Embed App Extensions */,
-				797005861E81C1B20094806E /* DoItsSiri.appex in Embed App Extensions */,
 			);
 			name = "Embed App Extensions";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -150,14 +112,7 @@
 		792E22211E93316500669DCE /* circleSlider.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = circleSlider.png; path = ../../circleSlider.png; sourceTree = "<group>"; };
 		7940EA161E8769050045962E /* Tasklist-50.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Tasklist-50.png"; path = "../../../Downloads/Tasklist-50.png"; sourceTree = "<group>"; };
 		797005681E819B150094806E /* ListWidget.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = ListWidget.entitlements; sourceTree = "<group>"; };
-		7970056E1E81C1B20094806E /* DoItsSiri.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = DoItsSiri.appex; sourceTree = BUILT_PRODUCTS_DIR; };
-		797005701E81C1B20094806E /* IntentHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntentHandler.swift; sourceTree = "<group>"; };
-		797005721E81C1B20094806E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		797005771E81C1B20094806E /* DoItsSiriUI.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = DoItsSiriUI.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		797005781E81C1B20094806E /* IntentsUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = IntentsUI.framework; path = System/Library/Frameworks/IntentsUI.framework; sourceTree = SDKROOT; };
-		7970057B1E81C1B20094806E /* IntentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntentViewController.swift; sourceTree = "<group>"; };
-		7970057E1E81C1B20094806E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/MainInterface.storyboard; sourceTree = "<group>"; };
-		797005801E81C1B20094806E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		7970058D1E81C4A40094806E /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		798491C31E63CE6A00E4337C /* CategoryTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CategoryTableViewCell.swift; sourceTree = "<group>"; };
 		798491D51E668A3C00E4337C /* FiltersViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FiltersViewController.swift; path = DoIt/FiltersViewController.swift; sourceTree = "<group>"; };
@@ -186,7 +141,6 @@
 		799C08821E7F453D00011B8C /* AddItemViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddItemViewController.swift; sourceTree = "<group>"; };
 		79BA1CAB1E80B4C600691417 /* NotificationCenter.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = NotificationCenter.framework; path = System/Library/Frameworks/NotificationCenter.framework; sourceTree = SDKROOT; };
 		79BA1CBD1E80C6C800691417 /* DoIts.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = DoIts.entitlements; sourceTree = SOURCE_ROOT; };
-		79BA1CC41E819A9E00691417 /* ListWidget.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = ListWidget.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		79BA1CC71E819A9E00691417 /* TodayViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayViewController.swift; sourceTree = "<group>"; };
 		79BA1CCA1E819A9E00691417 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/MainInterface.storyboard; sourceTree = "<group>"; };
 		79BA1CCC1E819A9E00691417 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -197,34 +151,10 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		7970056B1E81C1B20094806E /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				7970058E1E81C4A40094806E /* CoreLocation.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		797005741E81C1B20094806E /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				797005791E81C1B20094806E /* IntentsUI.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		799790C61E3D97FA00781A22 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		79BA1CC11E819A9E00691417 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				79BA1CC51E819A9E00691417 /* NotificationCenter.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -267,25 +197,6 @@
 			);
 			name = Filters;
 			path = ..;
-			sourceTree = "<group>";
-		};
-		7970056F1E81C1B20094806E /* DoItsSiri */ = {
-			isa = PBXGroup;
-			children = (
-				797005701E81C1B20094806E /* IntentHandler.swift */,
-				797005721E81C1B20094806E /* Info.plist */,
-			);
-			path = DoItsSiri;
-			sourceTree = "<group>";
-		};
-		7970057A1E81C1B20094806E /* DoItsSiriUI */ = {
-			isa = PBXGroup;
-			children = (
-				7970057B1E81C1B20094806E /* IntentViewController.swift */,
-				7970057D1E81C1B20094806E /* MainInterface.storyboard */,
-				797005801E81C1B20094806E /* Info.plist */,
-			);
-			path = DoItsSiriUI;
 			sourceTree = "<group>";
 		};
 		79916B741E8762700020AC96 /* Images */ = {
@@ -336,8 +247,6 @@
 			children = (
 				799790CB1E3D97FA00781A22 /* DoIt */,
 				79BA1CC61E819A9E00691417 /* ListWidget */,
-				7970056F1E81C1B20094806E /* DoItsSiri */,
-				7970057A1E81C1B20094806E /* DoItsSiriUI */,
 				79BA1CAA1E80B4C600691417 /* Frameworks */,
 				799790CA1E3D97FA00781A22 /* Products */,
 			);
@@ -347,9 +256,6 @@
 			isa = PBXGroup;
 			children = (
 				799790C91E3D97FA00781A22 /* DoIts.app */,
-				79BA1CC41E819A9E00691417 /* ListWidget.appex */,
-				7970056E1E81C1B20094806E /* DoItsSiri.appex */,
-				797005771E81C1B20094806E /* DoItsSiriUI.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -412,40 +318,6 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		7970056D1E81C1B20094806E /* DoItsSiri */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 7970058A1E81C1B30094806E /* Build configuration list for PBXNativeTarget "DoItsSiri" */;
-			buildPhases = (
-				7970056A1E81C1B20094806E /* Sources */,
-				7970056B1E81C1B20094806E /* Frameworks */,
-				7970056C1E81C1B20094806E /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-			);
-			name = DoItsSiri;
-			productName = DoItsSiri;
-			productReference = 7970056E1E81C1B20094806E /* DoItsSiri.appex */;
-			productType = "com.apple.product-type.app-extension";
-		};
-		797005761E81C1B20094806E /* DoItsSiriUI */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 797005871E81C1B30094806E /* Build configuration list for PBXNativeTarget "DoItsSiriUI" */;
-			buildPhases = (
-				797005731E81C1B20094806E /* Sources */,
-				797005741E81C1B20094806E /* Frameworks */,
-				797005751E81C1B20094806E /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-			);
-			name = DoItsSiriUI;
-			productName = DoItsSiriUI;
-			productReference = 797005771E81C1B20094806E /* DoItsSiriUI.appex */;
-			productType = "com.apple.product-type.app-extension";
-		};
 		799790C81E3D97FA00781A22 /* DoIts */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 799790DE1E3D97FA00781A22 /* Build configuration list for PBXNativeTarget "DoIts" */;
@@ -458,31 +330,11 @@
 			buildRules = (
 			);
 			dependencies = (
-				79BA1CCE1E819A9E00691417 /* PBXTargetDependency */,
-				797005821E81C1B20094806E /* PBXTargetDependency */,
-				797005851E81C1B20094806E /* PBXTargetDependency */,
 			);
 			name = DoIts;
 			productName = DoIt;
 			productReference = 799790C91E3D97FA00781A22 /* DoIts.app */;
 			productType = "com.apple.product-type.application";
-		};
-		79BA1CC31E819A9E00691417 /* ListWidget */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 79BA1CD01E819A9E00691417 /* Build configuration list for PBXNativeTarget "ListWidget" */;
-			buildPhases = (
-				79BA1CC01E819A9E00691417 /* Sources */,
-				79BA1CC11E819A9E00691417 /* Frameworks */,
-				79BA1CC21E819A9E00691417 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-			);
-			name = ListWidget;
-			productName = ListWidget;
-			productReference = 79BA1CC41E819A9E00691417 /* ListWidget.appex */;
-			productType = "com.apple.product-type.app-extension";
 		};
 /* End PBXNativeTarget section */
 
@@ -494,27 +346,7 @@
 				LastUpgradeCheck = 0820;
 				ORGANIZATIONNAME = DCApps;
 				TargetAttributes = {
-					7970056D1E81C1B20094806E = {
-						CreatedOnToolsVersion = 8.2.1;
-						DevelopmentTeam = CV4HPPXAQK;
-						ProvisioningStyle = Automatic;
-					};
-					797005761E81C1B20094806E = {
-						CreatedOnToolsVersion = 8.2.1;
-						DevelopmentTeam = CV4HPPXAQK;
-						ProvisioningStyle = Automatic;
-					};
 					799790C81E3D97FA00781A22 = {
-						CreatedOnToolsVersion = 8.2.1;
-						DevelopmentTeam = CV4HPPXAQK;
-						ProvisioningStyle = Automatic;
-						SystemCapabilities = {
-							com.apple.ApplicationGroups.iOS = {
-								enabled = 1;
-							};
-						};
-					};
-					79BA1CC31E819A9E00691417 = {
 						CreatedOnToolsVersion = 8.2.1;
 						DevelopmentTeam = CV4HPPXAQK;
 						ProvisioningStyle = Automatic;
@@ -540,29 +372,11 @@
 			projectRoot = "";
 			targets = (
 				799790C81E3D97FA00781A22 /* DoIts */,
-				79BA1CC31E819A9E00691417 /* ListWidget */,
-				7970056D1E81C1B20094806E /* DoItsSiri */,
-				797005761E81C1B20094806E /* DoItsSiriUI */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
-		7970056C1E81C1B20094806E /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		797005751E81C1B20094806E /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				7970057F1E81C1B20094806E /* MainInterface.storyboard in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		799790C71E3D97FA00781A22 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -610,33 +424,9 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		79BA1CC21E819A9E00691417 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				79BA1CCB1E819A9E00691417 /* MainInterface.storyboard in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
-		7970056A1E81C1B20094806E /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				797005711E81C1B20094806E /* IntentHandler.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		797005731E81C1B20094806E /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				7970057C1E81C1B20094806E /* IntentViewController.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		799790C51E3D97FA00781A22 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -662,43 +452,9 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		79BA1CC01E819A9E00691417 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				79BA1CC81E819A9E00691417 /* TodayViewController.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXSourcesBuildPhase section */
 
-/* Begin PBXTargetDependency section */
-		797005821E81C1B20094806E /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 797005761E81C1B20094806E /* DoItsSiriUI */;
-			targetProxy = 797005811E81C1B20094806E /* PBXContainerItemProxy */;
-		};
-		797005851E81C1B20094806E /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 7970056D1E81C1B20094806E /* DoItsSiri */;
-			targetProxy = 797005841E81C1B20094806E /* PBXContainerItemProxy */;
-		};
-		79BA1CCE1E819A9E00691417 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 79BA1CC31E819A9E00691417 /* ListWidget */;
-			targetProxy = 79BA1CCD1E819A9E00691417 /* PBXContainerItemProxy */;
-		};
-/* End PBXTargetDependency section */
-
 /* Begin PBXVariantGroup section */
-		7970057D1E81C1B20094806E /* MainInterface.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				7970057E1E81C1B20094806E /* Base */,
-			);
-			name = MainInterface.storyboard;
-			sourceTree = "<group>";
-		};
 		799790D01E3D97FA00781A22 /* Main.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -726,58 +482,6 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
-		797005881E81C1B30094806E /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				DEVELOPMENT_TEAM = CV4HPPXAQK;
-				INFOPLIST_FILE = DoItsSiriUI/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.dcapps.DoIts.DoItsSiriUI;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SKIP_INSTALL = YES;
-				SWIFT_VERSION = 3.0;
-			};
-			name = Debug;
-		};
-		797005891E81C1B30094806E /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				DEVELOPMENT_TEAM = CV4HPPXAQK;
-				INFOPLIST_FILE = DoItsSiriUI/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.dcapps.DoIts.DoItsSiriUI;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SKIP_INSTALL = YES;
-				SWIFT_VERSION = 3.0;
-			};
-			name = Release;
-		};
-		7970058B1E81C1B30094806E /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				DEVELOPMENT_TEAM = CV4HPPXAQK;
-				INFOPLIST_FILE = DoItsSiri/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.dcapps.DoIts.DoItsSiri;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SKIP_INSTALL = YES;
-				SWIFT_VERSION = 3.0;
-			};
-			name = Debug;
-		};
-		7970058C1E81C1B30094806E /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				DEVELOPMENT_TEAM = CV4HPPXAQK;
-				INFOPLIST_FILE = DoItsSiri/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.dcapps.DoIts.DoItsSiri;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SKIP_INSTALL = YES;
-				SWIFT_VERSION = 3.0;
-			};
-			name = Release;
-		};
 		799790DC1E3D97FA00781A22 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -799,6 +503,7 @@
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = dwarf;
@@ -849,6 +554,7 @@
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
@@ -864,6 +570,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
 				MTL_ENABLE_DEBUG_INFO = NO;
+				ONLY_ACTIVE_ARCH = NO;
 				SDKROOT = iphoneos;
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -903,55 +610,9 @@
 			};
 			name = Release;
 		};
-		79BA1CD11E819A9E00691417 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CODE_SIGN_ENTITLEMENTS = ListWidget/ListWidget.entitlements;
-				DEVELOPMENT_TEAM = CV4HPPXAQK;
-				INFOPLIST_FILE = ListWidget/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.dcapps.DoIts.ListWidget;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SKIP_INSTALL = YES;
-				SWIFT_VERSION = 3.0;
-			};
-			name = Debug;
-		};
-		79BA1CD21E819A9E00691417 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CODE_SIGN_ENTITLEMENTS = ListWidget/ListWidget.entitlements;
-				DEVELOPMENT_TEAM = CV4HPPXAQK;
-				INFOPLIST_FILE = ListWidget/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.dcapps.DoIts.ListWidget;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SKIP_INSTALL = YES;
-				SWIFT_VERSION = 3.0;
-			};
-			name = Release;
-		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		797005871E81C1B30094806E /* Build configuration list for PBXNativeTarget "DoItsSiriUI" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				797005881E81C1B30094806E /* Debug */,
-				797005891E81C1B30094806E /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		7970058A1E81C1B30094806E /* Build configuration list for PBXNativeTarget "DoItsSiri" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				7970058B1E81C1B30094806E /* Debug */,
-				7970058C1E81C1B30094806E /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
 		799790C41E3D97F900781A22 /* Build configuration list for PBXProject "DoIts" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
@@ -966,15 +627,6 @@
 			buildConfigurations = (
 				799790DF1E3D97FA00781A22 /* Debug */,
 				799790E01E3D97FA00781A22 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		79BA1CD01E819A9E00691417 /* Build configuration list for PBXNativeTarget "ListWidget" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				79BA1CD11E819A9E00691417 /* Debug */,
-				79BA1CD21E819A9E00691417 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

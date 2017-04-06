@@ -20,9 +20,8 @@ class CategoriesViewController: UIViewController, UITableViewDataSource, UITable
     @IBOutlet weak var categoryTextField: UITextField!
     
 //    @IBOutlet weak var colorPicker: UIView!
-    
-    @IBOutlet weak var selectedColorView: ColorCircleView!
   
+    @IBOutlet weak var selectedColorView: UIImageView!
     
 
     
@@ -89,7 +88,8 @@ class CategoriesViewController: UIViewController, UITableViewDataSource, UITable
     
       
         getTasks()
-        self.selectedColorView.backgroundColor = selectedColor
+        selectedColorView.image = selectedColorView.image!.withRenderingMode(.alwaysTemplate)
+        selectedColorView.tintColor = selectedColor
         
 //        allDisclosureArrow.text = "\(tasks.count) >"
     }
@@ -160,6 +160,7 @@ class CategoriesViewController: UIViewController, UITableViewDataSource, UITable
             
             category.categoryName = newCategoryName.text
             category.createdDate = NSDate()
+            category.color = selectedColor
            // category.isSelected = false
             
             
@@ -332,6 +333,14 @@ class CategoriesViewController: UIViewController, UITableViewDataSource, UITable
         
     }
     
+    
+    @IBAction func tapOutOfCats2(_ sender: UITapGestureRecognizer) {
+        
+        self.performSegue(withIdentifier: "unwindToSelectedCategory", sender: category)
+    }
+    
+    
+    
    
     @IBAction func tapOutOfCats(_ sender: Any) {
         self.performSegue(withIdentifier: "unwindToSelectedCategory", sender: category)
@@ -384,8 +393,14 @@ class CategoriesViewController: UIViewController, UITableViewDataSource, UITable
     
     @IBAction func unwindToCatsFromColors(segue: UIStoryboardSegue) {
 
-   self.selectedColorView.backgroundColor = selectedColor
+        if selectedColor == UIColor.white{
+            selectedColorView.image = selectedColorView.image!.withRenderingMode(.alwaysTemplate)
+            selectedColorView.tintColor = UIColor.clear
+        } else {
         
+        selectedColorView.image = selectedColorView.image!.withRenderingMode(.alwaysTemplate)
+        selectedColorView.tintColor = selectedColor
+        }
                  print(selectedColor)
     }
     
