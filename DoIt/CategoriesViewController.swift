@@ -19,6 +19,10 @@ class CategoriesViewController: UIViewController, UITableViewDataSource, UITable
     @IBOutlet weak var listView: UIView!
     @IBOutlet weak var categoryTextField: UITextField!
     
+  
+    @IBOutlet weak var newCategoryButton: UIButton!
+    
+    
 //    @IBOutlet weak var colorPicker: UIView!
   
     @IBOutlet weak var selectedColorView: UIImageView!
@@ -37,7 +41,7 @@ class CategoriesViewController: UIViewController, UITableViewDataSource, UITable
     let alert = UIAlertController(title: "Are you sure?", message: "Deleting a list will move all associated tasks to the Misc list", preferredStyle: .actionSheet)
 //    let colors : [UIColor] = [UIColor.red, UIColor.blue, UIColor.green, UIColor.darkGray, UIColor.brown]
     var selectedColor : UIColor = UIColor.white
-    
+    var editCategory : Category? = nil
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -88,8 +92,10 @@ class CategoriesViewController: UIViewController, UITableViewDataSource, UITable
     
       
         getTasks()
-        selectedColorView.image = selectedColorView.image!.withRenderingMode(.alwaysTemplate)
-        selectedColorView.tintColor = selectedColor
+        
+        determineFillOfColorDot()
+        
+        
         
 //        allDisclosureArrow.text = "\(tasks.count) >"
     }
@@ -106,7 +112,15 @@ class CategoriesViewController: UIViewController, UITableViewDataSource, UITable
         let category = categories[indexPath.row]
         
         cell.categoryNameLabel.text = "\(category.categoryName!)"
-//        cell.disclosureArrow.text = "\(category.categoryTasks!.count) >"
+        
+        if (category.categoryTasks?.count)! > 1 {
+        cell.taskCountLabel.text = "\(category.categoryTasks!.count) Tasks"
+        } else if (category.categoryTasks?.count)! == 1  {
+            cell.taskCountLabel.text = "1 Task"
+        } else {
+            cell.taskCountLabel.text = "No Tasks"
+        }
+        
         
        // cell.layer.borderColor = UIColor.groupTableViewBackground.cgColor
         //cell.layer.borderWidth = 4
@@ -119,7 +133,7 @@ class CategoriesViewController: UIViewController, UITableViewDataSource, UITable
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
-        let category : Category = categories[indexPath.row]
+        category = categories[indexPath.row]
         //maskView.isHidden = false
         
         
@@ -200,7 +214,36 @@ class CategoriesViewController: UIViewController, UITableViewDataSource, UITable
     
     func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
         
+        
+        
+        var editRowAction = UITableViewRowAction(style: UITableViewRowActionStyle.default, title: "Edit", handler:{action, indexpath in
+           
+            self.editCategory = self.categories[indexPath.row]
+            let categoryName = self.editCategory?.categoryName
+            let categoryColor = self.editCategory?.color
+           self.categoryTextField.text = categoryName
+            self.selectedColor = categoryColor as! UIColor
+            self.newCategoryButton.setTitle("Update", for: .normal)
+            
+            if categoryColor == UIColor.white{
+                
+                self.selectedColorView.image = UIImage(named: "Full Moon-50.png")?.withRenderingMode(.alwaysTemplate)
+                self.selectedColorView.tintColor = UIColor.black
+                
+                
+                
+            } else {
+                
+                self.selectedColorView.image = UIImage(named: "circleSlider.png")?.withRenderingMode(.alwaysTemplate)
+                self.selectedColorView.tintColor = categoryColor as! UIColor!
+            }
+            
 
+            
+            
+        });
+
+        editRowAction.backgroundColor = UIColor.lightGray
         
         var deleteRowAction = UITableViewRowAction(style: UITableViewRowActionStyle.default, title: "Delete",  handler:{action, indexpath in
             print("DELETE•ACTION");
@@ -292,7 +335,7 @@ class CategoriesViewController: UIViewController, UITableViewDataSource, UITable
         });
         
     
-        return [deleteRowAction];
+        return [deleteRowAction, editRowAction];
         }
 
     
@@ -302,7 +345,37 @@ class CategoriesViewController: UIViewController, UITableViewDataSource, UITable
    
     @IBAction func newCategoryButtonTapped(_ sender: Any) {
         
+        
+        
         if categoryTextField.text != "" {
+            
+            if editCategory != nil {
+                
+                let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
+                
+                let category2 = editCategory
+                category2?.categoryName = newCategoryName.text
+                category2?.color = selectedColor
+                
+                 (UIApplication.shared.delegate as! AppDelegate).saveContext()
+                
+                getCategories()
+                
+                categoriesTableView.reloadData()
+                
+                categories.sort(by: {Double(($0.createdDate?.timeIntervalSinceNow)!) < Double(($1.createdDate?.timeIntervalSinceNow)!)})
+                
+                
+                
+                newCategoryName.text = ""
+                newCategoryButton.setTitle("Add", for: .normal)
+                editCategory = nil
+            
+
+                
+            } else {
+            
+            
         let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
         
         let category = Category(context: context)
@@ -329,7 +402,7 @@ class CategoriesViewController: UIViewController, UITableViewDataSource, UITable
        
         
         newCategoryName.text = ""
-        }
+            } }
         
     }
     
@@ -365,11 +438,20 @@ class CategoriesViewController: UIViewController, UITableViewDataSource, UITable
        
         if segue.identifier == "unwindToSelectedCategory" {
         let nextVC = segue.destination as! TasksViewController
+            
+            if category != nil {
         nextVC.category = sender as? Category
-            nextVC.selectedColor = self.selectedColor
+                nextVC.selectedColor = self.selectedColor
+            } else {
+                
+                nextVC.category = nil
+                nextVC.selectedColor = UIColor.white
+            }
+            
         }
-        
     }
+    
+    
     
 //    @IBAction func tapColorPicker(_ sender: UITapGestureRecognizer) {
 //        
@@ -393,18 +475,31 @@ class CategoriesViewController: UIViewController, UITableViewDataSource, UITable
     
     @IBAction func unwindToCatsFromColors(segue: UIStoryboardSegue) {
 
-        if selectedColor == UIColor.white{
-            selectedColorView.image = selectedColorView.image!.withRenderingMode(.alwaysTemplate)
-            selectedColorView.tintColor = UIColor.clear
-        } else {
-        
-        selectedColorView.image = selectedColorView.image!.withRenderingMode(.alwaysTemplate)
-        selectedColorView.tintColor = selectedColor
-        }
-                 print(selectedColor)
+       determineFillOfColorDot()
     }
     
+    func determineFillOfColorDot() {
+        if selectedColor == UIColor.white{
+            
+            selectedColorView.image = UIImage(named: "Full Moon-50.png")?.withRenderingMode(.alwaysTemplate)
+            selectedColorView.tintColor = UIColor.black
+            
+            
+            
+        } else {
+            
+            selectedColorView.image = UIImage(named: "circleSlider.png")?.withRenderingMode(.alwaysTemplate)
+            selectedColorView.tintColor = selectedColor
+        }
     
+    }
+    
+    @IBAction func viewAllButtonTapped(_ sender: Any) {
+        
+        self.category = nil
+        
+        performSegue(withIdentifier: "unwindToSelectedCategory", sender: category)
+    }
     
     
     

@@ -41,6 +41,7 @@ class CreateTaskViewController: UIViewController, UITextFieldDelegate, UIPickerV
     
    // @IBOutlet weak var addAudioNoteButton: UIButton!
     
+    @IBOutlet weak var taskNoteLabelConstraint: NSLayoutConstraint!
     
     @IBOutlet weak var playRecordView: UIView!
     
@@ -116,6 +117,10 @@ class CreateTaskViewController: UIViewController, UITextFieldDelegate, UIPickerV
         
         getCategories()
         getTasks()
+        
+        if selectedCategory == nil {
+            selectedCategory = categories[0]
+        }
        
         self.hideKeyboardWhenTappedAround()
            
@@ -285,7 +290,11 @@ class CreateTaskViewController: UIViewController, UITextFieldDelegate, UIPickerV
             determineTintOfTask()
         }
         
+        if selectedCategory != nil {
         colorView.backgroundColor = selectedCategory?.color as! UIColor
+        } else {
+            colorView.backgroundColor = categories[0].color as! UIColor
+        }
         
 
     }
@@ -299,9 +308,6 @@ class CreateTaskViewController: UIViewController, UITextFieldDelegate, UIPickerV
         
         if selectedCategory != nil {
        determineIndexOfSelectedCategory()
-            
-            
-           
         }
     }
     
@@ -435,12 +441,12 @@ class CreateTaskViewController: UIViewController, UITextFieldDelegate, UIPickerV
     
     func determineButtonFill() {
     
-        taskNotesLabel.translatesAutoresizingMaskIntoConstraints = false
-        let verticalNoteLabelSpace = NSLayoutConstraint(item: dateFieldText, attribute: .top, relatedBy: .equal, toItem: taskNotesLabel, attribute: .bottom, multiplier: 1, constant: -155)
-        let leftNoteLabelConstraint = taskNotesLabel.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 20)
-        
-        let verticalNoteLabelSpace2 = NSLayoutConstraint(item: dateFieldText, attribute: .top, relatedBy: .equal, toItem: taskNotesLabel, attribute: .bottom, multiplier: 1, constant: 5)
-        let leftNoteLabelConstraint2 = taskNotesLabel.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 20)
+//        taskNotesLabel.translatesAutoresizingMaskIntoConstraints = false
+//        let verticalNoteLabelSpace = NSLayoutConstraint(item: dateFieldText, attribute: .top, relatedBy: .equal, toItem: taskNotesLabel, attribute: .bottom, multiplier: 1, constant: -155)
+//        let leftNoteLabelConstraint = taskNotesLabel.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 20)
+//        
+//        let verticalNoteLabelSpace2 = NSLayoutConstraint(item: dateFieldText, attribute: .top, relatedBy: .equal, toItem: taskNotesLabel, attribute: .bottom, multiplier: 1, constant: 5)
+//        let leftNoteLabelConstraint2 = taskNotesLabel.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 20)
     //set play image tint
         
         if playRecordView.isHidden == false {
@@ -485,8 +491,9 @@ class CreateTaskViewController: UIViewController, UITextFieldDelegate, UIPickerV
             
 
             
-            NSLayoutConstraint.activate([verticalNoteLabelSpace, leftNoteLabelConstraint])
-            
+//            NSLayoutConstraint.activate([verticalNoteLabelSpace, leftNoteLabelConstraint])
+           
+            taskNoteLabelConstraint.constant = 80
 
             
             
@@ -498,12 +505,16 @@ class CreateTaskViewController: UIViewController, UITextFieldDelegate, UIPickerV
             
            
             
-            NSLayoutConstraint.deactivate([verticalNoteLabelSpace, leftNoteLabelConstraint])
+//            NSLayoutConstraint.deactivate([verticalNoteLabelSpace, leftNoteLabelConstraint])
+            
+            taskNoteLabelConstraint.constant = 5
             
             
         }
 
     }
+    
+    
     
     @IBAction func dateChanged(_ sender: Any) {
         if task != nil {

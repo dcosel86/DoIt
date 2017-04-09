@@ -22,6 +22,10 @@ class CategoryTableViewCell: UITableViewCell {
     @IBOutlet weak var categoryColor: UIView!
     
     
+    @IBOutlet weak var taskCountLabel: UILabel!
+    
+    
+    
     override func prepareForReuse() {
 
         

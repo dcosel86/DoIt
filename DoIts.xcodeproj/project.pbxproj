@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		790906971E985E4000026CBD /* Full Moon-50.png in Resources */ = {isa = PBXBuildFile; fileRef = 790906961E985E4000026CBD /* Full Moon-50.png */; };
+		790906991E985EB800026CBD /* Full Moon Filled-50.png in Resources */ = {isa = PBXBuildFile; fileRef = 790906981E985EB800026CBD /* Full Moon Filled-50.png */; };
 		791C54311E3EBDB700C6234F /* CreateTaskViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 791C54301E3EBDB700C6234F /* CreateTaskViewController.swift */; };
 		791C93031E5696DB0027B49B /* taskTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 791C93021E5696DB0027B49B /* taskTableViewCell.swift */; };
 		791C930D1E5805F80027B49B /* CompletedTasksViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 791C930C1E5805F80027B49B /* CompletedTasksViewController.swift */; };
@@ -60,6 +62,8 @@
 		799790D51E3D97FA00781A22 /* DoIt.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 799790D31E3D97FA00781A22 /* DoIt.xcdatamodeld */; };
 		799790D71E3D97FA00781A22 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 799790D61E3D97FA00781A22 /* Assets.xcassets */; };
 		799790DA1E3D97FA00781A22 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 799790D81E3D97FA00781A22 /* LaunchScreen.storyboard */; };
+		799965FC1E999FDD00A04C03 /* Add Folder-50.png in Resources */ = {isa = PBXBuildFile; fileRef = 799965FB1E999FDD00A04C03 /* Add Folder-50.png */; };
+		799965FE1E999FE300A04C03 /* Add Property-50.png in Resources */ = {isa = PBXBuildFile; fileRef = 799965FD1E999FE300A04C03 /* Add Property-50.png */; };
 		799C08831E7F453D00011B8C /* AddItemViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 799C08821E7F453D00011B8C /* AddItemViewController.swift */; };
 		79D5BD061E6336D600E84148 /* CreateTaskView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79D5BD051E6336D600E84148 /* CreateTaskView.swift */; };
 		79D5BD0A1E63C63F00E84148 /* CategoriesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79D5BD091E63C63F00E84148 /* CategoriesViewController.swift */; };
@@ -81,6 +85,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		790906961E985E4000026CBD /* Full Moon-50.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Full Moon-50.png"; path = "../../../Downloads/Full Moon-50.png"; sourceTree = "<group>"; };
+		790906981E985EB800026CBD /* Full Moon Filled-50.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Full Moon Filled-50.png"; path = "../../../Downloads/Full Moon Filled-50.png"; sourceTree = "<group>"; };
 		791C54301E3EBDB700C6234F /* CreateTaskViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CreateTaskViewController.swift; path = ../CreateTaskViewController.swift; sourceTree = "<group>"; };
 		791C93021E5696DB0027B49B /* taskTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = taskTableViewCell.swift; sourceTree = "<group>"; };
 		791C930C1E5805F80027B49B /* CompletedTasksViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CompletedTasksViewController.swift; sourceTree = "<group>"; };
@@ -138,6 +144,8 @@
 		799790D61E3D97FA00781A22 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		799790D91E3D97FA00781A22 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		799790DB1E3D97FA00781A22 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		799965FB1E999FDD00A04C03 /* Add Folder-50.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Add Folder-50.png"; path = "../../../Downloads/Add Folder-50.png"; sourceTree = "<group>"; };
+		799965FD1E999FE300A04C03 /* Add Property-50.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Add Property-50.png"; path = "../../../Downloads/Add Property-50.png"; sourceTree = "<group>"; };
 		799C08821E7F453D00011B8C /* AddItemViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddItemViewController.swift; sourceTree = "<group>"; };
 		79BA1CAB1E80B4C600691417 /* NotificationCenter.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = NotificationCenter.framework; path = System/Library/Frameworks/NotificationCenter.framework; sourceTree = SDKROOT; };
 		79BA1CBD1E80C6C800691417 /* DoIts.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = DoIts.entitlements; sourceTree = SOURCE_ROOT; };
@@ -202,12 +210,16 @@
 		79916B741E8762700020AC96 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				790906961E985E4000026CBD /* Full Moon-50.png */,
 				792E22151E8F806800669DCE /* Alarm Clock-50.png */,
 				792E22071E8CADCC00669DCE /* Stop-50.png */,
 				792E22111E8F68F900669DCE /* Stop Filled-50.png */,
 				792E22211E93316500669DCE /* circleSlider.png */,
+				799965FB1E999FDD00A04C03 /* Add Folder-50.png */,
+				790906981E985EB800026CBD /* Full Moon Filled-50.png */,
 				792E22081E8CADCC00669DCE /* Pause-50.png */,
 				792E221F1E91D90100669DCE /* Pause Filled-50.png */,
+				799965FD1E999FE300A04C03 /* Add Property-50.png */,
 				792E22091E8CADCC00669DCE /* Record-50.png */,
 				792E221D1E91CA3E00669DCE /* chromeThumb.png */,
 				792E22131E8F690000669DCE /* Record Filled-50.png */,
@@ -385,7 +397,9 @@
 				79916B711E8762600020AC96 /* Filter-50.png in Resources */,
 				792E22041E8CADB600669DCE /* High Importance Filled-50.png in Resources */,
 				792E221C1E8F959100669DCE /* Folder-50.png in Resources */,
+				790906971E985E4000026CBD /* Full Moon-50.png in Resources */,
 				792E221E1E91CA3E00669DCE /* chromeThumb.png in Resources */,
+				799965FC1E999FDD00A04C03 /* Add Folder-50.png in Resources */,
 				792E21FC1E8B65C100669DCE /* Circled Play Filled-50.png in Resources */,
 				792E22141E8F690000669DCE /* Record Filled-50.png in Resources */,
 				798D45651E8775AC00855238 /* Headphones-50.png in Resources */,
@@ -394,6 +408,7 @@
 				798D45711E89E32A00855238 /* Sorting Options-50.png in Resources */,
 				792E220E1E8CADCC00669DCE /* Play-50.png in Resources */,
 				798D45631E87745200855238 /* High Priority-50.png in Resources */,
+				790906991E985EB800026CBD /* Full Moon Filled-50.png in Resources */,
 				799790D71E3D97FA00781A22 /* Assets.xcassets in Resources */,
 				798D455F1E876FD300855238 /* Plus-50.png in Resources */,
 				792E22201E91D90100669DCE /* Pause Filled-50.png in Resources */,
@@ -420,6 +435,7 @@
 				792E22161E8F806800669DCE /* Alarm Clock-50.png in Resources */,
 				798D45611E8772DC00855238 /* Delete-50.png in Resources */,
 				792E22001E8B65D200669DCE /* Clock Filled-50.png in Resources */,
+				799965FE1E999FE300A04C03 /* Add Property-50.png in Resources */,
 				798D45671E8776A300855238 /* Audio Wave-50.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

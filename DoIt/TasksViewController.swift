@@ -77,10 +77,15 @@ class TasksViewController: UIViewController, UITableViewDataSource, UITableViewD
     
     @IBOutlet weak var folderImage: UIImageView!
     
+    @IBOutlet weak var quickAddView: UIView!
     
+    @IBOutlet weak var quickAddTextField: UITextField!
     
+    @IBOutlet weak var quickAddButton: UIButton!
     
+    @IBOutlet weak var filterSortView: UIView!
     
+    @IBOutlet weak var tableViewContraint: NSLayoutConstraint!
     
     var tasks : [Task] = []
      // 0:today 1:week 2:past 3:imp 4:audio
@@ -96,6 +101,8 @@ class TasksViewController: UIViewController, UITableViewDataSource, UITableViewD
     var fromAddTask = false
     var tasksDueToday : [Task]? = nil
     var selectedColor : UIColor? = nil
+    var selectedTaskCategory : Category? = nil
+    var contentOffSet : Int = 0
     
     
     
@@ -183,7 +190,7 @@ class TasksViewController: UIViewController, UITableViewDataSource, UITableViewD
         
         
       getCategories()
-        
+     
         
         
         if categories.count > 0 {
@@ -198,18 +205,19 @@ class TasksViewController: UIViewController, UITableViewDataSource, UITableViewD
             
             MiscCategory.categoryName = "Misc"
             MiscCategory.createdDate = NSDate()
-            MiscCategory.color = UIColor.magenta
+            MiscCategory.color = UIColor.white
             //MiscCategory.isSelected = true
          
             
             (UIApplication.shared.delegate as! AppDelegate).saveContext()
             
-            category = MiscCategory
+            category = nil
         
             
             startUpProcedures()
             
             UINavigationBar.appearance().barTintColor = category?.color as! UIColor?
+            
         }
         
 
@@ -361,9 +369,6 @@ class TasksViewController: UIViewController, UITableViewDataSource, UITableViewD
     }
 
     
-    
-    
-    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return (tasks.count)
     }
@@ -379,6 +384,16 @@ class TasksViewController: UIViewController, UITableViewDataSource, UITableViewD
         let dateFormatter = DateFormatter()
         dateFormatter.dateStyle = .short
         let startOfCreated = calendar.startOfDay(for: dateFromCreation as! Date)
+        
+        if category == nil {
+            cell.taskColor.isHidden = false
+            cell.taskColor.backgroundColor = task.taskCategory?.color as! UIColor
+            
+        } else {
+            
+            cell.taskColor.isHidden = true
+            
+        }
         
         
         if task.dueDate != nil {
@@ -531,6 +546,8 @@ class TasksViewController: UIViewController, UITableViewDataSource, UITableViewD
         
         let task = tasks[indexPath.row]
             maskView.isHidden = false
+            
+        selectedTaskCategory = task.taskCategory
         
         
         performSegue(withIdentifier: "addSegue", sender: task)
@@ -553,6 +570,10 @@ class TasksViewController: UIViewController, UITableViewDataSource, UITableViewD
 
     @IBAction func pageSwiped(_ sender: UISwipeGestureRecognizer) {
         
+        if category == nil {
+            selectedTaskCategory = nil
+        }
+        
         performSegue(withIdentifier: "addSegue", sender: AnyObject.self)
         
         editsButton.isEnabled = false
@@ -566,6 +587,10 @@ class TasksViewController: UIViewController, UITableViewDataSource, UITableViewD
     
     @IBAction func pageSwipedTwo(_ sender: UISwipeGestureRecognizer) {
         
+        if category == nil {
+            selectedTaskCategory = nil
+        }
+        
         performSegue(withIdentifier: "addSegue", sender: AnyObject.self)
         
         editsButton.isEnabled = false
@@ -578,6 +603,10 @@ class TasksViewController: UIViewController, UITableViewDataSource, UITableViewD
     
     
     @IBAction func pageSwipedThree(_ sender: UISwipeGestureRecognizer) {
+        
+        if category == nil {
+            selectedTaskCategory = nil
+        }
         
         performSegue(withIdentifier: "addSegue", sender: AnyObject.self)
         
@@ -633,6 +662,8 @@ class TasksViewController: UIViewController, UITableViewDataSource, UITableViewD
     }
     
     func getCompletedTasks () {
+        
+        let selectedCategoryName = category?.categoryName
     
     let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     let entity = NSEntityDescription.entity(
@@ -640,14 +671,25 @@ class TasksViewController: UIViewController, UITableViewDataSource, UITableViewD
     let request: NSFetchRequest<Task> = Task.fetchRequest()
     request.entity = entity
     let pred = NSPredicate(format: "(completed == %@)", true as CVarArg)
-    request.predicate = pred
+        
+        
+        if selectedCategoryName != nil {
+         
+            let predCat = NSPredicate(format: "%K = %@", "taskCategory.categoryName", (selectedCategoryName)!)
+            let predicateCompound = NSCompoundPredicate.init(type: .and, subpredicates: [pred, predCat])
+            request.predicate = predicateCompound
+            
+        }else {
+         
+            let predicateCompound = NSCompoundPredicate.init(type: .and, subpredicates: [pred])
+           request.predicate = predicateCompound
+        }
+    
     do{
     completedTasks = try context.fetch(request as!
     NSFetchRequest<NSFetchRequestResult>) as! [Task]
+        print (completedTasks.count)
     } catch {}
-
-    
-    
     
     }
 
@@ -711,7 +753,14 @@ class TasksViewController: UIViewController, UITableViewDataSource, UITableViewD
             
             let nextVC = segue.destination as! CreateTaskViewController
             nextVC.task = sender as? Task
+            
+            if category != nil {
             nextVC.selectedCategory = category
+            } else {
+                
+                nextVC.selectedCategory = selectedTaskCategory
+                
+            }
             
             
         }
@@ -850,6 +899,8 @@ class TasksViewController: UIViewController, UITableViewDataSource, UITableViewD
             //sortNameLabel.isHidden = false
             if completedTasks.count > 0 {
             completedTasksButtonView.isHidden = false
+                completedButton.isHidden = false
+                completedNumberLabel.isHidden = false
             }
                 } else {
             removeButton.isEnabled = true
@@ -867,6 +918,8 @@ class TasksViewController: UIViewController, UITableViewDataSource, UITableViewD
             completedButton.isEnabled = false
             if completedTasks.count > 0 {
                 completedTasksButtonView.isHidden = true
+                completedButton.isHidden = true
+                completedNumberLabel.isHidden = true
             }
         }
     }
@@ -906,35 +959,8 @@ class TasksViewController: UIViewController, UITableViewDataSource, UITableViewD
         
         maskView.isHidden = true
         //saveSelectedCategory()
-        print (selectedColor)
         startUpProcedures()
-        selectedColor = category?.color as! UIColor
-        listDragView.backgroundColor = selectedColor
-      
-        if selectedColor == UIColor.white {
-            
-            listDragView.layer.borderColor = UIColor.lightGray.cgColor
-            listDragView.layer.borderWidth = 1
-            listDragView.layer.opacity = 0.7
-            folderImage.image = folderImage.image!.withRenderingMode(.alwaysTemplate)
-            folderImage.tintColor = UIColor.black
-            
-        } else if selectedColor == UIColor(colorLiteralRed: 255/200, green: 255/255, blue: 102/255, alpha: 1) {
-            listDragView.layer.borderColor = UIColor.lightGray.cgColor
-            listDragView.layer.borderWidth = 1
-            listDragView.layer.opacity = 0.7
-            folderImage.image = folderImage.image!.withRenderingMode(.alwaysTemplate)
-            folderImage.tintColor = UIColor.black
-        } else {
-            listDragView.layer.borderColor = UIColor.clear.cgColor
-            listDragView.layer.borderWidth = 1
-            listDragView.layer.opacity = 0.7
-            folderImage.image = folderImage.image!.withRenderingMode(.alwaysTemplate)
-            folderImage.tintColor = UIColor.white
-            
-            
-            
-        }
+        
         
         
       
@@ -1010,10 +1036,6 @@ class TasksViewController: UIViewController, UITableViewDataSource, UITableViewD
                 NSFetchRequest<NSFetchRequestResult>) as! [Task]
             
             taskCount()
-            
-            print("helo")
-            
-            print (tasks)
             
             filterLabel.text = "Show All"
             filterLabel.textColor = UIColor.black
@@ -2162,6 +2184,10 @@ class TasksViewController: UIViewController, UITableViewDataSource, UITableViewD
     @IBAction func addItemButtonTapped(_ sender: UIBarButtonItem) {
 //        performSegue(withIdentifier: "addItem", sender: self)
         
+        if category == nil {
+            selectedTaskCategory = nil
+        }
+        
         performSegue(withIdentifier: "addSegue", sender: [category, self])
         
         maskView.isHidden = false
@@ -2169,10 +2195,23 @@ class TasksViewController: UIViewController, UITableViewDataSource, UITableViewD
     }
     
     func displayCategoryName () {
-        if category?.categoryName != "Misc" {
-            self.navigationItem.title = "to\(category!.categoryName!)do"
-        }else {
-            self.navigationItem.title = "toListdo"
+        
+        if category != nil {
+        if category?.categoryName == "Misc" {
+            self.navigationItem.title = "listdoit"
+        }
+//        else if category == nil {
+//             self.navigationItem.title = "toListdo"
+//        }
+        
+        else {
+            self.navigationItem.title = "\(category!.categoryName!)doit"
+
+            
+            }
+        } else {
+            self.navigationItem.title = "Listdoit"
+            
         }
     }
     
@@ -2226,44 +2265,127 @@ class TasksViewController: UIViewController, UITableViewDataSource, UITableViewD
 //        
 //    }
     
+    func determineCategoryTabColor() {
+        
+        if category != nil {
+            selectedColor = category?.color as! UIColor
+            listDragView.backgroundColor = selectedColor
+            quickAddView.backgroundColor = selectedColor
+            
+//            quickAddView.layer.shadowColor = UIColor.black.cgColor
+//                    quickAddView.layer.shadowOffset = CGSize(width: 0, height: 1)
+//                    quickAddView.layer.shadowRadius = 1
+//                    quickAddView.layer.shadowOpacity = 0.5
+            
+            
+            
+            if selectedColor == UIColor.white {
+                
+                listDragView.layer.borderColor = UIColor.lightGray.cgColor
+                listDragView.layer.borderWidth = 1
+                listDragView.layer.opacity = 0.7
+                quickAddView.layer.opacity = 0.7
+                folderImage.image = folderImage.image!.withRenderingMode(.alwaysTemplate)
+                folderImage.tintColor = UIColor.black
+                let origAddImage = UIImage(named: "Plus-50.png")
+                let tintedAddImage = origAddImage?.withRenderingMode(.alwaysTemplate)
+                quickAddButton.setImage(tintedAddImage, for: .normal)
+                quickAddButton.tintColor = UIColor.black
+                
+            } else if selectedColor == UIColor(colorLiteralRed: 255/200, green: 255/255, blue: 102/255, alpha: 1) {
+                listDragView.layer.borderColor = UIColor.lightGray.cgColor
+                listDragView.layer.borderWidth = 1
+                listDragView.layer.opacity = 0.7
+                quickAddView.layer.opacity = 0.7
+                folderImage.image = folderImage.image!.withRenderingMode(.alwaysTemplate)
+                folderImage.tintColor = UIColor.black
+                let origAddImage = UIImage(named: "Plus-50.png")
+                let tintedAddImage = origAddImage?.withRenderingMode(.alwaysTemplate)
+                quickAddButton.setImage(tintedAddImage, for: .normal)
+                quickAddButton.tintColor = UIColor.black
+            } else {
+                listDragView.layer.borderColor = UIColor.clear.cgColor
+                listDragView.layer.borderWidth = 1
+                listDragView.layer.opacity = 0.7
+                quickAddView.layer.opacity = 0.7
+                folderImage.image = folderImage.image!.withRenderingMode(.alwaysTemplate)
+                folderImage.tintColor = UIColor.white
+                let origAddImage = UIImage(named: "Plus-50.png")
+                let tintedAddImage = origAddImage?.withRenderingMode(.alwaysTemplate)
+                quickAddButton.setImage(tintedAddImage, for: .normal)
+               
+                quickAddButton.tintColor = UIColor.white
+                
+                
+                
+            }
+        }else {
+            
+            listDragView.layer.borderColor = UIColor.lightGray.cgColor
+            listDragView.layer.borderWidth = 1
+            listDragView.layer.opacity = 0.7
+            quickAddView.layer.opacity = 0.7
+            folderImage.image = folderImage.image!.withRenderingMode(.alwaysTemplate)
+            folderImage.tintColor = UIColor.black
+            listDragView.backgroundColor = UIColor.white
+            quickAddView.backgroundColor = UIColor.white
+            let origAddImage = UIImage(named: "Plus-50.png")
+            let tintedAddImage = origAddImage?.withRenderingMode(.alwaysTemplate)
+            quickAddButton.setImage(tintedAddImage, for: .normal)
+            quickAddButton.tintColor = UIColor.black
+        }
+
+        
+        
+        
+    }
+    
     
     func startUpProcedures () {
         
         maskView.isHidden = true
+        
+        quickAddButton.isEnabled = false
+        
         filterButton.isEnabled = true
         //autoGoToTask()
         getTasksDueToday()
         getCategories()
        // getSelectedCategory()
+        determineCategoryTabColor()
        
         
         if category != nil {
             
+         
+            
             determineFilters()
             getCompletedTasks()
             noTasks()
-            tableView.reloadData()
+           
             taskCount()
             determineSortOrder()
             showCompletedTaskLabel()
             displayCategoryName()
-            
+             tableView.reloadData()
         }
         
-//else {
-//
-//            determineFilters()
-//            getCompletedTasks()
-//            noTasks()
-//            tableView.reloadData()
-//            taskCount()
-//            determineSortOrder()
-//            showCompletedTaskLabel()
-//            displayCategoryName()
-//            
-//            
-//            
-//        }
+else {
+            
+            print ("YO YO")
+
+            determineFilters()
+            getCompletedTasks()
+            noTasks()
+            
+            taskCount()
+            determineSortOrder()
+            showCompletedTaskLabel()
+            displayCategoryName()
+            tableView.reloadData()
+            
+            
+        }
         
         
         
@@ -2280,7 +2402,134 @@ class TasksViewController: UIViewController, UITableViewDataSource, UITableViewD
 //        }
 //    }
     
+    
+    
+    
+    
+   func scrollViewWillBeginDragging(_ tableView: UITableView) {
+        //
+        contentOffSet = Int(self.tableView.contentOffset.y);
+    }
+    
+    func scrollViewDidScroll(_ tableView: UITableView) {
         
+        
+       tableView.translatesAutoresizingMaskIntoConstraints = false
+        let verticalTableViewSpace = NSLayoutConstraint(item: tableView, attribute: .top, relatedBy: .equal, toItem: filterSortView, attribute: .bottom, multiplier: 1, constant: 0)
+        
+        
+        
+        let verticalTableViewSpace2 = NSLayoutConstraint(item: tableView, attribute: .top, relatedBy: .equal, toItem: filterSortView, attribute: .bottom, multiplier: 1, constant: 50)
+//
+        
+        
+        
+        
+        let scrollPos = Int(self.tableView.contentOffset.y) ;
+        
+        if(scrollPos >= contentOffSet ){
+            //Fully hide your toolbar
+            quickAddView.isHidden = true
+            
+
+            
+//            self.view.addConstraint(verticalTableViewSpace)
+            
+  tableViewContraint.constant = 0
+            
+            UIView.animate(withDuration: 0.5, animations: {
+                //
+                //write a code to hide
+//                self.navigationController?.isNavigationBarHidden = true
+            }, completion: nil)
+        } else {
+            //Slide it up incrementally, etc.
+            quickAddView.isHidden = false
+            
+            tableViewContraint.constant = 50
+            
+            
+//            
+//            self.view.addConstraint(verticalTableViewSpace2)
+            
+
+            
+            
+                        UIView.animate(withDuration: 0.5, animations: {
+                //
+//                self.navigationController?.isNavigationBarHidden = false
+            }, completion: nil)
+        }
+        
+      
+    }
+    
+    
+    
+    
+
+    
+    @IBAction func quickAddTextChanged(_ sender: Any) {
+        quickAddButton.isEnabled = true
+        
+    }
+    
+    
+    @IBAction func quickAddButtonTapped(_ sender: Any) {
+        
+        
+        do {
+            let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
+            
+            let task = Task(context: context)
+            task.taskName = quickAddTextField.text!
+            task.important = false
+            task.taskNotes = ""
+            task.completed = false
+            task.dueDate = nil
+            
+            if category == nil {
+                var quickCategory : [Category]? = nil
+                
+                let entity = NSEntityDescription.entity(
+                    forEntityName: "Category", in: context)
+                let request: NSFetchRequest<Category> = Category.fetchRequest()
+                request.entity = entity
+                let pred = NSPredicate(format: "%K = %@", "categoryName", "Misc")
+                request.predicate = pred
+                do{
+                    quickCategory = try context.fetch(request as!
+                        NSFetchRequest<NSFetchRequestResult>) as? [Category]
+                
+                } catch {}
+                task.setValue(quickCategory?[0], forKey: "taskCategory")
+               
+            } else {
+            task.setValue(category, forKey: "taskCategory")
+            }
+            task.createdDate = NSDate()
+//            task.audioNote? = nil
+            task.taskPriority = Int64((tasks.count))
+        
+            
+            (UIApplication.shared.delegate as! AppDelegate).saveContext()
+        
+        
+        }
+            
+    catch {}
+
+        
+        tableView.reloadData()
+        startUpProcedures()
+        quickAddTextField.text = nil
+        
+        
+    }
+    
+    
+    
+    
     
 
 
