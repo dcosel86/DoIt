@@ -85,7 +85,12 @@ class TasksViewController: UIViewController, UITableViewDataSource, UITableViewD
     
     @IBOutlet weak var filterSortView: UIView!
     
-    @IBOutlet weak var tableViewContraint: NSLayoutConstraint!
+    @IBOutlet weak var quickAddToTop: NSLayoutConstraint!
+    
+    
+  
+    
+    
     
     var tasks : [Task] = []
      // 0:today 1:week 2:past 3:imp 4:audio
@@ -111,6 +116,9 @@ class TasksViewController: UIViewController, UITableViewDataSource, UITableViewD
         
         tableView.delegate = self
         tableView.dataSource = self
+        
+        
+
         
         //listDragView.layer.cornerRadius = 5
         
@@ -190,7 +198,10 @@ class TasksViewController: UIViewController, UITableViewDataSource, UITableViewD
         
         
       getCategories()
-     
+        
+        filterSortView.isHidden = false
+
+      quickAddToTop.constant = 50
         
         
         if categories.count > 0 {
@@ -367,7 +378,10 @@ class TasksViewController: UIViewController, UITableViewDataSource, UITableViewD
         return daysToComplete.day!
         
     }
-
+    
+    
+    
+    
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return (tasks.count)
@@ -500,6 +514,24 @@ class TasksViewController: UIViewController, UITableViewDataSource, UITableViewD
             cell.priorityLabel.isHidden = true
         }
         
+        if task.completed == true {
+            
+            let origCheckedImage = UIImage(named: "Checked Checkbox-50.png")
+                     let  tintedCheckedImage = origCheckedImage?.withRenderingMode(.alwaysTemplate)
+                    cell.taskCheckBox.setImage(tintedCheckedImage, for: .normal)
+            
+                    cell.taskCheckBox.tintColor = UIColor.green
+        } else {
+            
+            let origUnCheckedImage = UIImage(named: "Unchecked Checkbox-50.png")
+            let  tintedUnCheckedImage = origUnCheckedImage?.withRenderingMode(.alwaysTemplate)
+            cell.taskCheckBox.setImage(tintedUnCheckedImage, for: .normal)
+            
+            cell.taskCheckBox.tintColor = UIColor.darkGray
+            
+            
+        }
+        
         
         
         
@@ -509,12 +541,43 @@ class TasksViewController: UIViewController, UITableViewDataSource, UITableViewD
 //            defaults.set( symbolAndprize , forKey: "TaskToday")
 //        }
 
+        cell.taskCheckBox.tag = indexPath.row
+            
         
         
+        cell.taskCheckBox.addTarget(self,action:#selector(taskCompleted(sender:)), for: .touchUpInside)
+        
+      
         
         return (cell)
         
     }
+    
+    
+    func taskCompleted(sender:UIButton) {
+        
+        let buttonRow = sender.tag
+        let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
+    
+       
+        
+    
+        
+        if tasks[buttonRow].completed == true {
+            tasks[buttonRow].completed = false
+        } else {
+            tasks[buttonRow].completed = true
+
+        }
+         (UIApplication.shared.delegate as! AppDelegate).saveContext()
+       
+        startUpProcedures()
+    }
+    
+
+    
+    
+   
     
     
 
@@ -528,14 +591,27 @@ class TasksViewController: UIViewController, UITableViewDataSource, UITableViewD
     
     
     
+
     
     
     
+//    func tableView(_ tableView: UITableView, accessoryButtonTappedForRowWith indexPath: IndexPath) {
+//        
+//        let cell = tableView.dequeueReusableCell(withIdentifier: "protoCell") as! taskTableViewCell
+//        let origCheckedImage = UIImage(named: "Checked Checkbox-50.png")
+//        let tintedCheckedImage = origCheckedImage?.withRenderingMode(.alwaysTemplate)
+//        cell.taskCheckBox.setImage(tintedCheckedImage, for: .normal)
+//        cell.taskCheckBox.tintColor = UIColor.green
+//        
+//        
+//    }
     
-    
-    
-    
-    
+    func determineCompletedTasks () {
+        
+        
+        
+        
+    }
     
     
     
@@ -637,6 +713,8 @@ class TasksViewController: UIViewController, UITableViewDataSource, UITableViewD
     }
     
     
+    
+    
     func tableView(_ tableView: UITableView, moveRowAt sourceIndexPath: IndexPath, to destinationIndexPath: IndexPath) {
         var itemToMove = tasks[sourceIndexPath.row]
         tasks.remove(at: sourceIndexPath.row)
@@ -661,37 +739,37 @@ class TasksViewController: UIViewController, UITableViewDataSource, UITableViewD
         
     }
     
-    func getCompletedTasks () {
-        
-        let selectedCategoryName = category?.categoryName
-    
-    let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
-    let entity = NSEntityDescription.entity(
-    forEntityName: "Task", in: context)
-    let request: NSFetchRequest<Task> = Task.fetchRequest()
-    request.entity = entity
-    let pred = NSPredicate(format: "(completed == %@)", true as CVarArg)
-        
-        
-        if selectedCategoryName != nil {
-         
-            let predCat = NSPredicate(format: "%K = %@", "taskCategory.categoryName", (selectedCategoryName)!)
-            let predicateCompound = NSCompoundPredicate.init(type: .and, subpredicates: [pred, predCat])
-            request.predicate = predicateCompound
-            
-        }else {
-         
-            let predicateCompound = NSCompoundPredicate.init(type: .and, subpredicates: [pred])
-           request.predicate = predicateCompound
-        }
-    
-    do{
-    completedTasks = try context.fetch(request as!
-    NSFetchRequest<NSFetchRequestResult>) as! [Task]
-        print (completedTasks.count)
-    } catch {}
-    
-    }
+//    func getCompletedTasks () {
+//        
+//        let selectedCategoryName = category?.categoryName
+//    
+//    let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
+//    let entity = NSEntityDescription.entity(
+//    forEntityName: "Task", in: context)
+//    let request: NSFetchRequest<Task> = Task.fetchRequest()
+//    request.entity = entity
+//    let pred = NSPredicate(format: "(completed == %@)", true as CVarArg)
+//        
+//        
+//        if selectedCategoryName != nil {
+//         
+//            let predCat = NSPredicate(format: "%K = %@", "taskCategory.categoryName", (selectedCategoryName)!)
+//            let predicateCompound = NSCompoundPredicate.init(type: .and, subpredicates: [pred, predCat])
+//            request.predicate = predicateCompound
+//            
+//        }else {
+//         
+//            let predicateCompound = NSCompoundPredicate.init(type: .and, subpredicates: [pred])
+//           request.predicate = predicateCompound
+//        }
+//    
+//    do{
+//    completedTasks = try context.fetch(request as!
+//    NSFetchRequest<NSFetchRequestResult>) as! [Task]
+//        print (completedTasks.count)
+//    } catch {}
+//    
+//    }
 
     
     func getCategories () {
@@ -924,23 +1002,23 @@ class TasksViewController: UIViewController, UITableViewDataSource, UITableViewD
         }
     }
     
-    func showCompletedTaskLabel () {
-        
-        if completedTasks.count == 0 {
-           completedTasksButtonView.isHidden = true
-            completedButton.isEnabled = false
-            completedButton.isHidden = true
-            
-            completedNumberLabel.isHidden = true
-        } else {
-            completedTasksButtonView.isHidden = false
-            completedButton.isHidden = false
-            completedButton.isEnabled = true
-            completedNumberLabel.isHidden = false
-            completedNumberLabel.text = "\(completedTasks.count)"
-        }
-        
-    }
+//    func showCompletedTaskLabel () {
+//        
+//        if completedTasks.count == 0 {
+//           completedTasksButtonView.isHidden = true
+//            completedButton.isEnabled = false
+//            completedButton.isHidden = true
+//            
+//            completedNumberLabel.isHidden = true
+//        } else {
+//            completedTasksButtonView.isHidden = false
+//            completedButton.isHidden = false
+//            completedButton.isEnabled = true
+//            completedNumberLabel.isHidden = false
+//            completedNumberLabel.text = "\(completedTasks.count)"
+//        }
+//        
+//    }
     
     @IBAction func unwindToListFromAddList(segue: UIStoryboardSegue) {
         startUpProcedures()
@@ -1026,9 +1104,9 @@ class TasksViewController: UIViewController, UITableViewDataSource, UITableViewD
 
     //no filter/categories- show all tasks
     if category != nil && filterSelections[0] == false && filterSelections[1] == false && filterSelections[2] == false && filterSelections[3] == false && filterSelections[4] == false {
-        let pred = NSPredicate(format: "(completed == %@)", false as CVarArg)
+       // let pred = NSPredicate(format: "(completed == %@)", false as CVarArg)
         let predCat = NSPredicate(format: "%K = %@", "taskCategory.categoryName", (selectedCategoryName)!)
-        let predicateCompound = NSCompoundPredicate.init(type: .and, subpredicates: [pred,predCat])
+        let predicateCompound = NSCompoundPredicate.init(type: .and, subpredicates: [predCat])
 
         request.predicate = predicateCompound
         do{
@@ -1047,8 +1125,10 @@ class TasksViewController: UIViewController, UITableViewDataSource, UITableViewD
     //no filter/no categories - show all tasks
     if category == nil && filterSelections[0] == false && filterSelections[1] == false && filterSelections[2] == false && filterSelections[3] == false && filterSelections[4] == false{
         let pred = NSPredicate(format: "(completed == %@)", false as CVarArg)
-        
-        request.predicate = pred
+        let pred2 = NSPredicate(format: "(completed == %@)", true as CVarArg)
+        let predicateCompound = NSCompoundPredicate.init(type: .and, subpredicates: [pred, pred2])
+
+        request.predicate = predicateCompound
         do{
             tasks = try context.fetch(request as!
                 NSFetchRequest<NSFetchRequestResult>) as! [Task]
@@ -1795,7 +1875,7 @@ class TasksViewController: UIViewController, UITableViewDataSource, UITableViewD
         
      }else {
         
-        filterView.backgroundColor = UIColor.white
+        filterView.backgroundColor = UIColor.groupTableViewBackground
         
          filterLabel.textColor = UIColor.black
         
@@ -1895,7 +1975,7 @@ class TasksViewController: UIViewController, UITableViewDataSource, UITableViewD
             
         }else {
             
-            sortView.backgroundColor = UIColor.white
+            sortView.backgroundColor = UIColor.groupTableViewBackground
             
             sortLabel.textColor = UIColor.black
             
@@ -2272,10 +2352,10 @@ class TasksViewController: UIViewController, UITableViewDataSource, UITableViewD
             listDragView.backgroundColor = selectedColor
             quickAddView.backgroundColor = selectedColor
             
-//            quickAddView.layer.shadowColor = UIColor.black.cgColor
-//                    quickAddView.layer.shadowOffset = CGSize(width: 0, height: 1)
-//                    quickAddView.layer.shadowRadius = 1
-//                    quickAddView.layer.shadowOpacity = 0.5
+            quickAddView.layer.shadowColor = UIColor.black.cgColor
+                    quickAddView.layer.shadowOffset = CGSize(width: 0, height: 1)
+                    quickAddView.layer.shadowRadius = 1
+                    quickAddView.layer.shadowOpacity = 0.5
             
             
             
@@ -2360,12 +2440,12 @@ class TasksViewController: UIViewController, UITableViewDataSource, UITableViewD
          
             
             determineFilters()
-            getCompletedTasks()
+           // getCompletedTasks()
             noTasks()
            
             taskCount()
             determineSortOrder()
-            showCompletedTaskLabel()
+          //  showCompletedTaskLabel()
             displayCategoryName()
              tableView.reloadData()
         }
@@ -2375,12 +2455,12 @@ else {
             print ("YO YO")
 
             determineFilters()
-            getCompletedTasks()
+           // getCompletedTasks()
             noTasks()
             
             taskCount()
             determineSortOrder()
-            showCompletedTaskLabel()
+           // showCompletedTaskLabel()
             displayCategoryName()
             tableView.reloadData()
             
@@ -2425,28 +2505,30 @@ else {
         
         
         
-        let scrollPos = Int(self.tableView.contentOffset.y) ;
+        let scrollPos = Int(self.tableView.contentOffset.y - 10) ;
         
         if(scrollPos >= contentOffSet ){
             //Fully hide your toolbar
-            quickAddView.isHidden = true
+            filterSortView.isHidden = true
             
 
             
 //            self.view.addConstraint(verticalTableViewSpace)
             
-  tableViewContraint.constant = 0
+            quickAddToTop.constant = 0
+            
+  
             
             UIView.animate(withDuration: 0.5, animations: {
                 //
                 //write a code to hide
-//                self.navigationController?.isNavigationBarHidden = true
+                self.navigationController?.isNavigationBarHidden = true
             }, completion: nil)
         } else {
             //Slide it up incrementally, etc.
-            quickAddView.isHidden = false
+            filterSortView.isHidden = false
             
-            tableViewContraint.constant = 50
+           quickAddToTop.constant = 50
             
             
 //            
@@ -2456,13 +2538,15 @@ else {
             
             
                         UIView.animate(withDuration: 0.5, animations: {
-                //
-//                self.navigationController?.isNavigationBarHidden = false
+                
+                self.navigationController?.isNavigationBarHidden = false
             }, completion: nil)
         }
         
       
     }
+    
+    
     
     
     

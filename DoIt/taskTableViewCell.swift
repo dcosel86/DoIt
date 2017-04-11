@@ -29,6 +29,11 @@ class taskTableViewCell: UITableViewCell {
     @IBOutlet weak var dueDateImage: UIImageView!
     
     @IBOutlet weak var taskColor: UIView!
+  
+  
+    @IBOutlet weak var taskCheckBox: UIButton!
+    
+    
     
     
     override func prepareForReuse() {

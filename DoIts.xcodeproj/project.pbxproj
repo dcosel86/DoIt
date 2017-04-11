@@ -41,6 +41,8 @@
 		792E22221E93316500669DCE /* circleSlider.png in Resources */ = {isa = PBXBuildFile; fileRef = 792E22211E93316500669DCE /* circleSlider.png */; };
 		7940EA171E8769050045962E /* Tasklist-50.png in Resources */ = {isa = PBXBuildFile; fileRef = 7940EA161E8769050045962E /* Tasklist-50.png */; };
 		797005691E819CA90094806E /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 79BA1CCC1E819A9E00691417 /* Info.plist */; };
+		79813F8D1E9C501900134F60 /* Unchecked Checkbox-50.png in Resources */ = {isa = PBXBuildFile; fileRef = 79813F8C1E9C501900134F60 /* Unchecked Checkbox-50.png */; };
+		79813F8F1E9C504F00134F60 /* Checked Checkbox-50.png in Resources */ = {isa = PBXBuildFile; fileRef = 79813F8E1E9C504F00134F60 /* Checked Checkbox-50.png */; };
 		798491C41E63CE6A00E4337C /* CategoryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 798491C31E63CE6A00E4337C /* CategoryTableViewCell.swift */; };
 		798491D61E668A3C00E4337C /* FiltersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 798491D51E668A3C00E4337C /* FiltersViewController.swift */; };
 		798D455F1E876FD300855238 /* Plus-50.png in Resources */ = {isa = PBXBuildFile; fileRef = 798D455E1E876FD300855238 /* Plus-50.png */; };
@@ -120,6 +122,8 @@
 		797005681E819B150094806E /* ListWidget.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = ListWidget.entitlements; sourceTree = "<group>"; };
 		797005781E81C1B20094806E /* IntentsUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = IntentsUI.framework; path = System/Library/Frameworks/IntentsUI.framework; sourceTree = SDKROOT; };
 		7970058D1E81C4A40094806E /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		79813F8C1E9C501900134F60 /* Unchecked Checkbox-50.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Unchecked Checkbox-50.png"; path = "../../../Downloads/Unchecked Checkbox-50.png"; sourceTree = "<group>"; };
+		79813F8E1E9C504F00134F60 /* Checked Checkbox-50.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Checked Checkbox-50.png"; path = "../../../Downloads/Checked Checkbox-50.png"; sourceTree = "<group>"; };
 		798491C31E63CE6A00E4337C /* CategoryTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CategoryTableViewCell.swift; sourceTree = "<group>"; };
 		798491D51E668A3C00E4337C /* FiltersViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FiltersViewController.swift; path = DoIt/FiltersViewController.swift; sourceTree = "<group>"; };
 		798D455E1E876FD300855238 /* Plus-50.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Plus-50.png"; path = "../../../Downloads/Plus-50.png"; sourceTree = "<group>"; };
@@ -211,6 +215,8 @@
 			isa = PBXGroup;
 			children = (
 				790906961E985E4000026CBD /* Full Moon-50.png */,
+				79813F8E1E9C504F00134F60 /* Checked Checkbox-50.png */,
+				79813F8C1E9C501900134F60 /* Unchecked Checkbox-50.png */,
 				792E22151E8F806800669DCE /* Alarm Clock-50.png */,
 				792E22071E8CADCC00669DCE /* Stop-50.png */,
 				792E22111E8F68F900669DCE /* Stop Filled-50.png */,
@@ -419,6 +425,7 @@
 				792E21FE1E8B65CA00669DCE /* Circled Play-50.png in Resources */,
 				792E22101E8F68EF00669DCE /* Play Filled-50.png in Resources */,
 				798D45691E87776A00855238 /* Speaker-50.png in Resources */,
+				79813F8D1E9C501900134F60 /* Unchecked Checkbox-50.png in Resources */,
 				798D456D1E8779D600855238 /* Happy-50.png in Resources */,
 				79916B731E87626A0020AC96 /* Filter Filled-50.png in Resources */,
 				792E21FA1E8B65B900669DCE /* Low Importance-50.png in Resources */,
@@ -426,6 +433,7 @@
 				792E22181E8F8F0200669DCE /* clear_background.png in Resources */,
 				792E221A1E8F93B000669DCE /* Open Folder-50.png in Resources */,
 				792E22061E8CADBD00669DCE /* High Importance-50.png in Resources */,
+				79813F8F1E9C504F00134F60 /* Checked Checkbox-50.png in Resources */,
 				792E220D1E8CADCC00669DCE /* Record-50.png in Resources */,
 				792E21F81E8B65B200669DCE /* Low Importance Filled-50.png in Resources */,
 				792E22221E93316500669DCE /* circleSlider.png in Resources */,

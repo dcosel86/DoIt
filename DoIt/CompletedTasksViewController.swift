@@ -33,6 +33,11 @@ class CompletedTasksViewController:  UIViewController, UITableViewDataSource, UI
         tableView.delegate = self
         tableView.dataSource = self
         
+       
+        
+        self.navigationController?.isNavigationBarHidden = false
+
+        
         self.tableView.allowsMultipleSelectionDuringEditing = true
         editsButton.tintColor = UIColor.black
         
@@ -42,10 +47,10 @@ class CompletedTasksViewController:  UIViewController, UITableViewDataSource, UI
         putBackButton.tintColor = UIColor.clear
         
         
-        UINavigationBar.appearance().barTintColor = UIColor(colorLiteralRed: 75/200, green: 156/255, blue: 56/255, alpha: 1)
+//        UINavigationBar.appearance().barTintColor = UIColor(colorLiteralRed: 75/200, green: 156/255, blue: 56/255, alpha: 1)
         //
         //
-        UINavigationBar.appearance().titleTextAttributes = [NSForegroundColorAttributeName : UIColor.white]
+//        UINavigationBar.appearance().titleTextAttributes = [NSForegroundColorAttributeName : UIColor.black]
 
     }
     
