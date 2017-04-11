@@ -19,7 +19,7 @@
                         <viewControllerLayoutGuide type="bottom" id="rC2-WW-esL"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="A6b-tb-0EW">
-                        <rect key="frame" x="0.0" y="64" width="375" height="603"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vSI-xV-0s4">
@@ -29,7 +29,7 @@
                                 </items>
                             </navigationBar>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="80" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="JSc-aF-WtT">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="563"/>
+                                <rect key="frame" x="0.0" y="20" width="375" height="607"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <color key="tintColor" red="0.0" green="0.0" blue="0.0" alpha="0.13831795302013422" colorSpace="custom" customColorSpace="sRGB"/>
                                 <prototypes>
@@ -76,7 +76,7 @@
                                 </connections>
                             </tableView>
                             <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zhT-wp-Y7L">
-                                <rect key="frame" x="0.0" y="563" width="375" height="40"/>
+                                <rect key="frame" x="0.0" y="627" width="375" height="40"/>
                                 <color key="backgroundColor" red="0.90579599142074585" green="0.90594476461410522" blue="0.90576434135437012" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="40" id="Qb6-pV-y3p"/>
@@ -1173,6 +1173,7 @@
                                                                 <color key="onTintColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                                                 <connections>
                                                                     <action selector="audioSwitchTapped:" destination="daT-yB-jls" eventType="valueChanged" id="ASW-hf-Yae"/>
+                                                                    <action selector="completedSwitchTapped:" destination="daT-yB-jls" eventType="valueChanged" id="0Rb-eO-Lx4"/>
                                                                 </connections>
                                                             </switch>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Completed" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TFv-T1-uKp">
@@ -1200,6 +1201,7 @@
                                                                 <color key="onTintColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                                                 <connections>
                                                                     <action selector="audioSwitchTapped:" destination="daT-yB-jls" eventType="valueChanged" id="3rf-6D-AgY"/>
+                                                                    <action selector="notCompletedSwitchTapped:" destination="daT-yB-jls" eventType="valueChanged" id="2zS-yc-pwS"/>
                                                                 </connections>
                                                             </switch>
                                                         </subviews>
@@ -1368,10 +1370,12 @@
                     <connections>
                         <outlet property="applyButton" destination="kDt-T9-3mB" id="6kS-5A-GaS"/>
                         <outlet property="audioSwitch" destination="BuW-sI-jdS" id="Gsv-JG-D50"/>
+                        <outlet property="completedSwitch" destination="Efd-Gb-jty" id="f78-i9-HCV"/>
                         <outlet property="dueThisWeekSwitch" destination="Vkh-Pz-IQd" id="tFd-wu-IAP"/>
                         <outlet property="dueTodaySwitch" destination="AaV-bv-FsI" id="JVH-73-OZa"/>
                         <outlet property="filterView" destination="bAA-Uy-Nna" id="SUa-II-D4I"/>
                         <outlet property="isImportantSwitch" destination="xoT-Lo-mao" id="CFK-Fv-RGS"/>
+                        <outlet property="notCompletedSwitch" destination="h4W-dq-kcO" id="x9P-Pt-8fT"/>
                         <outlet property="pastDueSwitch" destination="uA9-BQ-8p9" id="xBx-fZ-X7U"/>
                         <outlet property="resetButton" destination="9fW-Hi-iLG" id="Fx9-kD-lif"/>
                         <segue destination="TAc-lG-WNq" kind="unwind" identifier="unwindToTasksWithFilter" unwindAction="unwindToTasksWithFilterWithSegue:" id="d4Z-CZ-iCZ"/>
@@ -1416,7 +1420,7 @@
                                 <nil key="highlightedColor"/>
                                 <size key="shadowOffset" width="1" height="1"/>
                             </label>
-                            <tableView opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" keyboardDismissMode="interactive" dataMode="prototypes" style="plain" allowsSelectionDuringEditing="YES" allowsMultipleSelectionDuringEditing="YES" rowHeight="100" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="RoP-pM-oEX">
+                            <tableView opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" keyboardDismissMode="interactive" dataMode="prototypes" style="plain" rowHeight="100" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="RoP-pM-oEX">
                                 <rect key="frame" x="0.0" y="100" width="375" height="463"/>
                                 <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                                 <rect key="contentStretch" x="0.0" y="0.0" width="1" height="0.0"/>
@@ -1564,23 +1568,17 @@
                                     <constraint firstAttribute="height" constant="40" id="USb-WY-18i"/>
                                 </constraints>
                                 <items>
-                                    <barButtonItem title="Edit" id="X0E-tR-0pF">
+                                    <barButtonItem title="reorder" id="X0E-tR-0pF">
                                         <connections>
                                             <action selector="editButtonTapped:" destination="BYZ-38-t0r" id="2dG-eW-Ynf"/>
                                         </connections>
                                     </barButtonItem>
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="e0l-ma-e2a"/>
-                                    <barButtonItem title="Remove x" id="Td8-Et-l5O">
-                                        <color key="tintColor" red="0.96887904410000003" green="0.044294455619999999" blue="0.028328385790000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                        <connections>
-                                            <action selector="removeButtonTapped:" destination="BYZ-38-t0r" id="dzu-Qz-YnQ"/>
-                                        </connections>
-                                    </barButtonItem>
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="QFI-1t-wZk"/>
-                                    <barButtonItem title="Did It ✓" id="8h5-mr-7I1">
+                                    <barButtonItem systemItem="trash" id="8h5-mr-7I1">
                                         <color key="tintColor" red="0.29411764705882354" green="0.61176470588235299" blue="0.2196078431372549" alpha="1" colorSpace="calibratedRGB"/>
                                         <connections>
-                                            <action selector="didEmButtonTapped:" destination="BYZ-38-t0r" id="y7U-KZ-HZm"/>
+                                            <action selector="trashButtonTapped:" destination="BYZ-38-t0r" id="Ka4-gL-avx"/>
                                         </connections>
                                     </barButtonItem>
                                 </items>
@@ -1598,27 +1596,6 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kxP-BF-DuU" customClass="CompletedTasksButtonView" customModule="DoIts" customModuleProvider="target">
-                                <rect key="frame" x="279" y="523" width="75" height="75"/>
-                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="75" id="BjJ-ua-EO7"/>
-                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="75" id="S5p-ZI-ihc"/>
-                                    <constraint firstAttribute="height" constant="75" id="bWH-5Y-iYG"/>
-                                    <constraint firstAttribute="width" constant="75" id="nDf-tm-CAZ"/>
-                                </constraints>
-                                <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="color" keyPath="ringColor">
-                                        <color key="value" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
-                                    </userDefinedRuntimeAttribute>
-                                    <userDefinedRuntimeAttribute type="color" keyPath="mainColor">
-                                        <color key="value" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
-                                    </userDefinedRuntimeAttribute>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="rinkOpacity">
-                                        <real key="value" value="0.0"/>
-                                    </userDefinedRuntimeAttribute>
-                                </userDefinedRuntimeAttributes>
-                            </view>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Drag screen up to add an item" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tXo-Yc-9p7">
                                 <rect key="frame" x="103" y="528" width="169" height="15"/>
                                 <fontDescription key="fontDescription" type="system" weight="light" pointSize="12"/>
@@ -1802,21 +1779,6 @@
                                     <constraint firstAttribute="trailing" secondItem="EUZ-lS-OaH" secondAttribute="trailing" constant="20" id="eh1-Zy-Bmx"/>
                                 </constraints>
                             </view>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Zak-l3-Qbc">
-                                <rect key="frame" x="302" y="523" width="30" height="49"/>
-                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="30" id="lqF-Tc-0G5"/>
-                                    <constraint firstAttribute="height" constant="49" id="y24-Xs-vNV"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="boldSystem" pointSize="31"/>
-                                <state key="normal" title="✓">
-                                    <color key="titleColor" red="0.29588032590000002" green="0.6118164062" blue="0.22144956560000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                </state>
-                                <connections>
-                                    <segue destination="CFA-xh-hXa" kind="show" id="dX1-uu-gFq"/>
-                                </connections>
-                            </button>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="RaY-fd-FIq" userLabel="MaskView">
                                 <rect key="frame" x="-24" y="0.0" width="423" height="603"/>
                                 <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
@@ -1826,9 +1788,6 @@
                         <gestureRecognizers/>
                         <constraints>
                             <constraint firstItem="Og4-CB-NXS" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="-16" id="0Zy-XK-C7l"/>
-                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="kxP-BF-DuU" secondAttribute="bottom" constant="5" id="1Hy-jM-otj"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="kxP-BF-DuU" secondAttribute="trailing" constant="5" id="5xc-zB-vIm"/>
-                            <constraint firstItem="Zak-l3-Qbc" firstAttribute="top" secondItem="kxP-BF-DuU" secondAttribute="top" id="7U0-eN-k0a"/>
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="DSP-j0-FDG" secondAttribute="bottom" constant="75" id="9hS-Pz-Jaj"/>
                             <constraint firstItem="iNP-AM-Tl9" firstAttribute="top" secondItem="RoP-pM-oEX" secondAttribute="bottom" id="CDR-At-vNS"/>
                             <constraint firstAttribute="trailingMargin" secondItem="RaY-fd-FIq" secondAttribute="trailing" constant="-40" id="D2g-1y-LwD"/>
@@ -1838,7 +1797,6 @@
                             <constraint firstItem="mWf-lT-Sf2" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="Lgd-ht-0N3"/>
                             <constraint firstAttribute="trailing" secondItem="iNP-AM-Tl9" secondAttribute="trailing" id="M6J-Tg-02B"/>
                             <constraint firstItem="tXo-Yc-9p7" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="Ofl-eD-kga"/>
-                            <constraint firstItem="Zak-l3-Qbc" firstAttribute="centerX" secondItem="kxP-BF-DuU" secondAttribute="centerX" id="RVi-We-8E0"/>
                             <constraint firstItem="RaY-fd-FIq" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="-40" id="RbI-C8-iJ9"/>
                             <constraint firstItem="iNP-AM-Tl9" firstAttribute="top" secondItem="tXo-Yc-9p7" secondAttribute="bottom" constant="20" id="Sg5-Vd-ABg"/>
                             <constraint firstItem="QUh-jf-bmR" firstAttribute="top" secondItem="kyD-yL-G52" secondAttribute="bottom" id="T0g-Yb-YSP"/>
@@ -1875,9 +1833,6 @@
                     </navigationItem>
                     <connections>
                         <outlet property="addButton" destination="WM1-Ka-Lui" id="v6X-sG-QXB"/>
-                        <outlet property="completedButton" destination="Zak-l3-Qbc" id="Hcd-DC-xRn"/>
-                        <outlet property="completedTasksButtonView" destination="kxP-BF-DuU" id="p4m-QX-WgM"/>
-                        <outlet property="didEmButton" destination="8h5-mr-7I1" id="XLz-6C-Kgx"/>
                         <outlet property="dragMessage" destination="tXo-Yc-9p7" id="8My-cx-JSX"/>
                         <outlet property="dragToCreateView" destination="Og4-CB-NXS" id="ZjO-tv-eRX"/>
                         <outlet property="editsButton" destination="X0E-tR-0pF" id="0VN-HX-Sez"/>
@@ -1895,7 +1850,6 @@
                         <outlet property="quickAddTextField" destination="EL8-EY-odv" id="tqZ-2L-0Sd"/>
                         <outlet property="quickAddToTop" destination="dEO-SY-QeT" id="I3j-R4-vHF"/>
                         <outlet property="quickAddView" destination="QUh-jf-bmR" id="1FF-so-UXY"/>
-                        <outlet property="removeButton" destination="Td8-Et-l5O" id="ibZ-LO-b52"/>
                         <outlet property="sortButton" destination="ajh-7G-cEQ" id="RnK-N7-04W"/>
                         <outlet property="sortExpand" destination="Z81-Kn-RNW" id="QpZ-nA-gPl"/>
                         <outlet property="sortImage" destination="P15-4U-W8o" id="Og6-7F-Lqw"/>
@@ -1903,6 +1857,7 @@
                         <outlet property="sortView" destination="fpG-a6-bnA" id="gPq-Hj-pVc"/>
                         <outlet property="tableView" destination="RoP-pM-oEX" id="edU-tm-aRT"/>
                         <outlet property="taskNumber" destination="3II-VI-drO" id="0cT-7p-LV6"/>
+                        <outlet property="trashButton" destination="8h5-mr-7I1" id="cfR-50-7KU"/>
                         <segue destination="eWy-fR-JqF" kind="presentation" identifier="addSegue" modalPresentationStyle="overFullScreen" id="kda-mE-Lac"/>
                         <segue destination="cvd-SQ-9tw" kind="presentation" identifier="showCategories" modalPresentationStyle="overCurrentContext" modalTransitionStyle="crossDissolve" id="mJE-HY-RoY"/>
                         <segue destination="daT-yB-jls" kind="presentation" identifier="popover" modalPresentationStyle="overFullScreen" id="5dV-Ae-pRI"/>

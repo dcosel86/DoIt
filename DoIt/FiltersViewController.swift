@@ -31,9 +31,13 @@ class FiltersViewController: UIViewController, UIPopoverPresentationControllerDe
     @IBOutlet weak var filterView: UIView!
     
     
+    @IBOutlet weak var completedSwitch: UISwitch!
     
-    // 0:today 1:week 2:past 3:imp 4:audio
-    var filterSelections : [Bool] = [false, false, false, false, false]
+    @IBOutlet weak var notCompletedSwitch: UISwitch!
+    
+    
+    // 0:today 1:week 2:past 3:imp 4:audio 5:completed 6:notCompleted
+    var filterSelections : [Bool] = [false, false, false, false, false, true, true]
     //1:priority 2:duedate 3:created
     //var sortSelection : Int? = 0
     
@@ -58,7 +62,9 @@ class FiltersViewController: UIViewController, UIPopoverPresentationControllerDe
             dueTodaySwitch.isEnabled = false
         }
         
-        if filterSelections == [false, false, false, false, false] {
+        
+        
+        if filterSelections == [false, false, false, false, false, true, true] {
             resetButton.isEnabled = false
         } else {
             resetButton.isEnabled = true
@@ -81,6 +87,9 @@ class FiltersViewController: UIViewController, UIPopoverPresentationControllerDe
         pastDueSwitch.isOn = filterSelections[2]
         isImportantSwitch.isOn = filterSelections[3]
         audioSwitch.isOn = filterSelections[4]
+        completedSwitch.isOn = filterSelections[5]
+        notCompletedSwitch.isOn = filterSelections[6]
+        
         //sortControl.selectedSegmentIndex = sortSelection!
     }
     
@@ -91,6 +100,8 @@ class FiltersViewController: UIViewController, UIPopoverPresentationControllerDe
         filterSelections[2] = false
         filterSelections[3] = false
         filterSelections[4] = false
+        filterSelections[5] = true
+        filterSelections[6] = true
     }
     
     
@@ -110,6 +121,8 @@ class FiltersViewController: UIViewController, UIPopoverPresentationControllerDe
     
     //actions
     
+    
+    
     @IBAction func applyButtonTapped(_ sender: Any) {
         
         performSegue(withIdentifier: "unwindToTasksWithFilter", sender: filterSelections)
@@ -124,6 +137,46 @@ class FiltersViewController: UIViewController, UIPopoverPresentationControllerDe
     }
     
     
+    @IBAction func completedSwitchTapped(_ sender: Any) {
+        
+        applyButton.title = "Apply"
+        if completedSwitch.isOn == true {
+            filterSelections[5] = true
+        }else {
+            filterSelections[5] = false
+        }
+        if filterSelections == [false, false, false, false, false, true, true] {
+            resetButton.isEnabled = false
+        } else {
+            resetButton.isEnabled = true
+        }
+
+        
+    }
+    
+    @IBAction func notCompletedSwitchTapped(_ sender: Any) {
+        
+        applyButton.title = "Apply"
+        if notCompletedSwitch.isOn == true {
+            filterSelections[6] = true
+        }else {
+            filterSelections[6] = false
+        }
+        
+        if filterSelections == [false, false, false, false, false, true, true] {
+            resetButton.isEnabled = false
+        } else {
+            resetButton.isEnabled = true
+        }
+
+        
+        
+    }
+    
+    
+    
+    
+    
     @IBAction func dueTodayTapped(_ sender: Any) {
       
 
@@ -133,7 +186,7 @@ class FiltersViewController: UIViewController, UIPopoverPresentationControllerDe
         }else {
             filterSelections[0] = false
         }
-        if filterSelections == [false, false, false, false, false] {
+        if filterSelections == [false, false, false, false, false, true, true] {
             resetButton.isEnabled = false
         } else {
             resetButton.isEnabled = true
@@ -158,7 +211,7 @@ class FiltersViewController: UIViewController, UIPopoverPresentationControllerDe
             dueTodaySwitch.isEnabled = true
         }
         
-        if filterSelections == [false, false, false, false, false] {
+        if filterSelections == [false, false, false, false, false, true, true] {
             resetButton.isEnabled = false
         } else {
             resetButton.isEnabled = true
@@ -177,7 +230,7 @@ class FiltersViewController: UIViewController, UIPopoverPresentationControllerDe
             filterSelections[2] = false
         }
         
-        if filterSelections == [false, false, false, false, false] {
+        if filterSelections == [false, false, false, false, false, true, true] {
             resetButton.isEnabled = false
         } else {
             resetButton.isEnabled = true
@@ -194,7 +247,7 @@ class FiltersViewController: UIViewController, UIPopoverPresentationControllerDe
             filterSelections[3] = false
         }
         
-        if filterSelections == [false, false, false, false, false]  {
+        if filterSelections == [false, false, false, false, false, true, true]  {
             resetButton.isEnabled = false
         } else {
             resetButton.isEnabled = true
@@ -214,7 +267,7 @@ class FiltersViewController: UIViewController, UIPopoverPresentationControllerDe
             filterSelections[4] = false
         }
         
-        if filterSelections == [false, false, false, false, false]  {
+        if filterSelections == [false, false, false, false, false, true, true]  {
             resetButton.isEnabled = false
         } else {
             resetButton.isEnabled = true
@@ -246,6 +299,9 @@ class FiltersViewController: UIViewController, UIPopoverPresentationControllerDe
 //        }
 //
 //    }
+    
+    
+   
     
 
 }

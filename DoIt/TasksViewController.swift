@@ -16,7 +16,7 @@ class TasksViewController: UIViewController, UITableViewDataSource, UITableViewD
     
     @IBOutlet weak var noTasksLabel: UILabel!
     
-    @IBOutlet weak var completedNumberLabel: UILabel!
+  //  @IBOutlet weak var completedNumberLabel: UILabel!
 
     @IBOutlet weak var dragMessage: UILabel!
    
@@ -25,14 +25,15 @@ class TasksViewController: UIViewController, UITableViewDataSource, UITableViewD
  
     @IBOutlet weak var editsButton: UIBarButtonItem!
 
-    @IBOutlet weak var didEmButton: UIBarButtonItem!
+   // @IBOutlet weak var didEmButton: UIBarButtonItem!
 
-    @IBOutlet weak var completedButton: UIButton!
+   // @IBOutlet weak var completedButton: UIButton!
     
+    @IBOutlet weak var trashButton: UIBarButtonItem!
     
     @IBOutlet weak var taskNumber: UILabel!
     
-    @IBOutlet weak var completedTasksButtonView: CompletedTasksButtonView!
+   // @IBOutlet weak var completedTasksButtonView: CompletedTasksButtonView!
     
     @IBOutlet weak var maskView: UIView!
 
@@ -48,7 +49,7 @@ class TasksViewController: UIViewController, UITableViewDataSource, UITableViewD
     @IBOutlet weak var addButton: UIBarButtonItem!
     
     
-    @IBOutlet weak var removeButton: UIBarButtonItem!
+   // @IBOutlet weak var removeButton: UIBarButtonItem!
     
     
     @IBOutlet weak var dragToCreateView: UIView!
@@ -93,8 +94,8 @@ class TasksViewController: UIViewController, UITableViewDataSource, UITableViewD
     
     
     var tasks : [Task] = []
-     // 0:today 1:week 2:past 3:imp 4:audio
-    var filterSelections : [Bool] = [false, false, false, false, false]
+     // 0:today 1:week 2:past 3:imp 4:audio 5:completed 6:notCompleted
+    var filterSelections : [Bool] = [false, false, false, false, false, true, true]
     //1:priority 2:duedate 3:created
     var sortSelection : Int? = 3
     var category : Category? = nil
@@ -172,12 +173,14 @@ class TasksViewController: UIViewController, UITableViewDataSource, UITableViewD
 //        
          //self.navigationItem.rightBarButtonItem?.
         
-        removeButton.isEnabled = false
-        removeButton.tintColor = UIColor.clear
+//        removeButton.isEnabled = false
+//        removeButton.tintColor = UIColor.clear
         
-        didEmButton.isEnabled = false
-        didEmButton.tintColor = UIColor.clear
-        self.tableView.allowsMultipleSelectionDuringEditing = true
+//        didEmButton.isEnabled = false
+//        didEmButton.tintColor = UIColor.clear
+        self.tableView.allowsMultipleSelectionDuringEditing = false
+        
+    
         maskView.isHidden = true
    
         
@@ -231,7 +234,7 @@ class TasksViewController: UIViewController, UITableViewDataSource, UITableViewD
             
         }
         
-
+        
         
         if (tasksDueToday?.count)! > 1 {
             
@@ -336,6 +339,18 @@ class TasksViewController: UIViewController, UITableViewDataSource, UITableViewD
 //        }
 //        
 //    }
+    
+    func showTrashButton() {
+        
+        if completedTasks.count > 0 {
+            trashButton.isEnabled = true
+            trashButton.tintColor = UIColor.red
+        } else {
+            trashButton.isEnabled = false
+            trashButton.tintColor = UIColor.clear
+        }
+
+    }
     
     func getTasksDueToday() {
         let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
@@ -606,12 +621,7 @@ class TasksViewController: UIViewController, UITableViewDataSource, UITableViewD
 //        
 //    }
     
-    func determineCompletedTasks () {
-        
-        
-        
-        
-    }
+   
     
     
     
@@ -639,6 +649,9 @@ class TasksViewController: UIViewController, UITableViewDataSource, UITableViewD
     }
     
     @IBAction func editButtonTapped(_ sender: Any) {
+        
+        
+        
         editMode()
     }
     
@@ -696,21 +709,14 @@ class TasksViewController: UIViewController, UITableViewDataSource, UITableViewD
    
    
   
-  
 
   
     
     func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
        
         
-        
-        if sortSelection == 0 {
-            return true
-        }
-        else {
-            return false
-        }
-    }
+        return true
+}
     
     
     
@@ -739,37 +745,37 @@ class TasksViewController: UIViewController, UITableViewDataSource, UITableViewD
         
     }
     
-//    func getCompletedTasks () {
-//        
-//        let selectedCategoryName = category?.categoryName
-//    
-//    let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
-//    let entity = NSEntityDescription.entity(
-//    forEntityName: "Task", in: context)
-//    let request: NSFetchRequest<Task> = Task.fetchRequest()
-//    request.entity = entity
-//    let pred = NSPredicate(format: "(completed == %@)", true as CVarArg)
-//        
-//        
-//        if selectedCategoryName != nil {
-//         
-//            let predCat = NSPredicate(format: "%K = %@", "taskCategory.categoryName", (selectedCategoryName)!)
-//            let predicateCompound = NSCompoundPredicate.init(type: .and, subpredicates: [pred, predCat])
-//            request.predicate = predicateCompound
-//            
-//        }else {
-//         
-//            let predicateCompound = NSCompoundPredicate.init(type: .and, subpredicates: [pred])
-//           request.predicate = predicateCompound
-//        }
-//    
-//    do{
-//    completedTasks = try context.fetch(request as!
-//    NSFetchRequest<NSFetchRequestResult>) as! [Task]
-//        print (completedTasks.count)
-//    } catch {}
-//    
-//    }
+    func getCompletedTasks () {
+        
+        let selectedCategoryName = category?.categoryName
+    
+    let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
+    let entity = NSEntityDescription.entity(
+    forEntityName: "Task", in: context)
+    let request: NSFetchRequest<Task> = Task.fetchRequest()
+    request.entity = entity
+    let pred = NSPredicate(format: "(completed == %@)", true as CVarArg)
+        
+        
+        if selectedCategoryName != nil {
+         
+            let predCat = NSPredicate(format: "%K = %@", "taskCategory.categoryName", (selectedCategoryName)!)
+            let predicateCompound = NSCompoundPredicate.init(type: .and, subpredicates: [pred, predCat])
+            request.predicate = predicateCompound
+            
+        }else {
+         
+            let predicateCompound = NSCompoundPredicate.init(type: .and, subpredicates: [pred])
+           request.predicate = predicateCompound
+        }
+    
+    do{
+    completedTasks = try context.fetch(request as!
+    NSFetchRequest<NSFetchRequestResult>) as! [Task]
+        print (completedTasks.count)
+    } catch {}
+    
+    }
 
     
     func getCategories () {
@@ -965,40 +971,40 @@ class TasksViewController: UIViewController, UITableViewDataSource, UITableViewD
             tableView.isEditing = false
             editsButton.title = "Edit"
             editsButton.tintColor = UIColor.black
-            didEmButton.isEnabled = false
+           // didEmButton.isEnabled = false
             filterButton.isEnabled = true
             addButton.isEnabled = true
-            removeButton.isEnabled = false
-            removeButton.tintColor = UIColor.clear
+//            removeButton.isEnabled = false
+//            removeButton.tintColor = UIColor.clear
             taskNumber.isHidden = false
            // categoriesButton.isEnabled = true
-            didEmButton.tintColor = UIColor.clear
-            completedButton.isEnabled = true
+            //didEmButton.tintColor = UIColor.clear
+            //completedButton.isEnabled = true
             //sortNameLabel.isHidden = false
-            if completedTasks.count > 0 {
-            completedTasksButtonView.isHidden = false
-                completedButton.isHidden = false
-                completedNumberLabel.isHidden = false
-            }
+//            if completedTasks.count > 0 {
+//            completedTasksButtonView.isHidden = false
+//                completedButton.isHidden = false
+//                completedNumberLabel.isHidden = false
+//            }
                 } else {
-            removeButton.isEnabled = true
-            removeButton.tintColor = UIColor.red
+//            removeButton.isEnabled = true
+//            removeButton.tintColor = UIColor.red
             tableView.isEditing = true
             editsButton.title = "Cancel"
             editsButton.tintColor = UIColor.black
-            didEmButton.isEnabled = true
+           // didEmButton.isEnabled = true
             filterButton.isEnabled = false
             addButton.isEnabled = false
             taskNumber.isHidden = true
             //sortNameLabel.isHidden = true
            // categoriesButton.isEnabled = false
-            didEmButton.tintColor = UIColor(colorLiteralRed: 75/200, green: 156/255, blue: 56/255, alpha: 1)
-            completedButton.isEnabled = false
-            if completedTasks.count > 0 {
-                completedTasksButtonView.isHidden = true
-                completedButton.isHidden = true
-                completedNumberLabel.isHidden = true
-            }
+           // didEmButton.tintColor = UIColor(colorLiteralRed: 75/200, green: 156/255, blue: 56/255, alpha: 1)
+           // completedButton.isEnabled = false
+//            if completedTasks.count > 0 {
+//                completedTasksButtonView.isHidden = true
+//                completedButton.isHidden = true
+//                completedNumberLabel.isHidden = true
+//            }
         }
     }
     
@@ -1103,7 +1109,7 @@ class TasksViewController: UIViewController, UITableViewDataSource, UITableViewD
     
 
     //no filter/categories- show all tasks
-    if category != nil && filterSelections[0] == false && filterSelections[1] == false && filterSelections[2] == false && filterSelections[3] == false && filterSelections[4] == false {
+    if (category != nil && filterSelections[0] == false && filterSelections[1] == false && filterSelections[2] == false && filterSelections[3] == false && filterSelections[4] == false && filterSelections[5] == true && filterSelections[6] == true) == true{
        // let pred = NSPredicate(format: "(completed == %@)", false as CVarArg)
         let predCat = NSPredicate(format: "%K = %@", "taskCategory.categoryName", (selectedCategoryName)!)
         let predicateCompound = NSCompoundPredicate.init(type: .and, subpredicates: [predCat])
@@ -1123,16 +1129,11 @@ class TasksViewController: UIViewController, UITableViewDataSource, UITableViewD
     
     
     //no filter/no categories - show all tasks
-    if category == nil && filterSelections[0] == false && filterSelections[1] == false && filterSelections[2] == false && filterSelections[3] == false && filterSelections[4] == false{
-        let pred = NSPredicate(format: "(completed == %@)", false as CVarArg)
-        let pred2 = NSPredicate(format: "(completed == %@)", true as CVarArg)
-        let predicateCompound = NSCompoundPredicate.init(type: .and, subpredicates: [pred, pred2])
-
-        request.predicate = predicateCompound
+    if (category == nil && filterSelections[0] == false && filterSelections[1] == false && filterSelections[2] == false && filterSelections[3] == false && filterSelections[4] == false && filterSelections[5] == true && filterSelections[6] == true) == true{
+        let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
         do{
-            tasks = try context.fetch(request as!
-                NSFetchRequest<NSFetchRequestResult>) as! [Task]
-            
+            tasks = try context.fetch(Task.fetchRequest())
+        
             taskCount()
             
             filterLabel.text = "Show All"
@@ -1140,8 +1141,95 @@ class TasksViewController: UIViewController, UITableViewDataSource, UITableViewD
         } catch {}
     }
     
-    //show only important tasks
-    if filterSelections[0] == false && filterSelections[1] == false && filterSelections[2] == false && filterSelections[3] == true && filterSelections[4] == false {
+    
+    
+    //show only completed
+    if (filterSelections[0] == false && filterSelections[1] == false && filterSelections[2] == false && filterSelections[3] == false && filterSelections[4] == false && filterSelections[5] == true && filterSelections[6] == false) == true {
+       
+        let predicate2 = NSPredicate(format: "(completed == %@)", true as CVarArg)
+        
+        if selectedCategoryName != nil {
+            
+            let predCat = NSPredicate(format: "%K = %@", "taskCategory.categoryName", (selectedCategoryName)!)
+            
+            let predicateCompound = NSCompoundPredicate.init(type: .and, subpredicates: [predicate2,predCat])
+            request.predicate = predicateCompound
+        } else {
+            
+            let predicateCompound = NSCompoundPredicate.init(type: .and, subpredicates: [predicate2])
+            request.predicate = predicateCompound
+        }
+        
+        do{
+            tasks = try context.fetch(request as!
+                NSFetchRequest<NSFetchRequestResult>) as! [Task]
+            
+            filterLabel.text = "Completed"
+            filterLabel.textColor = UIColor.red
+        } catch {}
+        
+    }
+    
+    //show only not completed
+    if (filterSelections[0] == false && filterSelections[1] == false && filterSelections[2] == false && filterSelections[3] == false && filterSelections[4] == false && filterSelections[5] == false && filterSelections[6] == true) == true {
+        
+        let predicate2 = NSPredicate(format: "(completed == %@)", false as CVarArg)
+        
+        if selectedCategoryName != nil {
+            
+            let predCat = NSPredicate(format: "%K = %@", "taskCategory.categoryName", (selectedCategoryName)!)
+            
+            let predicateCompound = NSCompoundPredicate.init(type: .and, subpredicates: [predicate2,predCat])
+            request.predicate = predicateCompound
+        } else {
+            
+            let predicateCompound = NSCompoundPredicate.init(type: .and, subpredicates: [predicate2])
+            request.predicate = predicateCompound
+        }
+        
+        do{
+            tasks = try context.fetch(request as!
+                NSFetchRequest<NSFetchRequestResult>) as! [Task]
+            
+            filterLabel.text = "Not completed"
+            filterLabel.textColor = UIColor.red
+        } catch {}
+        
+    }
+
+    //show only important tasks: all
+    if filterSelections[0] == false && filterSelections[1] == false && filterSelections[2] == false && filterSelections[3] == true && filterSelections[4] == false && filterSelections[5] == true && filterSelections[6] == true {
+        let predicate1 = NSPredicate(format: "(important == %@)", true as CVarArg )
+       
+        
+        if selectedCategoryName != nil {
+            
+            let predCat = NSPredicate(format: "%K = %@", "taskCategory.categoryName", (selectedCategoryName)!)
+            
+            let predicateCompound = NSCompoundPredicate.init(type: .and, subpredicates: [predicate1,predCat])
+            request.predicate = predicateCompound
+        } else {
+            
+            let predicateCompound = NSCompoundPredicate.init(type: .and, subpredicates: [predicate1])
+            request.predicate = predicateCompound
+        }
+        
+        do{
+            tasks = try context.fetch(request as!
+                NSFetchRequest<NSFetchRequestResult>) as! [Task]
+            
+            filterLabel.text = "Urgent"
+            filterLabel.textColor = UIColor.red
+        } catch {}
+        
+    }
+
+
+    
+    
+    
+    //show only important tasks: not complete
+    if filterSelections[0] == false && filterSelections[1] == false && filterSelections[2] == false && filterSelections[3] == true && filterSelections[4] == false && filterSelections[5] == false && filterSelections[6] == true {
         let predicate1 = NSPredicate(format: "(important == %@)", true as CVarArg )
         let predicate2 = NSPredicate(format: "(completed == %@)", false as CVarArg)
         
@@ -1167,8 +1255,71 @@ class TasksViewController: UIViewController, UITableViewDataSource, UITableViewD
 
     }
     
-    //show todays tasks only
-    if filterSelections[0] == true && filterSelections[1] == false && filterSelections[2] == false && filterSelections[3] == false && filterSelections[4] == false {
+    
+    //show only important tasks: complete
+    if filterSelections[0] == false && filterSelections[1] == false && filterSelections[2] == false && filterSelections[3] == true && filterSelections[4] == false && filterSelections[5] == true && filterSelections[6] == false {
+        let predicate1 = NSPredicate(format: "(important == %@)", true as CVarArg )
+        let predicate2 = NSPredicate(format: "(completed == %@)", true as CVarArg)
+        
+        if selectedCategoryName != nil {
+            
+            let predCat = NSPredicate(format: "%K = %@", "taskCategory.categoryName", (selectedCategoryName)!)
+            
+            let predicateCompound = NSCompoundPredicate.init(type: .and, subpredicates: [predicate1,predicate2,predCat])
+            request.predicate = predicateCompound
+        } else {
+            
+            let predicateCompound = NSCompoundPredicate.init(type: .and, subpredicates: [predicate1,predicate2])
+            request.predicate = predicateCompound
+        }
+        
+        do{
+            tasks = try context.fetch(request as!
+                NSFetchRequest<NSFetchRequestResult>) as! [Task]
+            
+            filterLabel.text = "Urgent"
+            filterLabel.textColor = UIColor.red
+        } catch {}
+        
+    }
+
+    //show todays tasks only:all
+    if filterSelections[0] == true && filterSelections[1] == false && filterSelections[2] == false && filterSelections[3] == false && filterSelections[4] == false && filterSelections[5] == true && filterSelections[6] == true{
+        
+        components.day! += 1
+        
+        let comparingDate = calendar.date(from:components)!
+        
+        //to todays date
+        let toTodaysDate = calendar.startOfDay(for: comparingDate)
+        
+        let datePredicate = NSPredicate(format: "(%@ <= dueDate && %@ > dueDate)", argumentArray: [fromDate, toTodaysDate])
+       
+        
+        if selectedCategoryName != nil {
+            let predCat = NSPredicate(format: "%K = %@", "taskCategory.categoryName", (selectedCategoryName)!)
+            let predicateCompound = NSCompoundPredicate.init(type: .and, subpredicates: [datePredicate, predCat])
+            request.predicate = predicateCompound
+        }else {
+            let predicateCompound = NSCompoundPredicate.init(type: .and, subpredicates: [datePredicate])
+            request.predicate = predicateCompound
+        }
+        
+        do{
+            tasks = try context.fetch(request as!
+                NSFetchRequest<NSFetchRequestResult>) as! [Task]
+            
+            filterLabel.text = "Due Today"
+            filterLabel.textColor = UIColor.red
+        } catch {}
+    }
+
+    
+    
+    
+    
+    //show todays tasks only: not complete
+    if filterSelections[0] == true && filterSelections[1] == false && filterSelections[2] == false && filterSelections[3] == false && filterSelections[4] == false && filterSelections[5] == false && filterSelections[6] == true{
     
         components.day! += 1
         
@@ -1198,8 +1349,74 @@ class TasksViewController: UIViewController, UITableViewDataSource, UITableViewD
         } catch {}
     }
     
-    //show only this weeks tasks
-    if filterSelections[0] == true && filterSelections[1] == true && filterSelections[2] == false && filterSelections[3] == false && filterSelections[4] == false {
+    //show todays tasks only: complete
+    if filterSelections[0] == true && filterSelections[1] == false && filterSelections[2] == false && filterSelections[3] == false && filterSelections[4] == false && filterSelections[5] == true && filterSelections[6] == false{
+        
+        components.day! += 1
+        
+        let comparingDate = calendar.date(from:components)!
+        
+        //to todays date
+        let toTodaysDate = calendar.startOfDay(for: comparingDate)
+        
+        let datePredicate = NSPredicate(format: "(%@ <= dueDate && %@ > dueDate)", argumentArray: [fromDate, toTodaysDate])
+        let predicate2 = NSPredicate(format: "(completed == %@)", true as CVarArg)
+        
+        if selectedCategoryName != nil {
+            let predCat = NSPredicate(format: "%K = %@", "taskCategory.categoryName", (selectedCategoryName)!)
+            let predicateCompound = NSCompoundPredicate.init(type: .and, subpredicates: [datePredicate,predicate2, predCat])
+            request.predicate = predicateCompound
+        }else {
+            let predicateCompound = NSCompoundPredicate.init(type: .and, subpredicates: [datePredicate,predicate2])
+            request.predicate = predicateCompound
+        }
+        
+        do{
+            tasks = try context.fetch(request as!
+                NSFetchRequest<NSFetchRequestResult>) as! [Task]
+            
+            filterLabel.text = "Due Today"
+            filterLabel.textColor = UIColor.red
+        } catch {}
+    }
+
+    
+    //show only this weeks tasks: all
+    if filterSelections[0] == true && filterSelections[1] == true && filterSelections[2] == false && filterSelections[3] == false && filterSelections[4] == false && filterSelections[5] == true && filterSelections[6] == true{
+        
+        components.day! += 7
+        
+        let comparingDate = calendar.date(from:components)!
+        
+        //to todays date
+        let toNextWeeksDate = calendar.startOfDay(for: comparingDate)
+        
+        let datePredicate = NSPredicate(format: "(%@ <= dueDate && %@ > dueDate)", argumentArray: [fromDate, toNextWeeksDate])
+       
+        if selectedCategoryName != nil {
+            let predCat = NSPredicate(format: "%K = %@", "taskCategory.categoryName", (selectedCategoryName)!)
+            let predicateCompound = NSCompoundPredicate.init(type: .and, subpredicates: [datePredicate, predCat])
+            request.predicate = predicateCompound
+        }else {
+            let predicateCompound = NSCompoundPredicate.init(type: .and, subpredicates: [datePredicate])
+            request.predicate = predicateCompound
+        }
+        
+        
+        do{
+            tasks = try context.fetch(request as!
+                NSFetchRequest<NSFetchRequestResult>) as! [Task]
+            
+            filterLabel.text = "Due this week"
+            filterLabel.textColor = UIColor.red
+        } catch {}
+    }
+
+    
+    
+    
+    //show only this weeks tasks: not complete
+    if filterSelections[0] == true && filterSelections[1] == true && filterSelections[2] == false && filterSelections[3] == false && filterSelections[4] == false && filterSelections[5] == false && filterSelections[6] == true{
         
         components.day! += 7
         
@@ -1229,8 +1446,69 @@ class TasksViewController: UIViewController, UITableViewDataSource, UITableViewD
         } catch {}
     }
     
-    //show only past due tasks
-    if filterSelections[0] == false && filterSelections[1] == false && filterSelections[2] == true && filterSelections[3] == false && filterSelections[4] == false {
+    
+    
+    //show only this weeks tasks: complete
+    if filterSelections[0] == true && filterSelections[1] == true && filterSelections[2] == false && filterSelections[3] == false && filterSelections[4] == false && filterSelections[5] == true && filterSelections[6] == false{
+        
+        components.day! += 7
+        
+        let comparingDate = calendar.date(from:components)!
+        
+        //to todays date
+        let toNextWeeksDate = calendar.startOfDay(for: comparingDate)
+        
+        let datePredicate = NSPredicate(format: "(%@ <= dueDate && %@ > dueDate)", argumentArray: [fromDate, toNextWeeksDate])
+        let predicate2 = NSPredicate(format: "(completed == %@)", true as CVarArg)
+        if selectedCategoryName != nil {
+            let predCat = NSPredicate(format: "%K = %@", "taskCategory.categoryName", (selectedCategoryName)!)
+            let predicateCompound = NSCompoundPredicate.init(type: .and, subpredicates: [datePredicate,predicate2, predCat])
+            request.predicate = predicateCompound
+        }else {
+            let predicateCompound = NSCompoundPredicate.init(type: .and, subpredicates: [datePredicate,predicate2])
+            request.predicate = predicateCompound
+        }
+        
+        
+        do{
+            tasks = try context.fetch(request as!
+                NSFetchRequest<NSFetchRequestResult>) as! [Task]
+            
+            filterLabel.text = "Due this week"
+            filterLabel.textColor = UIColor.red
+        } catch {}
+    }
+
+    
+    //show only past due tasks: all
+    if filterSelections[0] == false && filterSelections[1] == false && filterSelections[2] == true && filterSelections[3] == false && filterSelections[4] == false && filterSelections[5] == true && filterSelections[6] == true{
+        
+        let datePredicate = NSPredicate(format: "(%@ > dueDate)", fromDate as CVarArg)
+        
+        if selectedCategoryName != nil {
+            let predCat = NSPredicate(format: "%K = %@", "taskCategory.categoryName", (selectedCategoryName)!)
+            let predicateCompound = NSCompoundPredicate.init(type: .and, subpredicates: [datePredicate, predCat])
+            request.predicate = predicateCompound
+        }else {
+            let predicateCompound = NSCompoundPredicate.init(type: .and, subpredicates: [datePredicate])
+            request.predicate = predicateCompound
+        }
+        
+        
+        do{
+            tasks = try context.fetch(request as!
+                NSFetchRequest<NSFetchRequestResult>) as! [Task]
+            
+            filterLabel.text = "Past Due"
+            filterLabel.textColor = UIColor.red
+        } catch {}
+    }
+
+    
+    
+    
+    //show only past due tasks: not complete
+    if filterSelections[0] == false && filterSelections[1] == false && filterSelections[2] == true && filterSelections[3] == false && filterSelections[4] == false && filterSelections[5] == false && filterSelections[6] == true{
         
         let datePredicate = NSPredicate(format: "(%@ > dueDate)", fromDate as CVarArg)
         let predicate2 = NSPredicate(format: "(completed == %@)", false as CVarArg)
@@ -1253,8 +1531,63 @@ class TasksViewController: UIViewController, UITableViewDataSource, UITableViewD
         } catch {}
     }
     
-    //show past due and important tasks
-    if filterSelections[0] == false && filterSelections[1] == false && filterSelections[2] == true && filterSelections[3] == true && filterSelections[4] == false {
+    
+    
+    
+    //show only past due tasks: complete
+    if filterSelections[0] == false && filterSelections[1] == false && filterSelections[2] == true && filterSelections[3] == false && filterSelections[4] == false && filterSelections[5] == true && filterSelections[6] == false{
+        
+        let datePredicate = NSPredicate(format: "(%@ > dueDate)", fromDate as CVarArg)
+        let predicate2 = NSPredicate(format: "(completed == %@)", true as CVarArg)
+        if selectedCategoryName != nil {
+            let predCat = NSPredicate(format: "%K = %@", "taskCategory.categoryName", (selectedCategoryName)!)
+            let predicateCompound = NSCompoundPredicate.init(type: .and, subpredicates: [datePredicate,predicate2, predCat])
+            request.predicate = predicateCompound
+        }else {
+            let predicateCompound = NSCompoundPredicate.init(type: .and, subpredicates: [datePredicate,predicate2])
+            request.predicate = predicateCompound
+        }
+        
+        
+        do{
+            tasks = try context.fetch(request as!
+                NSFetchRequest<NSFetchRequestResult>) as! [Task]
+            
+            filterLabel.text = "Past Due"
+            filterLabel.textColor = UIColor.red
+        } catch {}
+    }
+    
+    //show past due and important tasks: all
+    if filterSelections[0] == false && filterSelections[1] == false && filterSelections[2] == true && filterSelections[3] == true && filterSelections[4] == false && filterSelections[5] == true && filterSelections[6] == true{
+        
+        let datePredicate = NSPredicate(format: "(%@ > dueDate)", fromDate as CVarArg)
+       
+        let predicate1 = NSPredicate(format: "(important == %@)", true as CVarArg )
+        if selectedCategoryName != nil {
+            let predCat = NSPredicate(format: "%K = %@", "taskCategory.categoryName", (selectedCategoryName)!)
+            let predicateCompound = NSCompoundPredicate.init(type: .and, subpredicates: [datePredicate, predCat])
+            request.predicate = predicateCompound
+        }else {
+            let predicateCompound = NSCompoundPredicate.init(type: .and, subpredicates: [datePredicate])
+            request.predicate = predicateCompound
+        }
+        
+        
+        do{
+            tasks = try context.fetch(request as!
+                NSFetchRequest<NSFetchRequestResult>) as! [Task]
+            
+            filterLabel.text = "Past Due, Urgent"
+            filterLabel.textColor = UIColor.red
+        } catch {}
+    }
+    
+
+
+    
+    //show past due and important tasks: not complete
+    if filterSelections[0] == false && filterSelections[1] == false && filterSelections[2] == true && filterSelections[3] == true && filterSelections[4] == false && filterSelections[5] == false && filterSelections[6] == true{
         
         let datePredicate = NSPredicate(format: "(%@ > dueDate)", fromDate as CVarArg)
         let predicate2 = NSPredicate(format: "(completed == %@)", false as CVarArg)
@@ -1277,9 +1610,67 @@ class TasksViewController: UIViewController, UITableViewDataSource, UITableViewD
             filterLabel.textColor = UIColor.red
         } catch {}
     }
+    
+    
+    
+    //show past due and important tasks: complete
+    if filterSelections[0] == false && filterSelections[1] == false && filterSelections[2] == true && filterSelections[3] == true && filterSelections[4] == false && filterSelections[5] == true && filterSelections[6] == false{
+        
+        let datePredicate = NSPredicate(format: "(%@ > dueDate)", fromDate as CVarArg)
+        let predicate2 = NSPredicate(format: "(completed == %@)", true as CVarArg)
+        let predicate1 = NSPredicate(format: "(important == %@)", true as CVarArg )
+        if selectedCategoryName != nil {
+            let predCat = NSPredicate(format: "%K = %@", "taskCategory.categoryName", (selectedCategoryName)!)
+            let predicateCompound = NSCompoundPredicate.init(type: .and, subpredicates: [datePredicate,predicate2, predCat])
+            request.predicate = predicateCompound
+        }else {
+            let predicateCompound = NSCompoundPredicate.init(type: .and, subpredicates: [datePredicate,predicate2])
+            request.predicate = predicateCompound
+        }
+        
+        
+        do{
+            tasks = try context.fetch(request as!
+                NSFetchRequest<NSFetchRequestResult>) as! [Task]
+            
+            filterLabel.text = "Past Due, Urgent"
+            filterLabel.textColor = UIColor.red
+        } catch {}
+    }
 
-    //show this weeks,todays that are important
-    if filterSelections[0] == true && filterSelections[1] == true && filterSelections[2] == false && filterSelections[3] == true && filterSelections[4] == false {
+    //show this weeks,todays that are important: all
+    if filterSelections[0] == true && filterSelections[1] == true && filterSelections[2] == false && filterSelections[3] == true && filterSelections[4] == false && filterSelections[5] == true && filterSelections[6] == true {
+        
+        components.day! += 7
+        
+        let comparingDate = calendar.date(from:components)!
+        
+        //to todays date
+        let toNextWeeksDate = calendar.startOfDay(for: comparingDate)
+        
+        let datePredicate = NSPredicate(format: "(%@ <= dueDate && %@ > dueDate)", argumentArray: [fromDate, toNextWeeksDate])
+        
+        let predicate1 = NSPredicate(format: "(important == %@)", true as CVarArg )
+        if selectedCategoryName != nil {
+            let predCat = NSPredicate(format: "%K = %@", "taskCategory.categoryName", (selectedCategoryName)!)
+            let predicateCompound = NSCompoundPredicate.init(type: .and, subpredicates: [datePredicate, predCat])
+            request.predicate = predicateCompound
+        }else {
+            let predicateCompound = NSCompoundPredicate.init(type: .and, subpredicates: [datePredicate])
+            request.predicate = predicateCompound
+        }
+        
+        do{
+            tasks = try context.fetch(request as!
+                NSFetchRequest<NSFetchRequestResult>) as! [Task]
+            filterLabel.text = "Due this week, Urgent"
+            filterLabel.textColor = UIColor.red
+        } catch {}
+    }
+
+
+    //show this weeks,todays that are important: not complete
+    if filterSelections[0] == true && filterSelections[1] == true && filterSelections[2] == false && filterSelections[3] == true && filterSelections[4] == false && filterSelections[5] == false && filterSelections[6] == true {
         
         components.day! += 7
         
@@ -1307,9 +1698,77 @@ class TasksViewController: UIViewController, UITableViewDataSource, UITableViewD
             filterLabel.textColor = UIColor.red
         } catch {}
     }
+    
+    
+    
+    
+    //show this weeks,todays that are important: complete
+    if filterSelections[0] == true && filterSelections[1] == true && filterSelections[2] == false && filterSelections[3] == true && filterSelections[4] == false && filterSelections[5] == true && filterSelections[6] == false {
+        
+        components.day! += 7
+        
+        let comparingDate = calendar.date(from:components)!
+        
+        //to todays date
+        let toNextWeeksDate = calendar.startOfDay(for: comparingDate)
+        
+        let datePredicate = NSPredicate(format: "(%@ <= dueDate && %@ > dueDate)", argumentArray: [fromDate, toNextWeeksDate])
+        let predicate2 = NSPredicate(format: "(completed == %@)", true as CVarArg)
+        let predicate1 = NSPredicate(format: "(important == %@)", true as CVarArg )
+        if selectedCategoryName != nil {
+            let predCat = NSPredicate(format: "%K = %@", "taskCategory.categoryName", (selectedCategoryName)!)
+            let predicateCompound = NSCompoundPredicate.init(type: .and, subpredicates: [datePredicate,predicate2, predCat])
+            request.predicate = predicateCompound
+        }else {
+            let predicateCompound = NSCompoundPredicate.init(type: .and, subpredicates: [datePredicate,predicate2])
+            request.predicate = predicateCompound
+        }
+        
+        do{
+            tasks = try context.fetch(request as!
+                NSFetchRequest<NSFetchRequestResult>) as! [Task]
+            filterLabel.text = "Due this week, Urgent"
+            filterLabel.textColor = UIColor.red
+        } catch {}
+    }
+    
+    //show todays that are important: all
+    if filterSelections[0] == true && filterSelections[1] == false && filterSelections[2] == false && filterSelections[3] == true && filterSelections[4] == false && filterSelections[5] == true && filterSelections[6] == true{
+        
+        components.day! += 1
+        
+        let comparingDate = calendar.date(from:components)!
+        
+        //to todays date
+        let toTodaysDate = calendar.startOfDay(for: comparingDate)
+        
+        let datePredicate = NSPredicate(format: "(%@ <= dueDate && %@ > dueDate)", argumentArray: [fromDate, toTodaysDate])
+        
+        
+        let predicate1 = NSPredicate(format: "(important == %@)", true as CVarArg )
+        if selectedCategoryName != nil {
+            let predCat = NSPredicate(format: "%K = %@", "taskCategory.categoryName", (selectedCategoryName)!)
+            let predicateCompound = NSCompoundPredicate.init(type: .and, subpredicates: [datePredicate, predCat])
+            request.predicate = predicateCompound
+        }else {
+            let predicateCompound = NSCompoundPredicate.init(type: .and, subpredicates: [datePredicate])
+            request.predicate = predicateCompound
+        }
+        
+        
+        do{
+            tasks = try context.fetch(request as!
+                NSFetchRequest<NSFetchRequestResult>) as! [Task]
+            filterLabel.text = "Due today, Urgent"
+            filterLabel.textColor = UIColor.red
+        } catch {}
+    }
+    
 
-    //show todays that are important
-    if filterSelections[0] == true && filterSelections[1] == false && filterSelections[2] == false && filterSelections[3] == true && filterSelections[4] == false {
+    
+
+    //show todays that are important: not complete
+    if filterSelections[0] == true && filterSelections[1] == false && filterSelections[2] == false && filterSelections[3] == true && filterSelections[4] == false && filterSelections[5] == false && filterSelections[6] == true{
         
         components.day! += 1
         
@@ -1339,9 +1798,77 @@ class TasksViewController: UIViewController, UITableViewDataSource, UITableViewD
             filterLabel.textColor = UIColor.red
         } catch {}
     }
+    
+    
+    //show todays that are important: complete
+    if filterSelections[0] == true && filterSelections[1] == false && filterSelections[2] == false && filterSelections[3] == true && filterSelections[4] == false && filterSelections[5] == true && filterSelections[6] == false{
+        
+        components.day! += 1
+        
+        let comparingDate = calendar.date(from:components)!
+        
+        //to todays date
+        let toTodaysDate = calendar.startOfDay(for: comparingDate)
+        
+        let datePredicate = NSPredicate(format: "(%@ <= dueDate && %@ > dueDate)", argumentArray: [fromDate, toTodaysDate])
+        
+        let predicate2 = NSPredicate(format: "(completed == %@)", true as CVarArg)
+        let predicate1 = NSPredicate(format: "(important == %@)", true as CVarArg )
+        if selectedCategoryName != nil {
+            let predCat = NSPredicate(format: "%K = %@", "taskCategory.categoryName", (selectedCategoryName)!)
+            let predicateCompound = NSCompoundPredicate.init(type: .and, subpredicates: [datePredicate,predicate2, predCat])
+            request.predicate = predicateCompound
+        }else {
+            let predicateCompound = NSCompoundPredicate.init(type: .and, subpredicates: [datePredicate,predicate2])
+            request.predicate = predicateCompound
+        }
+        
+        
+        do{
+            tasks = try context.fetch(request as!
+                NSFetchRequest<NSFetchRequestResult>) as! [Task]
+            filterLabel.text = "Due today, Urgent"
+            filterLabel.textColor = UIColor.red
+        } catch {}
+    }
+    
 
-    //show past due + this week + today that are important
-    if filterSelections[0] == true && filterSelections[1] == true && filterSelections[2] == true && filterSelections[3] == true && filterSelections[4] == false {
+    //show past due + this week + today that are important: all
+    if filterSelections[0] == true && filterSelections[1] == true && filterSelections[2] == true && filterSelections[3] == true && filterSelections[4] == false && filterSelections[5] == true && filterSelections[6] == true{
+        
+        components.day! += 7
+        
+        let comparingDate = calendar.date(from:components)!
+        
+        //to todays date
+        let toNextWeeksDate = calendar.startOfDay(for: comparingDate)
+        
+        let datePredicate = NSPredicate(format: "(%@ > dueDate)", toNextWeeksDate as CVarArg)
+        
+        
+        let predicate1 = NSPredicate(format: "(important == %@)", true as CVarArg )
+        if selectedCategoryName != nil {
+            let predCat = NSPredicate(format: "%K = %@", "taskCategory.categoryName", (selectedCategoryName)!)
+            let predicateCompound = NSCompoundPredicate.init(type: .and, subpredicates: [datePredicate, predCat])
+            request.predicate = predicateCompound
+        }else {
+            let predicateCompound = NSCompoundPredicate.init(type: .and, subpredicates: [datePredicate])
+            request.predicate = predicateCompound
+        }
+        
+        
+        do{
+            tasks = try context.fetch(request as!
+                NSFetchRequest<NSFetchRequestResult>) as! [Task]
+            filterLabel.text = "Past Due, Due this week, Urgent"
+            filterLabel.textColor = UIColor.red
+        } catch {}
+    }
+
+    
+
+    //show past due + this week + today that are important: not complete
+    if filterSelections[0] == true && filterSelections[1] == true && filterSelections[2] == true && filterSelections[3] == true && filterSelections[4] == false && filterSelections[5] == false && filterSelections[6] == true{
         
         components.day! += 7
         
@@ -1371,9 +1898,75 @@ class TasksViewController: UIViewController, UITableViewDataSource, UITableViewD
             filterLabel.textColor = UIColor.red
         } catch {}
     }
+    
+    
+    //show past due + this week + today that are important: complete
+    if filterSelections[0] == true && filterSelections[1] == true && filterSelections[2] == true && filterSelections[3] == true && filterSelections[4] == false && filterSelections[5] == true && filterSelections[6] == false{
+        
+        components.day! += 7
+        
+        let comparingDate = calendar.date(from:components)!
+        
+        //to todays date
+        let toNextWeeksDate = calendar.startOfDay(for: comparingDate)
+        
+        let datePredicate = NSPredicate(format: "(%@ > dueDate)", toNextWeeksDate as CVarArg)
+        
+        let predicate2 = NSPredicate(format: "(completed == %@)", true as CVarArg)
+        let predicate1 = NSPredicate(format: "(important == %@)", true as CVarArg )
+        if selectedCategoryName != nil {
+            let predCat = NSPredicate(format: "%K = %@", "taskCategory.categoryName", (selectedCategoryName)!)
+            let predicateCompound = NSCompoundPredicate.init(type: .and, subpredicates: [datePredicate,predicate2, predCat])
+            request.predicate = predicateCompound
+        }else {
+            let predicateCompound = NSCompoundPredicate.init(type: .and, subpredicates: [datePredicate,predicate2])
+            request.predicate = predicateCompound
+        }
+        
+        
+        do{
+            tasks = try context.fetch(request as!
+                NSFetchRequest<NSFetchRequestResult>) as! [Task]
+            filterLabel.text = "Past Due, Due this week, Urgent"
+            filterLabel.textColor = UIColor.red
+        } catch {}
+    }
 
-    //show past due + today that are important
-    if filterSelections[0] == true && filterSelections[1] == false && filterSelections[2] == true && filterSelections[3] == true && filterSelections[4] == false {
+    //show past due + today that are important: all
+    if filterSelections[0] == true && filterSelections[1] == false && filterSelections[2] == true && filterSelections[3] == true && filterSelections[4] == false && filterSelections[5] == true && filterSelections[6] == true{
+        
+        components.day! += 1
+        
+        let comparingDate = calendar.date(from:components)!
+        
+        //to todays date
+        let toTodaysDate = calendar.startOfDay(for: comparingDate)
+        
+        let datePredicate = NSPredicate(format: "(%@ > dueDate)", toTodaysDate as CVarArg)
+        
+
+        let predicate1 = NSPredicate(format: "(important == %@)", true as CVarArg )
+        if selectedCategoryName != nil {
+            let predCat = NSPredicate(format: "%K = %@", "taskCategory.categoryName", (selectedCategoryName)!)
+            let predicateCompound = NSCompoundPredicate.init(type: .and, subpredicates: [datePredicate, predCat])
+            request.predicate = predicateCompound
+        }else {
+            let predicateCompound = NSCompoundPredicate.init(type: .and, subpredicates: [datePredicate])
+            request.predicate = predicateCompound
+        }
+        
+        
+        do{
+            tasks = try context.fetch(request as!
+                NSFetchRequest<NSFetchRequestResult>) as! [Task]
+            filterLabel.text = "Past Due, Due today, Urgent"
+            filterLabel.textColor = UIColor.red
+        } catch {}
+    }
+
+
+    //show past due + today that are important: not complete
+    if filterSelections[0] == true && filterSelections[1] == false && filterSelections[2] == true && filterSelections[3] == true && filterSelections[4] == false && filterSelections[5] == false && filterSelections[6] == true{
         
         components.day! += 1
         
@@ -1403,9 +1996,77 @@ class TasksViewController: UIViewController, UITableViewDataSource, UITableViewD
             filterLabel.textColor = UIColor.red
         } catch {}
     }
+    
+    
+    //show past due + today that are important: complete
+    if filterSelections[0] == true && filterSelections[1] == false && filterSelections[2] == true && filterSelections[3] == true && filterSelections[4] == false && filterSelections[5] == true && filterSelections[6] == false{
+        
+        components.day! += 1
+        
+        let comparingDate = calendar.date(from:components)!
+        
+        //to todays date
+        let toTodaysDate = calendar.startOfDay(for: comparingDate)
+        
+        let datePredicate = NSPredicate(format: "(%@ > dueDate)", toTodaysDate as CVarArg)
+        
+        let predicate2 = NSPredicate(format: "(completed == %@)", true as CVarArg)
+        let predicate1 = NSPredicate(format: "(important == %@)", true as CVarArg )
+        if selectedCategoryName != nil {
+            let predCat = NSPredicate(format: "%K = %@", "taskCategory.categoryName", (selectedCategoryName)!)
+            let predicateCompound = NSCompoundPredicate.init(type: .and, subpredicates: [datePredicate,predicate2, predCat])
+            request.predicate = predicateCompound
+        }else {
+            let predicateCompound = NSCompoundPredicate.init(type: .and, subpredicates: [datePredicate,predicate2])
+            request.predicate = predicateCompound
+        }
+        
+        
+        do{
+            tasks = try context.fetch(request as!
+                NSFetchRequest<NSFetchRequestResult>) as! [Task]
+            filterLabel.text = "Past Due, Due today, Urgent"
+            filterLabel.textColor = UIColor.red
+        } catch {}
+    }
 
-    //show past due + week + today
-    if filterSelections[0] == true && filterSelections[1] == true && filterSelections[2] == true && filterSelections[3] == false && filterSelections[4] == false {
+    
+    //show past due + week + today: all
+    if filterSelections[0] == true && filterSelections[1] == true && filterSelections[2] == true && filterSelections[3] == false && filterSelections[4] == false && filterSelections[5] == true && filterSelections[6] == true{
+        
+        components.day! += 7
+        
+        let comparingDate = calendar.date(from:components)!
+        
+        //to todays date
+        let toNextWeeksDate = calendar.startOfDay(for: comparingDate)
+        
+        let datePredicate = NSPredicate(format: "(%@ > dueDate)", toNextWeeksDate as CVarArg)
+        
+      
+        if selectedCategoryName != nil {
+            let predCat = NSPredicate(format: "%K = %@", "taskCategory.categoryName", (selectedCategoryName)!)
+            let predicateCompound = NSCompoundPredicate.init(type: .and, subpredicates: [datePredicate, predCat])
+            request.predicate = predicateCompound
+        }else {
+            let predicateCompound = NSCompoundPredicate.init(type: .and, subpredicates: [datePredicate])
+            request.predicate = predicateCompound
+        }
+        
+        
+        do{
+            tasks = try context.fetch(request as!
+                NSFetchRequest<NSFetchRequestResult>) as! [Task]
+            filterLabel.text = "Past Due, Due this week"
+            filterLabel.textColor = UIColor.red
+        } catch {}
+        
+    }
+    
+
+
+    //show past due + week + today: not complete
+    if filterSelections[0] == true && filterSelections[1] == true && filterSelections[2] == true && filterSelections[3] == false && filterSelections[4] == false && filterSelections[5] == false && filterSelections[6] == true{
         
         components.day! += 7
         
@@ -1435,9 +2096,75 @@ class TasksViewController: UIViewController, UITableViewDataSource, UITableViewD
         } catch {}
 
     }
+    
+    //show past due + week + today: complete
+    if filterSelections[0] == true && filterSelections[1] == true && filterSelections[2] == true && filterSelections[3] == false && filterSelections[4] == false && filterSelections[5] == true && filterSelections[6] == false{
+        
+        components.day! += 7
+        
+        let comparingDate = calendar.date(from:components)!
+        
+        //to todays date
+        let toNextWeeksDate = calendar.startOfDay(for: comparingDate)
+        
+        let datePredicate = NSPredicate(format: "(%@ > dueDate)", toNextWeeksDate as CVarArg)
+        
+        let predicate2 = NSPredicate(format: "(completed == %@)", false as CVarArg)
+        if selectedCategoryName != nil {
+            let predCat = NSPredicate(format: "%K = %@", "taskCategory.categoryName", (selectedCategoryName)!)
+            let predicateCompound = NSCompoundPredicate.init(type: .and, subpredicates: [datePredicate,predicate2, predCat])
+            request.predicate = predicateCompound
+        }else {
+            let predicateCompound = NSCompoundPredicate.init(type: .and, subpredicates: [datePredicate,predicate2])
+            request.predicate = predicateCompound
+        }
+        
+        
+        do{
+            tasks = try context.fetch(request as!
+                NSFetchRequest<NSFetchRequestResult>) as! [Task]
+            filterLabel.text = "Past Due, Due this week"
+            filterLabel.textColor = UIColor.red
+        } catch {}
+        
+    }
 
-    //show today + past due
-    if filterSelections[0] == true && filterSelections[1] == false && filterSelections[2] == true && filterSelections[3] == false && filterSelections[4] == false {
+    
+    //show today + past due:all
+    if filterSelections[0] == true && filterSelections[1] == false && filterSelections[2] == true && filterSelections[3] == false && filterSelections[4] == false && filterSelections[5] == true && filterSelections[6] == true{
+        
+        components.day! += 1
+        
+        let comparingDate = calendar.date(from:components)!
+        
+        //to todays date
+        let toTodaysDate = calendar.startOfDay(for: comparingDate)
+        
+        let datePredicate = NSPredicate(format: "(%@ > dueDate)", toTodaysDate as CVarArg)
+        
+       
+        if selectedCategoryName != nil {
+            let predCat = NSPredicate(format: "%K = %@", "taskCategory.categoryName", (selectedCategoryName)!)
+            let predicateCompound = NSCompoundPredicate.init(type: .and, subpredicates: [datePredicate, predCat])
+            request.predicate = predicateCompound
+        }else {
+            let predicateCompound = NSCompoundPredicate.init(type: .and, subpredicates: [datePredicate])
+            request.predicate = predicateCompound
+        }
+        
+        
+        do{
+            tasks = try context.fetch(request as!
+                NSFetchRequest<NSFetchRequestResult>) as! [Task]
+            filterLabel.text = "Past Due, Due today"
+            filterLabel.textColor = UIColor.red
+        } catch {}
+        
+    }
+
+
+    //show today + past due: not complete
+    if filterSelections[0] == true && filterSelections[1] == false && filterSelections[2] == true && filterSelections[3] == false && filterSelections[4] == false && filterSelections[5] == false && filterSelections[6] == true{
         
         components.day! += 1
         
@@ -1468,8 +2195,77 @@ class TasksViewController: UIViewController, UITableViewDataSource, UITableViewD
         
     }
     
-    //show past due + today that are important & audio
-    if filterSelections[0] == true && filterSelections[1] == false && filterSelections[2] == true && filterSelections[3] == true && filterSelections[4] == true {
+    //show today + past due: complete
+    if filterSelections[0] == true && filterSelections[1] == false && filterSelections[2] == true && filterSelections[3] == false && filterSelections[4] == false && filterSelections[5] == true && filterSelections[6] == false{
+        
+        components.day! += 1
+        
+        let comparingDate = calendar.date(from:components)!
+        
+        //to todays date
+        let toTodaysDate = calendar.startOfDay(for: comparingDate)
+        
+        let datePredicate = NSPredicate(format: "(%@ > dueDate)", toTodaysDate as CVarArg)
+        
+        let predicate2 = NSPredicate(format: "(completed == %@)", true as CVarArg)
+        if selectedCategoryName != nil {
+            let predCat = NSPredicate(format: "%K = %@", "taskCategory.categoryName", (selectedCategoryName)!)
+            let predicateCompound = NSCompoundPredicate.init(type: .and, subpredicates: [datePredicate,predicate2, predCat])
+            request.predicate = predicateCompound
+        }else {
+            let predicateCompound = NSCompoundPredicate.init(type: .and, subpredicates: [datePredicate,predicate2])
+            request.predicate = predicateCompound
+        }
+        
+        
+        do{
+            tasks = try context.fetch(request as!
+                NSFetchRequest<NSFetchRequestResult>) as! [Task]
+            filterLabel.text = "Past Due, Due today"
+            filterLabel.textColor = UIColor.red
+        } catch {}
+        
+    }
+
+    
+    //show past due + today that are important & audio: not complete
+    if filterSelections[0] == true && filterSelections[1] == false && filterSelections[2] == true && filterSelections[3] == true && filterSelections[4] == true && filterSelections[5] == false && filterSelections[6] == true{
+        
+        components.day! += 1
+        
+        let comparingDate = calendar.date(from:components)!
+        
+        //to todays date
+        let toTodaysDate = calendar.startOfDay(for: comparingDate)
+        
+        let datePredicate = NSPredicate(format: "(%@ > dueDate)", toTodaysDate as CVarArg)
+        
+        let predicateAudio = NSPredicate(format: "(audioNote != nil)")
+        
+        
+        let predicate2 = NSPredicate(format: "(completed == %@)", false as CVarArg)
+        let predicate1 = NSPredicate(format: "(important == %@)", true as CVarArg )
+        if selectedCategoryName != nil {
+            let predCat = NSPredicate(format: "%K = %@", "taskCategory.categoryName", (selectedCategoryName)!)
+            let predicateCompound = NSCompoundPredicate.init(type: .and, subpredicates: [datePredicate,predicate2, predCat, predicateAudio])
+            request.predicate = predicateCompound
+        }else {
+            let predicateCompound = NSCompoundPredicate.init(type: .and, subpredicates: [datePredicate,predicate2, predicateAudio])
+            request.predicate = predicateCompound
+        }
+        
+        
+        do{
+            tasks = try context.fetch(request as!
+                NSFetchRequest<NSFetchRequestResult>) as! [Task]
+            filterLabel.text = "Past Due, Due today, Urgent, audio"
+            filterLabel.textColor = UIColor.red
+        } catch {}
+    }
+
+    
+    //show past due + today that are important & audio: all
+    if filterSelections[0] == true && filterSelections[1] == false && filterSelections[2] == true && filterSelections[3] == true && filterSelections[4] == true && filterSelections[5] == true && filterSelections[6] == true{
         
         components.day! += 1
         
@@ -1483,14 +2279,14 @@ class TasksViewController: UIViewController, UITableViewDataSource, UITableViewD
         let predicateAudio = NSPredicate(format: "(audioNote != nil)")
 
         
-        let predicate2 = NSPredicate(format: "(completed == %@)", false as CVarArg)
+        
         let predicate1 = NSPredicate(format: "(important == %@)", true as CVarArg )
         if selectedCategoryName != nil {
             let predCat = NSPredicate(format: "%K = %@", "taskCategory.categoryName", (selectedCategoryName)!)
-            let predicateCompound = NSCompoundPredicate.init(type: .and, subpredicates: [datePredicate,predicate2, predCat, predicateAudio])
+            let predicateCompound = NSCompoundPredicate.init(type: .and, subpredicates: [datePredicate, predCat, predicateAudio])
             request.predicate = predicateCompound
         }else {
-            let predicateCompound = NSCompoundPredicate.init(type: .and, subpredicates: [datePredicate,predicate2, predicateAudio])
+            let predicateCompound = NSCompoundPredicate.init(type: .and, subpredicates: [datePredicate, predicateAudio])
             request.predicate = predicateCompound
         }
 
@@ -1506,8 +2302,80 @@ class TasksViewController: UIViewController, UITableViewDataSource, UITableViewD
     
     
     
-    //show past due + today & audio
-    if filterSelections[0] == true && filterSelections[1] == false && filterSelections[2] == true && filterSelections[3] == false && filterSelections[4] == true {
+    
+    //show past due + today that are important & audio: complete
+    if filterSelections[0] == true && filterSelections[1] == false && filterSelections[2] == true && filterSelections[3] == true && filterSelections[4] == true && filterSelections[5] == true && filterSelections[6] == false{
+        
+        components.day! += 1
+        
+        let comparingDate = calendar.date(from:components)!
+        
+        //to todays date
+        let toTodaysDate = calendar.startOfDay(for: comparingDate)
+        
+        let datePredicate = NSPredicate(format: "(%@ > dueDate)", toTodaysDate as CVarArg)
+        
+        let predicateAudio = NSPredicate(format: "(audioNote != nil)")
+        
+        
+        let predicate2 = NSPredicate(format: "(completed == %@)", true as CVarArg)
+        let predicate1 = NSPredicate(format: "(important == %@)", true as CVarArg )
+        if selectedCategoryName != nil {
+            let predCat = NSPredicate(format: "%K = %@", "taskCategory.categoryName", (selectedCategoryName)!)
+            let predicateCompound = NSCompoundPredicate.init(type: .and, subpredicates: [datePredicate,predicate2, predCat, predicateAudio])
+            request.predicate = predicateCompound
+        }else {
+            let predicateCompound = NSCompoundPredicate.init(type: .and, subpredicates: [datePredicate,predicate2, predicateAudio])
+            request.predicate = predicateCompound
+        }
+        
+        
+        do{
+            tasks = try context.fetch(request as!
+                NSFetchRequest<NSFetchRequestResult>) as! [Task]
+            filterLabel.text = "Past Due, Due today, Urgent, audio"
+            filterLabel.textColor = UIColor.red
+        } catch {}
+    }
+    
+
+    
+    //show past due + today & audio: all
+    if filterSelections[0] == true && filterSelections[1] == false && filterSelections[2] == true && filterSelections[3] == false && filterSelections[4] == true && filterSelections[5] == true && filterSelections[6] == true{
+        
+        components.day! += 1
+        
+        let comparingDate = calendar.date(from:components)!
+        
+        //to todays date
+        let toTodaysDate = calendar.startOfDay(for: comparingDate)
+        
+        let datePredicate = NSPredicate(format: "(%@ > dueDate)", toTodaysDate as CVarArg)
+        
+        let predicateAudio = NSPredicate(format: "(audioNote != nil)")
+        
+        
+      
+        if selectedCategoryName != nil {
+            let predCat = NSPredicate(format: "%K = %@", "taskCategory.categoryName", (selectedCategoryName)!)
+            let predicateCompound = NSCompoundPredicate.init(type: .and, subpredicates: [datePredicate, predCat, predicateAudio])
+            request.predicate = predicateCompound
+        }else {
+            let predicateCompound = NSCompoundPredicate.init(type: .and, subpredicates: [datePredicate, predicateAudio])
+            request.predicate = predicateCompound
+        }
+        
+        do{
+            tasks = try context.fetch(request as!
+                NSFetchRequest<NSFetchRequestResult>) as! [Task]
+            filterLabel.text = "Past Due, Due today, audio"
+            filterLabel.textColor = UIColor.red
+        } catch {}
+    }
+
+    
+    //show past due + today & audio: not complete
+    if filterSelections[0] == true && filterSelections[1] == false && filterSelections[2] == true && filterSelections[3] == false && filterSelections[4] == true && filterSelections[5] == false && filterSelections[6] == true{
         
         components.day! += 1
         
@@ -1538,11 +2406,76 @@ class TasksViewController: UIViewController, UITableViewDataSource, UITableViewD
             filterLabel.textColor = UIColor.red
         } catch {}
     }
+    
+    //show past due + today & audio: complete
+    if filterSelections[0] == true && filterSelections[1] == false && filterSelections[2] == true && filterSelections[3] == false && filterSelections[4] == true && filterSelections[5] == true && filterSelections[6] == false{
+        
+        components.day! += 1
+        
+        let comparingDate = calendar.date(from:components)!
+        
+        //to todays date
+        let toTodaysDate = calendar.startOfDay(for: comparingDate)
+        
+        let datePredicate = NSPredicate(format: "(%@ > dueDate)", toTodaysDate as CVarArg)
+        
+        let predicateAudio = NSPredicate(format: "(audioNote != nil)")
+        
+        
+        let predicate2 = NSPredicate(format: "(completed == %@)", true as CVarArg)
+        if selectedCategoryName != nil {
+            let predCat = NSPredicate(format: "%K = %@", "taskCategory.categoryName", (selectedCategoryName)!)
+            let predicateCompound = NSCompoundPredicate.init(type: .and, subpredicates: [datePredicate,predicate2, predCat, predicateAudio])
+            request.predicate = predicateCompound
+        }else {
+            let predicateCompound = NSCompoundPredicate.init(type: .and, subpredicates: [datePredicate,predicate2, predicateAudio])
+            request.predicate = predicateCompound
+        }
+        
+        do{
+            tasks = try context.fetch(request as!
+                NSFetchRequest<NSFetchRequestResult>) as! [Task]
+            filterLabel.text = "Past Due, Due today, audio"
+            filterLabel.textColor = UIColor.red
+        } catch {}
+    }
+
+    //show past due that are important & audio: all
+    if filterSelections[0] == false && filterSelections[1] == false && filterSelections[2] == true && filterSelections[3] == true && filterSelections[4] == true && filterSelections[5] == true && filterSelections[6] == true{
+        
+        components.day! += 1
+        
+        let comparingDate = calendar.date(from:components)!
+        
+        
+        let datePredicate = NSPredicate(format: "(%@ > dueDate)", fromDate as CVarArg)
+        
+        let predicateAudio = NSPredicate(format: "(audioNote != nil)")
+        
+        
+        
+        let predicate1 = NSPredicate(format: "(important == %@)", true as CVarArg )
+        if selectedCategoryName != nil {
+            let predCat = NSPredicate(format: "%K = %@", "taskCategory.categoryName", (selectedCategoryName)!)
+            let predicateCompound = NSCompoundPredicate.init(type: .and, subpredicates: [datePredicate, predCat, predicateAudio])
+            request.predicate = predicateCompound
+        }else {
+            let predicateCompound = NSCompoundPredicate.init(type: .and, subpredicates: [datePredicate, predicateAudio])
+            request.predicate = predicateCompound
+        }
+        
+        do{
+            tasks = try context.fetch(request as!
+                NSFetchRequest<NSFetchRequestResult>) as! [Task]
+            filterLabel.text = "Past Due, Important, audio"
+            filterLabel.textColor = UIColor.red
+        } catch {}
+    }
 
     
     
-    //show past due that are important & audio
-    if filterSelections[0] == false && filterSelections[1] == false && filterSelections[2] == true && filterSelections[3] == true && filterSelections[4] == true {
+    //show past due that are important & audio: not complete
+    if filterSelections[0] == false && filterSelections[1] == false && filterSelections[2] == true && filterSelections[3] == true && filterSelections[4] == true && filterSelections[5] == false && filterSelections[6] == true{
         
         components.day! += 1
         
@@ -1574,9 +2507,74 @@ class TasksViewController: UIViewController, UITableViewDataSource, UITableViewD
     }
     
     
+    //show past due that are important & audio: complete
+    if filterSelections[0] == false && filterSelections[1] == false && filterSelections[2] == true && filterSelections[3] == true && filterSelections[4] == true && filterSelections[5] == true && filterSelections[6] == false{
+        
+        components.day! += 1
+        
+        let comparingDate = calendar.date(from:components)!
+        
+        
+        let datePredicate = NSPredicate(format: "(%@ > dueDate)", fromDate as CVarArg)
+        
+        let predicateAudio = NSPredicate(format: "(audioNote != nil)")
+        
+        
+        let predicate2 = NSPredicate(format: "(completed == %@)", true as CVarArg)
+        let predicate1 = NSPredicate(format: "(important == %@)", true as CVarArg )
+        if selectedCategoryName != nil {
+            let predCat = NSPredicate(format: "%K = %@", "taskCategory.categoryName", (selectedCategoryName)!)
+            let predicateCompound = NSCompoundPredicate.init(type: .and, subpredicates: [datePredicate,predicate2, predCat, predicateAudio])
+            request.predicate = predicateCompound
+        }else {
+            let predicateCompound = NSCompoundPredicate.init(type: .and, subpredicates: [datePredicate,predicate2, predicateAudio])
+            request.predicate = predicateCompound
+        }
+        
+        do{
+            tasks = try context.fetch(request as!
+                NSFetchRequest<NSFetchRequestResult>) as! [Task]
+            filterLabel.text = "Past Due, Important, audio"
+            filterLabel.textColor = UIColor.red
+        } catch {}
+    }
     
-    //show past due & audio
-    if filterSelections[0] == false && filterSelections[1] == false && filterSelections[2] == true && filterSelections[3] == false && filterSelections[4] == true {
+
+    
+    //show past due & audio: all
+    if filterSelections[0] == false && filterSelections[1] == false && filterSelections[2] == true && filterSelections[3] == false && filterSelections[4] == true && filterSelections[5] == true && filterSelections[6] == true{
+        
+        components.day! += 1
+        
+        let comparingDate = calendar.date(from:components)!
+        
+        
+        let datePredicate = NSPredicate(format: "(%@ > dueDate)", fromDate as CVarArg)
+        
+        let predicateAudio = NSPredicate(format: "(audioNote != nil)")
+        
+        
+       
+        if selectedCategoryName != nil {
+            let predCat = NSPredicate(format: "%K = %@", "taskCategory.categoryName", (selectedCategoryName)!)
+            let predicateCompound = NSCompoundPredicate.init(type: .and, subpredicates: [datePredicate, predCat, predicateAudio])
+            request.predicate = predicateCompound
+        }else {
+            let predicateCompound = NSCompoundPredicate.init(type: .and, subpredicates: [datePredicate, predicateAudio])
+            request.predicate = predicateCompound
+        }
+        
+        do{
+            tasks = try context.fetch(request as!
+                NSFetchRequest<NSFetchRequestResult>) as! [Task]
+            filterLabel.text = "Past Due, audio"
+            filterLabel.textColor = UIColor.red
+        } catch {}
+    }
+
+    
+    //show past due & audio: not complete
+    if filterSelections[0] == false && filterSelections[1] == false && filterSelections[2] == true && filterSelections[3] == false && filterSelections[4] == true && filterSelections[5] == false && filterSelections[6] == true{
         
         components.day! += 1
         
@@ -1606,10 +2604,77 @@ class TasksViewController: UIViewController, UITableViewDataSource, UITableViewD
         } catch {}
     }
 
+    
+    //show past due & audio: complete
+    if filterSelections[0] == false && filterSelections[1] == false && filterSelections[2] == true && filterSelections[3] == false && filterSelections[4] == true && filterSelections[5] == true && filterSelections[6] == false{
+        
+        components.day! += 1
+        
+        let comparingDate = calendar.date(from:components)!
+        
+        
+        let datePredicate = NSPredicate(format: "(%@ > dueDate)", fromDate as CVarArg)
+        
+        let predicateAudio = NSPredicate(format: "(audioNote != nil)")
+        
+        
+        let predicate2 = NSPredicate(format: "(completed == %@)", true as CVarArg)
+        if selectedCategoryName != nil {
+            let predCat = NSPredicate(format: "%K = %@", "taskCategory.categoryName", (selectedCategoryName)!)
+            let predicateCompound = NSCompoundPredicate.init(type: .and, subpredicates: [datePredicate,predicate2, predCat, predicateAudio])
+            request.predicate = predicateCompound
+        }else {
+            let predicateCompound = NSCompoundPredicate.init(type: .and, subpredicates: [datePredicate,predicate2, predicateAudio])
+            request.predicate = predicateCompound
+        }
+        
+        do{
+            tasks = try context.fetch(request as!
+                NSFetchRequest<NSFetchRequestResult>) as! [Task]
+            filterLabel.text = "Past Due, audio"
+            filterLabel.textColor = UIColor.red
+        } catch {}
+    }
 
     
-    //show due today that are important & audio
-    if filterSelections[0] == true && filterSelections[1] == false && filterSelections[2] == false && filterSelections[3] == true && filterSelections[4] == true {
+    //show due today that are important & audio: all
+    if filterSelections[0] == true && filterSelections[1] == false && filterSelections[2] == false && filterSelections[3] == true && filterSelections[4] == true && filterSelections[5] == true && filterSelections[6] == true{
+        
+        components.day! += 1
+        
+        let comparingDate = calendar.date(from:components)!
+        
+        //to todays date
+        let toTodaysDate = calendar.startOfDay(for: comparingDate)
+        
+        let datePredicate = NSPredicate(format: "(%@ <= dueDate && %@ > dueDate)", argumentArray: [fromDate, toTodaysDate])
+        
+        let predicateAudio = NSPredicate(format: "(audioNote != nil)")
+        
+        
+ 
+        let predicate1 = NSPredicate(format: "(important == %@)", true as CVarArg )
+        if selectedCategoryName != nil {
+            let predCat = NSPredicate(format: "%K = %@", "taskCategory.categoryName", (selectedCategoryName)!)
+            let predicateCompound = NSCompoundPredicate.init(type: .and, subpredicates: [datePredicate, predCat, predicateAudio])
+            request.predicate = predicateCompound
+        }else {
+            let predicateCompound = NSCompoundPredicate.init(type: .and, subpredicates: [datePredicate, predicateAudio])
+            request.predicate = predicateCompound
+        }
+        
+        do{
+            tasks = try context.fetch(request as!
+                NSFetchRequest<NSFetchRequestResult>) as! [Task]
+            filterLabel.text = "Due today, Urgent, audio"
+            filterLabel.textColor = UIColor.red
+        } catch {}
+    }
+
+
+    
+    //show due today that are important & audio: not complete
+    if filterSelections[0] == true && filterSelections[1] == false && filterSelections[2] == false && filterSelections[3] == true && filterSelections[4] == true && filterSelections[5] == false && filterSelections[6] == true{
         
         components.day! += 1
         
@@ -1643,9 +2708,112 @@ class TasksViewController: UIViewController, UITableViewDataSource, UITableViewD
     }
     
     
+    //show due today that are important & audio: complete
+    if filterSelections[0] == true && filterSelections[1] == false && filterSelections[2] == false && filterSelections[3] == true && filterSelections[4] == true && filterSelections[5] == true && filterSelections[6] == false{
+        
+        components.day! += 1
+        
+        let comparingDate = calendar.date(from:components)!
+        
+        //to todays date
+        let toTodaysDate = calendar.startOfDay(for: comparingDate)
+        
+        let datePredicate = NSPredicate(format: "(%@ <= dueDate && %@ > dueDate)", argumentArray: [fromDate, toTodaysDate])
+        
+        let predicateAudio = NSPredicate(format: "(audioNote != nil)")
+        
+        
+        let predicate2 = NSPredicate(format: "(completed == %@)", false as CVarArg)
+        let predicate1 = NSPredicate(format: "(important == %@)", true as CVarArg )
+        if selectedCategoryName != nil {
+            let predCat = NSPredicate(format: "%K = %@", "taskCategory.categoryName", (selectedCategoryName)!)
+            let predicateCompound = NSCompoundPredicate.init(type: .and, subpredicates: [datePredicate,predicate2, predCat, predicateAudio])
+            request.predicate = predicateCompound
+        }else {
+            let predicateCompound = NSCompoundPredicate.init(type: .and, subpredicates: [datePredicate,predicate2, predicateAudio])
+            request.predicate = predicateCompound
+        }
+        
+        do{
+            tasks = try context.fetch(request as!
+                NSFetchRequest<NSFetchRequestResult>) as! [Task]
+            filterLabel.text = "Due today, Urgent, audio"
+            filterLabel.textColor = UIColor.red
+        } catch {}
+    }
     
-    //show due today & audio
-    if filterSelections[0] == true && filterSelections[1] == false && filterSelections[2] == false && filterSelections[3] == false && filterSelections[4] == true {
+
+    
+    //show due today & audio: all
+    if filterSelections[0] == true && filterSelections[1] == false && filterSelections[2] == false && filterSelections[3] == false && filterSelections[4] == true && filterSelections[5] == true && filterSelections[6] == true{
+        
+        components.day! += 1
+        
+        let comparingDate = calendar.date(from:components)!
+        
+        //to todays date
+        let toTodaysDate = calendar.startOfDay(for: comparingDate)
+        
+        let datePredicate = NSPredicate(format: "(%@ <= dueDate && %@ > dueDate)", argumentArray: [fromDate, toTodaysDate])
+        
+        let predicateAudio = NSPredicate(format: "(audioNote != nil)")
+        
+        
+        
+        if selectedCategoryName != nil {
+            let predCat = NSPredicate(format: "%K = %@", "taskCategory.categoryName", (selectedCategoryName)!)
+            let predicateCompound = NSCompoundPredicate.init(type: .and, subpredicates: [datePredicate, predCat, predicateAudio])
+            request.predicate = predicateCompound
+        }else {
+            let predicateCompound = NSCompoundPredicate.init(type: .and, subpredicates: [datePredicate, predicateAudio])
+            request.predicate = predicateCompound
+        }
+        
+        do{
+            tasks = try context.fetch(request as!
+                NSFetchRequest<NSFetchRequestResult>) as! [Task]
+            filterLabel.text = "Due today, audio"
+            filterLabel.textColor = UIColor.red
+        } catch {}
+    }
+
+    
+    
+    //show due today & audio: not complete
+    if filterSelections[0] == true && filterSelections[1] == false && filterSelections[2] == false && filterSelections[3] == false && filterSelections[4] == true && filterSelections[5] == false && filterSelections[6] == true{
+        
+        components.day! += 1
+        
+        let comparingDate = calendar.date(from:components)!
+        
+        //to todays date
+        let toTodaysDate = calendar.startOfDay(for: comparingDate)
+        
+        let datePredicate = NSPredicate(format: "(%@ <= dueDate && %@ > dueDate)", argumentArray: [fromDate, toTodaysDate])
+        
+        let predicateAudio = NSPredicate(format: "(audioNote != nil)")
+        
+        
+        let predicate2 = NSPredicate(format: "(completed == %@)", false as CVarArg)
+        if selectedCategoryName != nil {
+            let predCat = NSPredicate(format: "%K = %@", "taskCategory.categoryName", (selectedCategoryName)!)
+            let predicateCompound = NSCompoundPredicate.init(type: .and, subpredicates: [datePredicate,predicate2, predCat, predicateAudio])
+            request.predicate = predicateCompound
+        }else {
+            let predicateCompound = NSCompoundPredicate.init(type: .and, subpredicates: [datePredicate,predicate2, predicateAudio])
+            request.predicate = predicateCompound
+        }
+        
+        do{
+            tasks = try context.fetch(request as!
+                NSFetchRequest<NSFetchRequestResult>) as! [Task]
+            filterLabel.text = "Due today, audio"
+            filterLabel.textColor = UIColor.red
+        } catch {}
+    }
+    
+    //show due today & audio: complete
+    if filterSelections[0] == true && filterSelections[1] == false && filterSelections[2] == false && filterSelections[3] == false && filterSelections[4] == true && filterSelections[5] == true && filterSelections[6] == false{
         
         components.day! += 1
         
@@ -1677,17 +2845,16 @@ class TasksViewController: UIViewController, UITableViewDataSource, UITableViewD
         } catch {}
     }
 
-    
-    
-    //show due this week that are important & audio
-    if filterSelections[0] == true && filterSelections[1] == true && filterSelections[2] == false && filterSelections[3] == true && filterSelections[4] == true {
+
+    //show due this week that are important & audio: not complete
+    if filterSelections[0] == true && filterSelections[1] == true && filterSelections[2] == false && filterSelections[3] == true && filterSelections[4] == true && filterSelections[5] == false && filterSelections[6] == true{
         
         components.day! += 7
         
         let comparingDate = calendar.date(from:components)!
         let toNextWeeksDate = calendar.startOfDay(for: comparingDate)
         
-         let datePredicate = NSPredicate(format: "(%@ <= dueDate && %@ > dueDate)", argumentArray: [fromDate, toNextWeeksDate])
+        let datePredicate = NSPredicate(format: "(%@ <= dueDate && %@ > dueDate)", argumentArray: [fromDate, toNextWeeksDate])
         
         let predicateAudio = NSPredicate(format: "(audioNote != nil)")
         
@@ -1702,6 +2869,38 @@ class TasksViewController: UIViewController, UITableViewDataSource, UITableViewD
             let predicateCompound = NSCompoundPredicate.init(type: .and, subpredicates: [datePredicate,predicate2, predicateAudio])
             request.predicate = predicateCompound
         }
+        
+        do{
+            tasks = try context.fetch(request as!
+                NSFetchRequest<NSFetchRequestResult>) as! [Task]
+            filterLabel.text = "Due this week, Urgent, audio"
+            filterLabel.textColor = UIColor.red
+        } catch {}
+    }
+
+    
+    //show due this week that are important & audio:  all
+    if filterSelections[0] == true && filterSelections[1] == true && filterSelections[2] == false && filterSelections[3] == true && filterSelections[4] == true && filterSelections[5] == true && filterSelections[6] == true{
+        
+        components.day! += 7
+        
+        let comparingDate = calendar.date(from:components)!
+        let toNextWeeksDate = calendar.startOfDay(for: comparingDate)
+        
+         let datePredicate = NSPredicate(format: "(%@ <= dueDate && %@ > dueDate)", argumentArray: [fromDate, toNextWeeksDate])
+        
+        let predicateAudio = NSPredicate(format: "(audioNote != nil)")
+        
+        
+        let predicate1 = NSPredicate(format: "(important == %@)", true as CVarArg )
+        if selectedCategoryName != nil {
+            let predCat = NSPredicate(format: "%K = %@", "taskCategory.categoryName", (selectedCategoryName)!)
+            let predicateCompound = NSCompoundPredicate.init(type: .and, subpredicates: [datePredicate, predCat, predicateAudio])
+            request.predicate = predicateCompound
+        }else {
+            let predicateCompound = NSCompoundPredicate.init(type: .and, subpredicates: [datePredicate, predicateAudio])
+            request.predicate = predicateCompound
+        }
        
         do{
             tasks = try context.fetch(request as!
@@ -1712,8 +2911,75 @@ class TasksViewController: UIViewController, UITableViewDataSource, UITableViewD
     }
     
     
-    //show due this week & audio
-    if filterSelections[0] == true && filterSelections[1] == true && filterSelections[2] == false && filterSelections[3] == false && filterSelections[4] == true {
+    
+    //show due this week that are important & audio: complete
+    if filterSelections[0] == true && filterSelections[1] == true && filterSelections[2] == false && filterSelections[3] == true && filterSelections[4] == true && filterSelections[5] == true && filterSelections[6] == false{
+        
+        components.day! += 7
+        
+        let comparingDate = calendar.date(from:components)!
+        let toNextWeeksDate = calendar.startOfDay(for: comparingDate)
+        
+        let datePredicate = NSPredicate(format: "(%@ <= dueDate && %@ > dueDate)", argumentArray: [fromDate, toNextWeeksDate])
+        
+        let predicateAudio = NSPredicate(format: "(audioNote != nil)")
+        
+        
+        let predicate2 = NSPredicate(format: "(completed == %@)", true as CVarArg)
+        let predicate1 = NSPredicate(format: "(important == %@)", true as CVarArg )
+        if selectedCategoryName != nil {
+            let predCat = NSPredicate(format: "%K = %@", "taskCategory.categoryName", (selectedCategoryName)!)
+            let predicateCompound = NSCompoundPredicate.init(type: .and, subpredicates: [datePredicate,predicate2, predCat, predicateAudio])
+            request.predicate = predicateCompound
+        }else {
+            let predicateCompound = NSCompoundPredicate.init(type: .and, subpredicates: [datePredicate,predicate2, predicateAudio])
+            request.predicate = predicateCompound
+        }
+        
+        do{
+            tasks = try context.fetch(request as!
+                NSFetchRequest<NSFetchRequestResult>) as! [Task]
+            filterLabel.text = "Due this week, Urgent, audio"
+            filterLabel.textColor = UIColor.red
+        } catch {}
+    }
+
+    
+    
+    //show due this week & audio: all
+    if filterSelections[0] == true && filterSelections[1] == true && filterSelections[2] == false && filterSelections[3] == false && filterSelections[4] == true && filterSelections[5] == true && filterSelections[6] == true{
+        
+        components.day! += 7
+        
+        let comparingDate = calendar.date(from:components)!
+        let toNextWeeksDate = calendar.startOfDay(for: comparingDate)
+        
+        let datePredicate = NSPredicate(format: "(%@ <= dueDate && %@ > dueDate)", argumentArray: [fromDate, toNextWeeksDate])
+        
+        let predicateAudio = NSPredicate(format: "(audioNote != nil)")
+        
+     
+        if selectedCategoryName != nil {
+            let predCat = NSPredicate(format: "%K = %@", "taskCategory.categoryName", (selectedCategoryName)!)
+            let predicateCompound = NSCompoundPredicate.init(type: .and, subpredicates: [datePredicate, predCat, predicateAudio])
+            request.predicate = predicateCompound
+        }else {
+            let predicateCompound = NSCompoundPredicate.init(type: .and, subpredicates: [datePredicate, predicateAudio])
+            request.predicate = predicateCompound
+        }
+        
+        do{
+            tasks = try context.fetch(request as!
+                NSFetchRequest<NSFetchRequestResult>) as! [Task]
+            filterLabel.text = "Due this week, audio"
+            filterLabel.textColor = UIColor.red
+        } catch {}
+    }
+    
+
+    
+    //show due this week & audio: not complete
+    if filterSelections[0] == true && filterSelections[1] == true && filterSelections[2] == false && filterSelections[3] == false && filterSelections[4] == true && filterSelections[5] == false && filterSelections[6] == true{
         
         components.day! += 7
         
@@ -1744,9 +3010,77 @@ class TasksViewController: UIViewController, UITableViewDataSource, UITableViewD
     }
 
     
+    //show due this week & audio: complete
+    if filterSelections[0] == true && filterSelections[1] == true && filterSelections[2] == false && filterSelections[3] == false && filterSelections[4] == true && filterSelections[5] == true && filterSelections[6] == false{
+        
+        components.day! += 7
+        
+        let comparingDate = calendar.date(from:components)!
+        let toNextWeeksDate = calendar.startOfDay(for: comparingDate)
+        
+        let datePredicate = NSPredicate(format: "(%@ <= dueDate && %@ > dueDate)", argumentArray: [fromDate, toNextWeeksDate])
+        
+        let predicateAudio = NSPredicate(format: "(audioNote != nil)")
+        
+        
+        let predicate2 = NSPredicate(format: "(completed == %@)", true as CVarArg)
+        if selectedCategoryName != nil {
+            let predCat = NSPredicate(format: "%K = %@", "taskCategory.categoryName", (selectedCategoryName)!)
+            let predicateCompound = NSCompoundPredicate.init(type: .and, subpredicates: [datePredicate,predicate2, predCat, predicateAudio])
+            request.predicate = predicateCompound
+        }else {
+            let predicateCompound = NSCompoundPredicate.init(type: .and, subpredicates: [datePredicate,predicate2, predicateAudio])
+            request.predicate = predicateCompound
+        }
+        
+        do{
+            tasks = try context.fetch(request as!
+                NSFetchRequest<NSFetchRequestResult>) as! [Task]
+            filterLabel.text = "Due this week, audio"
+            filterLabel.textColor = UIColor.red
+        } catch {}
+    }
+
     
-    //show past due, due this week that are important & audio
-    if filterSelections[0] == true && filterSelections[1] == true && filterSelections[2] == true && filterSelections[3] == true && filterSelections[4] == true {
+    //show past due, due this week that are important & audio: all
+    if filterSelections[0] == true && filterSelections[1] == true && filterSelections[2] == true && filterSelections[3] == true && filterSelections[4] == true && filterSelections[5] == true && filterSelections[6] == true{
+        
+        components.day! += 7
+        
+        let comparingDate = calendar.date(from:components)!
+        let toNextWeeksDate = calendar.startOfDay(for: comparingDate)
+        
+        
+        //to todays date
+        let toTodaysDate = calendar.startOfDay(for: comparingDate)
+        
+        let datePredicate = NSPredicate(format: "(%@ > dueDate)", toNextWeeksDate as CVarArg)
+        
+        let predicateAudio = NSPredicate(format: "(audioNote != nil)")
+        
+        
+       
+        let predicate1 = NSPredicate(format: "(important == %@)", true as CVarArg )
+        if selectedCategoryName != nil {
+            let predCat = NSPredicate(format: "%K = %@", "taskCategory.categoryName", (selectedCategoryName)!)
+            let predicateCompound = NSCompoundPredicate.init(type: .and, subpredicates: [datePredicate, predCat, predicateAudio])
+            request.predicate = predicateCompound
+        }else {
+            let predicateCompound = NSCompoundPredicate.init(type: .and, subpredicates: [datePredicate, predicateAudio])
+            request.predicate = predicateCompound
+        }
+        
+        do{
+            tasks = try context.fetch(request as!
+                NSFetchRequest<NSFetchRequestResult>) as! [Task]
+            filterLabel.text = "Past due, Due this week, Urgent, audio"
+            filterLabel.textColor = UIColor.red
+        } catch {}
+    }
+
+    
+    //show past due, due this week that are important & audio: not complete
+    if filterSelections[0] == true && filterSelections[1] == true && filterSelections[2] == true && filterSelections[3] == true && filterSelections[4] == true && filterSelections[5] == false && filterSelections[6] == true{
         
         components.day! += 7
         
@@ -1781,8 +3115,79 @@ class TasksViewController: UIViewController, UITableViewDataSource, UITableViewD
         } catch {}
     }
     
-    //show past due, due this week & audio
-    if filterSelections[0] == true && filterSelections[1] == true && filterSelections[2] == true && filterSelections[3] == false && filterSelections[4] == true {
+    //show past due, due this week that are important & audio: complete
+    if filterSelections[0] == true && filterSelections[1] == true && filterSelections[2] == true && filterSelections[3] == true && filterSelections[4] == true && filterSelections[5] == true && filterSelections[6] == false{
+        
+        components.day! += 7
+        
+        let comparingDate = calendar.date(from:components)!
+        let toNextWeeksDate = calendar.startOfDay(for: comparingDate)
+        
+        
+        //to todays date
+        let toTodaysDate = calendar.startOfDay(for: comparingDate)
+        
+        let datePredicate = NSPredicate(format: "(%@ > dueDate)", toNextWeeksDate as CVarArg)
+        
+        let predicateAudio = NSPredicate(format: "(audioNote != nil)")
+        
+        
+        let predicate2 = NSPredicate(format: "(completed == %@)", true as CVarArg)
+        let predicate1 = NSPredicate(format: "(important == %@)", true as CVarArg )
+        if selectedCategoryName != nil {
+            let predCat = NSPredicate(format: "%K = %@", "taskCategory.categoryName", (selectedCategoryName)!)
+            let predicateCompound = NSCompoundPredicate.init(type: .and, subpredicates: [datePredicate,predicate2, predCat, predicateAudio])
+            request.predicate = predicateCompound
+        }else {
+            let predicateCompound = NSCompoundPredicate.init(type: .and, subpredicates: [datePredicate,predicate2, predicateAudio])
+            request.predicate = predicateCompound
+        }
+        
+        do{
+            tasks = try context.fetch(request as!
+                NSFetchRequest<NSFetchRequestResult>) as! [Task]
+            filterLabel.text = "Past due, Due this week, Urgent, audio"
+            filterLabel.textColor = UIColor.red
+        } catch {}
+    }
+
+    
+    //show past due, due this week & audio:all
+    if filterSelections[0] == true && filterSelections[1] == true && filterSelections[2] == true && filterSelections[3] == false && filterSelections[4] == true && filterSelections[5] == true && filterSelections[6] == true{
+        
+        components.day! += 7
+        
+        let comparingDate = calendar.date(from:components)!
+        let toNextWeeksDate = calendar.startOfDay(for: comparingDate)
+        
+        
+        
+        let datePredicate = NSPredicate(format: "(%@ > dueDate)", toNextWeeksDate as CVarArg)
+        
+        let predicateAudio = NSPredicate(format: "(audioNote != nil)")
+        
+        
+   
+        if selectedCategoryName != nil {
+            let predCat = NSPredicate(format: "%K = %@", "taskCategory.categoryName", (selectedCategoryName)!)
+            let predicateCompound = NSCompoundPredicate.init(type: .and, subpredicates: [datePredicate, predCat, predicateAudio])
+            request.predicate = predicateCompound
+        }else {
+            let predicateCompound = NSCompoundPredicate.init(type: .and, subpredicates: [datePredicate, predicateAudio])
+            request.predicate = predicateCompound
+        }
+        
+        do{
+            tasks = try context.fetch(request as!
+                NSFetchRequest<NSFetchRequestResult>) as! [Task]
+            filterLabel.text = "Past due, Due this week, audio"
+            filterLabel.textColor = UIColor.red
+        } catch {}
+    }
+
+    
+    //show past due, due this week & audio: not complete
+    if filterSelections[0] == true && filterSelections[1] == true && filterSelections[2] == true && filterSelections[3] == false && filterSelections[4] == true && filterSelections[5] == false && filterSelections[6] == true{
         
         components.day! += 7
         
@@ -1814,10 +3219,70 @@ class TasksViewController: UIViewController, UITableViewDataSource, UITableViewD
         } catch {}
     }
     
+    //show past due, due this week & audio: complete
+    if filterSelections[0] == true && filterSelections[1] == true && filterSelections[2] == true && filterSelections[3] == false && filterSelections[4] == true && filterSelections[5] == true && filterSelections[6] == false{
+        
+        components.day! += 7
+        
+        let comparingDate = calendar.date(from:components)!
+        let toNextWeeksDate = calendar.startOfDay(for: comparingDate)
+        
+        
+        
+        let datePredicate = NSPredicate(format: "(%@ > dueDate)", toNextWeeksDate as CVarArg)
+        
+        let predicateAudio = NSPredicate(format: "(audioNote != nil)")
+        
+        
+        let predicate2 = NSPredicate(format: "(completed == %@)", true as CVarArg)
+        if selectedCategoryName != nil {
+            let predCat = NSPredicate(format: "%K = %@", "taskCategory.categoryName", (selectedCategoryName)!)
+            let predicateCompound = NSCompoundPredicate.init(type: .and, subpredicates: [datePredicate,predicate2, predCat, predicateAudio])
+            request.predicate = predicateCompound
+        }else {
+            let predicateCompound = NSCompoundPredicate.init(type: .and, subpredicates: [datePredicate,predicate2, predicateAudio])
+            request.predicate = predicateCompound
+        }
+        
+        do{
+            tasks = try context.fetch(request as!
+                NSFetchRequest<NSFetchRequestResult>) as! [Task]
+            filterLabel.text = "Past due, Due this week, audio"
+            filterLabel.textColor = UIColor.red
+        } catch {}
+    }
+
     
+    //show  audio: all
+    if filterSelections[0] == false && filterSelections[1] == false && filterSelections[2] == false && filterSelections[3] == false && filterSelections[4] == true && filterSelections[5] == true && filterSelections[6] == true{
+        
+        
+        
+        
+        let predicateAudio = NSPredicate(format: "(audioNote != nil)")
+        
+        
+       
+        if selectedCategoryName != nil {
+            let predCat = NSPredicate(format: "%K = %@", "taskCategory.categoryName", (selectedCategoryName)!)
+            let predicateCompound = NSCompoundPredicate.init(type: .and, subpredicates: [predCat, predicateAudio])
+            request.predicate = predicateCompound
+        }else {
+            let predicateCompound = NSCompoundPredicate.init(type: .and, subpredicates: [predicateAudio])
+            request.predicate = predicateCompound
+        }
+        
+        do{
+            tasks = try context.fetch(request as!
+                NSFetchRequest<NSFetchRequestResult>) as! [Task]
+            filterLabel.text = "Audio"
+            filterLabel.textColor = UIColor.red
+        } catch {}
+    }
+
     
-    //show  audio
-    if filterSelections[0] == false && filterSelections[1] == false && filterSelections[2] == false && filterSelections[3] == false && filterSelections[4] == true {
+    //show  audio: not complete
+    if filterSelections[0] == false && filterSelections[1] == false && filterSelections[2] == false && filterSelections[3] == false && filterSelections[4] == true && filterSelections[5] == false && filterSelections[6] == true{
         
         
         
@@ -1843,14 +3308,40 @@ class TasksViewController: UIViewController, UITableViewDataSource, UITableViewD
         } catch {}
     }
 
+    //show  audio: complete
+    if filterSelections[0] == false && filterSelections[1] == false && filterSelections[2] == false && filterSelections[3] == false && filterSelections[4] == true && filterSelections[5] == true && filterSelections[6] == false{
+        
+        
+        
+        
+        let predicateAudio = NSPredicate(format: "(audioNote != nil)")
+        
+        
+        let predicate2 = NSPredicate(format: "(completed == %@)", true as CVarArg)
+        if selectedCategoryName != nil {
+            let predCat = NSPredicate(format: "%K = %@", "taskCategory.categoryName", (selectedCategoryName)!)
+            let predicateCompound = NSCompoundPredicate.init(type: .and, subpredicates: [predicate2, predCat, predicateAudio])
+            request.predicate = predicateCompound
+        }else {
+            let predicateCompound = NSCompoundPredicate.init(type: .and, subpredicates: [predicate2, predicateAudio])
+            request.predicate = predicateCompound
+        }
+        
+        do{
+            tasks = try context.fetch(request as!
+                NSFetchRequest<NSFetchRequestResult>) as! [Task]
+            filterLabel.text = "Audio"
+            filterLabel.textColor = UIColor.red
+        } catch {}
+    }
+
+
+
+
+
+
     
-
-
-
-
-
-    
-     if (filterSelections[0] == false && filterSelections[1] == false && filterSelections[2] == false && filterSelections[3] == false && filterSelections[4] == false) != true {
+     if (filterSelections[0] == false && filterSelections[1] == false && filterSelections[2] == false && filterSelections[3] == false && filterSelections[4] == false && filterSelections[5] == true && filterSelections[6] == true) != true {
         
        
         
@@ -1918,6 +3409,9 @@ class TasksViewController: UIViewController, UITableViewDataSource, UITableViewD
 //                cell.priorityLabel.isHidden = false
             }
             sortLabel.text = "Priority"
+            editsButton.isEnabled = true
+            editsButton.tintColor = UIColor.black
+
         }
         
         if sortSelection == 1 {
@@ -1927,6 +3421,9 @@ class TasksViewController: UIViewController, UITableViewDataSource, UITableViewD
             tasks.sorted(by: {(($0.dueDate?.timeIntervalSinceNow)!) < (($1.dueDate?.timeIntervalSinceNow)!)})
             
             sortLabel.text = "Due Date"
+            
+            editsButton.isEnabled = false
+            editsButton.tintColor = UIColor.clear
             
 //            cell.dueDateLabel.isHidden = false
 //            cell.priorityLabel.isHidden = true
@@ -1940,6 +3437,8 @@ class TasksViewController: UIViewController, UITableViewDataSource, UITableViewD
 //            cell.createdDateLabel.isHidden = false
 //            cell.dueDateLabel.isHidden = true
             sortLabel.text = "Created Date"
+            editsButton.isEnabled = false
+            editsButton.tintColor = UIColor.clear
         }
         
         if sortSelection == 3 {
@@ -1947,6 +3446,8 @@ class TasksViewController: UIViewController, UITableViewDataSource, UITableViewD
                 $0.taskName! < $1.taskName!
             })
             sortLabel.text = "Task Name"
+            editsButton.isEnabled = false
+            editsButton.tintColor = UIColor.clear
         }
         
         
@@ -2139,45 +3640,9 @@ class TasksViewController: UIViewController, UITableViewDataSource, UITableViewD
     
     
     
-    @IBAction func removeButtonTapped(_ sender: Any) {
+   
+    @IBAction func trashButtonTapped(_ sender: Any) {
         
-        
-        if let indexPaths = tableView.indexPathsForSelectedRows as! [IndexPath]! {
-            for indexPath in indexPaths {
-                let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
-                let task = self.tasks[indexPath.row]
-                
-                context.delete(task)
-                
-                (UIApplication.shared.delegate as! AppDelegate).saveContext()
-            }
-            
-            self.startUpProcedures()
-            
-            if self.tasks.count > 0 {
-                let firstTask = IndexPath(row: 0, section: 0)
-                let lastTask = IndexPath(row:(self.tasks.count)-1, section: 0)
-                
-                self.prioritizeTasks(firstTask: firstTask, lastTask: lastTask)
-                
-                
-            }
-            
-            tableView.isEditing = false
-            editsButton.title = "Edit"
-            editsButton.tintColor = UIColor.black
-            didEmButton.isEnabled = false
-            didEmButton.tintColor = UIColor.clear
-            completedButton.isEnabled = true
-            removeButton.isEnabled = false
-            removeButton.tintColor = UIColor.clear
-            
-            
-            
-            
-            
-            
-        }
 
 
         
@@ -2186,60 +3651,60 @@ class TasksViewController: UIViewController, UITableViewDataSource, UITableViewD
     
 
     
-    @IBAction func didEmButtonTapped(_ sender: Any) {
-       
-        if let indexPaths = tableView.indexPathsForSelectedRows as! [IndexPath]! {
-            for indexPath in indexPaths {
-                let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
-                let task = self.tasks[indexPath.row]
-                
-                task.completed = true
-                
-                (UIApplication.shared.delegate as! AppDelegate).saveContext()
-            }
-           
-            self.startUpProcedures()
-            
-//            self.getTasks()
-//            self.getCompletedTasks()
-//            self.taskCount()
-//            self.noTasks()
-//            self.taskCount()
-//            self.showCompletedTaskLabel()
+//    @IBAction func didEmButtonTapped(_ sender: Any) {
+//       
+//        if let indexPaths = tableView.indexPathsForSelectedRows as! [IndexPath]! {
+//            for indexPath in indexPaths {
+//                let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
+//                let task = self.tasks[indexPath.row]
+//                
+//                task.completed = true
+//                
+//                (UIApplication.shared.delegate as! AppDelegate).saveContext()
+//            }
+//           
+//            self.startUpProcedures()
 //            
-//            tableView.reloadData()
-            
-//            self.tasks.sort(by: {
-//                $0.taskPriority < $1.taskPriority
-//            })
-            
-           // determineSortOrder()
-            
-            if self.tasks.count > 0 {
-                let firstTask = IndexPath(row: 0, section: 0)
-                let lastTask = IndexPath(row:(self.tasks.count)-1, section: 0)
-                
-                self.prioritizeTasks(firstTask: firstTask, lastTask: lastTask)
-                
-                
-            }
-            
-            tableView.isEditing = false
-            editsButton.title = "Edit"
-            editsButton.tintColor = UIColor.black
-            didEmButton.isEnabled = false
-            didEmButton.tintColor = UIColor.clear
-            completedButton.isEnabled = true
-            removeButton.tintColor = UIColor.clear
-            removeButton.isEnabled = false
-
-        
-        
-        
-        }
-
-
-}
+////            self.getTasks()
+////            self.getCompletedTasks()
+////            self.taskCount()
+////            self.noTasks()
+////            self.taskCount()
+////            self.showCompletedTaskLabel()
+////            
+////            tableView.reloadData()
+//            
+////            self.tasks.sort(by: {
+////                $0.taskPriority < $1.taskPriority
+////            })
+//            
+//           // determineSortOrder()
+//            
+//            if self.tasks.count > 0 {
+//                let firstTask = IndexPath(row: 0, section: 0)
+//                let lastTask = IndexPath(row:(self.tasks.count)-1, section: 0)
+//                
+//                self.prioritizeTasks(firstTask: firstTask, lastTask: lastTask)
+//                
+//                
+//            }
+//            
+//            tableView.isEditing = false
+//            editsButton.title = "Edit"
+//            editsButton.tintColor = UIColor.black
+//            didEmButton.isEnabled = false
+//            didEmButton.tintColor = UIColor.clear
+//            //completedButton.isEnabled = true
+////            removeButton.tintColor = UIColor.clear
+////            removeButton.isEnabled = false
+//
+//        
+//        
+//        
+//        }
+//
+//
+//}
     
 //    func getTasksForCategory() {
 //    
@@ -2440,13 +3905,14 @@ class TasksViewController: UIViewController, UITableViewDataSource, UITableViewD
          
             
             determineFilters()
-           // getCompletedTasks()
+           getCompletedTasks()
             noTasks()
            
             taskCount()
             determineSortOrder()
           //  showCompletedTaskLabel()
             displayCategoryName()
+            showTrashButton()
              tableView.reloadData()
         }
         
@@ -2455,13 +3921,14 @@ else {
             print ("YO YO")
 
             determineFilters()
-           // getCompletedTasks()
+           getCompletedTasks()
             noTasks()
             
             taskCount()
             determineSortOrder()
            // showCompletedTaskLabel()
             displayCategoryName()
+            showTrashButton()
             tableView.reloadData()
             
             
