@@ -7,12 +7,19 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		790694691EA3308F00D89E1A /* User-50.png in Resources */ = {isa = PBXBuildFile; fileRef = 790694681EA3308F00D89E1A /* User-50.png */; };
+		7906946B1EA3310F00D89E1A /* Circled User Male Filled-50.png in Resources */ = {isa = PBXBuildFile; fileRef = 7906946A1EA3310F00D89E1A /* Circled User Male Filled-50.png */; };
+		7906946D1EA334DD00D89E1A /* Conference Call-50.png in Resources */ = {isa = PBXBuildFile; fileRef = 7906946C1EA334DD00D89E1A /* Conference Call-50.png */; };
+		7906946F1EA33E3C00D89E1A /* Checkmark Filled-50.png in Resources */ = {isa = PBXBuildFile; fileRef = 7906946E1EA33E3C00D89E1A /* Checkmark Filled-50.png */; };
+		790694711EA3F09100D89E1A /* Undo Filled-50.png in Resources */ = {isa = PBXBuildFile; fileRef = 790694701EA3F09100D89E1A /* Undo Filled-50.png */; };
 		790906971E985E4000026CBD /* Full Moon-50.png in Resources */ = {isa = PBXBuildFile; fileRef = 790906961E985E4000026CBD /* Full Moon-50.png */; };
 		790906991E985EB800026CBD /* Full Moon Filled-50.png in Resources */ = {isa = PBXBuildFile; fileRef = 790906981E985EB800026CBD /* Full Moon Filled-50.png */; };
+		790C049B1E9DC4D8004DBDC3 /* Checked Checkbox Filled-50.png in Resources */ = {isa = PBXBuildFile; fileRef = 790C049A1E9DC4D8004DBDC3 /* Checked Checkbox Filled-50.png */; };
+		790C049D1E9DD87C004DBDC3 /* Delete-50 (1).png in Resources */ = {isa = PBXBuildFile; fileRef = 790C049C1E9DD87C004DBDC3 /* Delete-50 (1).png */; };
+		790C049F1EA07C60004DBDC3 /* FiltersButtonsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 790C049E1EA07C60004DBDC3 /* FiltersButtonsViewController.swift */; };
+		790C04A11EA083B5004DBDC3 /* QuickAddViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 790C04A01EA083B5004DBDC3 /* QuickAddViewController.swift */; };
 		791C54311E3EBDB700C6234F /* CreateTaskViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 791C54301E3EBDB700C6234F /* CreateTaskViewController.swift */; };
 		791C93031E5696DB0027B49B /* taskTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 791C93021E5696DB0027B49B /* taskTableViewCell.swift */; };
-		791C930D1E5805F80027B49B /* CompletedTasksViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 791C930C1E5805F80027B49B /* CompletedTasksViewController.swift */; };
-		791C930F1E581DF00027B49B /* CompletedTasksTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 791C930E1E581DF00027B49B /* CompletedTasksTableViewCell.swift */; };
 		791C93111E58D84D0027B49B /* TaskPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 791C93101E58D84D0027B49B /* TaskPageViewController.swift */; };
 		791C93191E5968D20027B49B /* TasksViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 799790CE1E3D97FA00781A22 /* TasksViewController.swift */; };
 		791C931E1E60BA060027B49B /* CompletedTasksButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 791C931D1E60BA050027B49B /* CompletedTasksButtonView.swift */; };
@@ -39,6 +46,7 @@
 		792E221E1E91CA3E00669DCE /* chromeThumb.png in Resources */ = {isa = PBXBuildFile; fileRef = 792E221D1E91CA3E00669DCE /* chromeThumb.png */; };
 		792E22201E91D90100669DCE /* Pause Filled-50.png in Resources */ = {isa = PBXBuildFile; fileRef = 792E221F1E91D90100669DCE /* Pause Filled-50.png */; };
 		792E22221E93316500669DCE /* circleSlider.png in Resources */ = {isa = PBXBuildFile; fileRef = 792E22211E93316500669DCE /* circleSlider.png */; };
+		7940BA9D1EA2FA2000B1A537 /* SortClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7940BA9C1EA2FA2000B1A537 /* SortClass.swift */; };
 		7940EA171E8769050045962E /* Tasklist-50.png in Resources */ = {isa = PBXBuildFile; fileRef = 7940EA161E8769050045962E /* Tasklist-50.png */; };
 		797005691E819CA90094806E /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 79BA1CCC1E819A9E00691417 /* Info.plist */; };
 		79813F8D1E9C501900134F60 /* Unchecked Checkbox-50.png in Resources */ = {isa = PBXBuildFile; fileRef = 79813F8C1E9C501900134F60 /* Unchecked Checkbox-50.png */; };
@@ -66,7 +74,8 @@
 		799790DA1E3D97FA00781A22 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 799790D81E3D97FA00781A22 /* LaunchScreen.storyboard */; };
 		799965FC1E999FDD00A04C03 /* Add Folder-50.png in Resources */ = {isa = PBXBuildFile; fileRef = 799965FB1E999FDD00A04C03 /* Add Folder-50.png */; };
 		799965FE1E999FE300A04C03 /* Add Property-50.png in Resources */ = {isa = PBXBuildFile; fileRef = 799965FD1E999FE300A04C03 /* Add Property-50.png */; };
-		799C08831E7F453D00011B8C /* AddItemViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 799C08821E7F453D00011B8C /* AddItemViewController.swift */; };
+		79AF72CE1EA1C3B3007509DA /* FIltersClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79AF72CD1EA1C3B3007509DA /* FIltersClass.swift */; };
+		79AF72D01EA2A126007509DA /* SelectedCategory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79AF72CF1EA2A126007509DA /* SelectedCategory.swift */; };
 		79D5BD061E6336D600E84148 /* CreateTaskView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79D5BD051E6336D600E84148 /* CreateTaskView.swift */; };
 		79D5BD0A1E63C63F00E84148 /* CategoriesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79D5BD091E63C63F00E84148 /* CategoriesViewController.swift */; };
 		79F4AE6D1E946C2E00CE65FB /* ColorsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79F4AE6C1E946C2D00CE65FB /* ColorsViewController.swift */; };
@@ -87,15 +96,22 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		790694681EA3308F00D89E1A /* User-50.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "User-50.png"; path = "../../../Downloads/User-50.png"; sourceTree = "<group>"; };
+		7906946A1EA3310F00D89E1A /* Circled User Male Filled-50.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Circled User Male Filled-50.png"; path = "../../../Downloads/Circled User Male Filled-50.png"; sourceTree = "<group>"; };
+		7906946C1EA334DD00D89E1A /* Conference Call-50.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Conference Call-50.png"; path = "../../../Downloads/Conference Call-50.png"; sourceTree = "<group>"; };
+		7906946E1EA33E3C00D89E1A /* Checkmark Filled-50.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Checkmark Filled-50.png"; path = "../../../Downloads/Checkmark Filled-50.png"; sourceTree = "<group>"; };
+		790694701EA3F09100D89E1A /* Undo Filled-50.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Undo Filled-50.png"; path = "../../../Downloads/Undo Filled-50.png"; sourceTree = "<group>"; };
 		790906961E985E4000026CBD /* Full Moon-50.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Full Moon-50.png"; path = "../../../Downloads/Full Moon-50.png"; sourceTree = "<group>"; };
 		790906981E985EB800026CBD /* Full Moon Filled-50.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Full Moon Filled-50.png"; path = "../../../Downloads/Full Moon Filled-50.png"; sourceTree = "<group>"; };
+		790C049A1E9DC4D8004DBDC3 /* Checked Checkbox Filled-50.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Checked Checkbox Filled-50.png"; path = "../../../Downloads/Checked Checkbox Filled-50.png"; sourceTree = "<group>"; };
+		790C049C1E9DD87C004DBDC3 /* Delete-50 (1).png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Delete-50 (1).png"; path = "../../../Downloads/Delete-50 (1).png"; sourceTree = "<group>"; };
+		790C049E1EA07C60004DBDC3 /* FiltersButtonsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FiltersButtonsViewController.swift; sourceTree = "<group>"; };
+		790C04A01EA083B5004DBDC3 /* QuickAddViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuickAddViewController.swift; sourceTree = "<group>"; };
 		791C54301E3EBDB700C6234F /* CreateTaskViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CreateTaskViewController.swift; path = ../CreateTaskViewController.swift; sourceTree = "<group>"; };
 		791C93021E5696DB0027B49B /* taskTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = taskTableViewCell.swift; sourceTree = "<group>"; };
-		791C930C1E5805F80027B49B /* CompletedTasksViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CompletedTasksViewController.swift; sourceTree = "<group>"; };
-		791C930E1E581DF00027B49B /* CompletedTasksTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CompletedTasksTableViewCell.swift; sourceTree = "<group>"; };
-		791C93101E58D84D0027B49B /* TaskPageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TaskPageViewController.swift; sourceTree = "<group>"; };
+		791C93101E58D84D0027B49B /* TaskPageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TaskPageViewController.swift; path = DoIt/TaskPageViewController.swift; sourceTree = "<group>"; };
 		791C931D1E60BA050027B49B /* CompletedTasksButtonView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CompletedTasksButtonView.swift; path = ../CompletedTasksButtonView.swift; sourceTree = "<group>"; };
-		792E21F51E8A137700669DCE /* SortViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SortViewController.swift; path = ../SortViewController.swift; sourceTree = "<group>"; };
+		792E21F51E8A137700669DCE /* SortViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SortViewController.swift; sourceTree = "<group>"; };
 		792E21F71E8B65B200669DCE /* Low Importance Filled-50.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Low Importance Filled-50.png"; path = "../../../Downloads/Low Importance Filled-50.png"; sourceTree = "<group>"; };
 		792E21F91E8B65B900669DCE /* Low Importance-50.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Low Importance-50.png"; path = "../../../Downloads/Low Importance-50.png"; sourceTree = "<group>"; };
 		792E21FB1E8B65C100669DCE /* Circled Play Filled-50.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Circled Play Filled-50.png"; path = "../../../Downloads/Circled Play Filled-50.png"; sourceTree = "<group>"; };
@@ -118,6 +134,7 @@
 		792E221D1E91CA3E00669DCE /* chromeThumb.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = chromeThumb.png; path = ../../chromeThumb.png; sourceTree = "<group>"; };
 		792E221F1E91D90100669DCE /* Pause Filled-50.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Pause Filled-50.png"; path = "../../../Downloads/Pause Filled-50.png"; sourceTree = "<group>"; };
 		792E22211E93316500669DCE /* circleSlider.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = circleSlider.png; path = ../../circleSlider.png; sourceTree = "<group>"; };
+		7940BA9C1EA2FA2000B1A537 /* SortClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SortClass.swift; path = DoIt/SortClass.swift; sourceTree = "<group>"; };
 		7940EA161E8769050045962E /* Tasklist-50.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Tasklist-50.png"; path = "../../../Downloads/Tasklist-50.png"; sourceTree = "<group>"; };
 		797005681E819B150094806E /* ListWidget.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = ListWidget.entitlements; sourceTree = "<group>"; };
 		797005781E81C1B20094806E /* IntentsUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = IntentsUI.framework; path = System/Library/Frameworks/IntentsUI.framework; sourceTree = SDKROOT; };
@@ -150,7 +167,8 @@
 		799790DB1E3D97FA00781A22 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		799965FB1E999FDD00A04C03 /* Add Folder-50.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Add Folder-50.png"; path = "../../../Downloads/Add Folder-50.png"; sourceTree = "<group>"; };
 		799965FD1E999FE300A04C03 /* Add Property-50.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Add Property-50.png"; path = "../../../Downloads/Add Property-50.png"; sourceTree = "<group>"; };
-		799C08821E7F453D00011B8C /* AddItemViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddItemViewController.swift; sourceTree = "<group>"; };
+		79AF72CD1EA1C3B3007509DA /* FIltersClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FIltersClass.swift; sourceTree = "<group>"; };
+		79AF72CF1EA2A126007509DA /* SelectedCategory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SelectedCategory.swift; path = ../SelectedCategory.swift; sourceTree = "<group>"; };
 		79BA1CAB1E80B4C600691417 /* NotificationCenter.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = NotificationCenter.framework; path = System/Library/Frameworks/NotificationCenter.framework; sourceTree = SDKROOT; };
 		79BA1CBD1E80C6C800691417 /* DoIts.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = DoIts.entitlements; sourceTree = SOURCE_ROOT; };
 		79BA1CC71E819A9E00691417 /* TodayViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayViewController.swift; sourceTree = "<group>"; };
@@ -178,20 +196,12 @@
 			children = (
 				799790CE1E3D97FA00781A22 /* TasksViewController.swift */,
 				791C93021E5696DB0027B49B /* taskTableViewCell.swift */,
+				790C04A01EA083B5004DBDC3 /* QuickAddViewController.swift */,
 				791C931D1E60BA050027B49B /* CompletedTasksButtonView.swift */,
 				79916B6E1E8741F70020AC96 /* ViewListView.swift */,
 				79D5BD051E6336D600E84148 /* CreateTaskView.swift */,
 			);
 			name = "To-do Tasks";
-			sourceTree = "<group>";
-		};
-		791C931B1E5BDF740027B49B /* Completed Tasks */ = {
-			isa = PBXGroup;
-			children = (
-				791C930C1E5805F80027B49B /* CompletedTasksViewController.swift */,
-				791C930E1E581DF00027B49B /* CompletedTasksTableViewCell.swift */,
-			);
-			name = "Completed Tasks";
 			sourceTree = "<group>";
 		};
 		791C931C1E5BDF8C0027B49B /* Create/Update Tasks */ = {
@@ -205,7 +215,12 @@
 		793BAF071E747A3A00005662 /* Filters */ = {
 			isa = PBXGroup;
 			children = (
+				791C93101E58D84D0027B49B /* TaskPageViewController.swift */,
+				79AF72CD1EA1C3B3007509DA /* FIltersClass.swift */,
 				798491D51E668A3C00E4337C /* FiltersViewController.swift */,
+				790C049E1EA07C60004DBDC3 /* FiltersButtonsViewController.swift */,
+				7940BA9C1EA2FA2000B1A537 /* SortClass.swift */,
+				792E21F51E8A137700669DCE /* SortViewController.swift */,
 			);
 			name = Filters;
 			path = ..;
@@ -214,6 +229,13 @@
 		79916B741E8762700020AC96 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				790694701EA3F09100D89E1A /* Undo Filled-50.png */,
+				7906946E1EA33E3C00D89E1A /* Checkmark Filled-50.png */,
+				7906946C1EA334DD00D89E1A /* Conference Call-50.png */,
+				7906946A1EA3310F00D89E1A /* Circled User Male Filled-50.png */,
+				790694681EA3308F00D89E1A /* User-50.png */,
+				790C049C1E9DD87C004DBDC3 /* Delete-50 (1).png */,
+				790C049A1E9DC4D8004DBDC3 /* Checked Checkbox Filled-50.png */,
 				790906961E985E4000026CBD /* Full Moon-50.png */,
 				79813F8E1E9C504F00134F60 /* Checked Checkbox-50.png */,
 				79813F8C1E9C501900134F60 /* Unchecked Checkbox-50.png */,
@@ -289,14 +311,9 @@
 				799790D01E3D97FA00781A22 /* Main.storyboard */,
 				799790D81E3D97FA00781A22 /* LaunchScreen.storyboard */,
 				799790CC1E3D97FA00781A22 /* AppDelegate.swift */,
-				791C93101E58D84D0027B49B /* TaskPageViewController.swift */,
-				799C08821E7F453D00011B8C /* AddItemViewController.swift */,
-				792E21F51E8A137700669DCE /* SortViewController.swift */,
-				79F4AE6C1E946C2D00CE65FB /* ColorsViewController.swift */,
 				793BAF071E747A3A00005662 /* Filters */,
 				79D5BD0B1E63C64900E84148 /* Categories */,
 				791C931C1E5BDF8C0027B49B /* Create/Update Tasks */,
-				791C931B1E5BDF740027B49B /* Completed Tasks */,
 				791C931A1E5BDF220027B49B /* To-do Tasks */,
 			);
 			path = DoIt;
@@ -326,9 +343,11 @@
 		79D5BD0B1E63C64900E84148 /* Categories */ = {
 			isa = PBXGroup;
 			children = (
+				79AF72CF1EA2A126007509DA /* SelectedCategory.swift */,
 				79D5BD091E63C63F00E84148 /* CategoriesViewController.swift */,
 				798491C31E63CE6A00E4337C /* CategoryTableViewCell.swift */,
 				79F4AE6E1E94707F00CE65FB /* ColorCircleView.swift */,
+				79F4AE6C1E946C2D00CE65FB /* ColorsViewController.swift */,
 			);
 			name = Categories;
 			sourceTree = "<group>";
@@ -399,13 +418,17 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7906946B1EA3310F00D89E1A /* Circled User Male Filled-50.png in Resources */,
 				797005691E819CA90094806E /* Info.plist in Resources */,
+				790694691EA3308F00D89E1A /* User-50.png in Resources */,
 				79916B711E8762600020AC96 /* Filter-50.png in Resources */,
 				792E22041E8CADB600669DCE /* High Importance Filled-50.png in Resources */,
+				7906946F1EA33E3C00D89E1A /* Checkmark Filled-50.png in Resources */,
 				792E221C1E8F959100669DCE /* Folder-50.png in Resources */,
 				790906971E985E4000026CBD /* Full Moon-50.png in Resources */,
 				792E221E1E91CA3E00669DCE /* chromeThumb.png in Resources */,
 				799965FC1E999FDD00A04C03 /* Add Folder-50.png in Resources */,
+				790C049B1E9DC4D8004DBDC3 /* Checked Checkbox Filled-50.png in Resources */,
 				792E21FC1E8B65C100669DCE /* Circled Play Filled-50.png in Resources */,
 				792E22141E8F690000669DCE /* Record Filled-50.png in Resources */,
 				798D45651E8775AC00855238 /* Headphones-50.png in Resources */,
@@ -418,6 +441,7 @@
 				799790D71E3D97FA00781A22 /* Assets.xcassets in Resources */,
 				798D455F1E876FD300855238 /* Plus-50.png in Resources */,
 				792E22201E91D90100669DCE /* Pause Filled-50.png in Resources */,
+				7906946D1EA334DD00D89E1A /* Conference Call-50.png in Resources */,
 				799790D21E3D97FA00781A22 /* Main.storyboard in Resources */,
 				792E22121E8F68F900669DCE /* Stop Filled-50.png in Resources */,
 				798D45731E89E36D00855238 /* Expand Arrow-50.png in Resources */,
@@ -430,6 +454,7 @@
 				79916B731E87626A0020AC96 /* Filter Filled-50.png in Resources */,
 				792E21FA1E8B65B900669DCE /* Low Importance-50.png in Resources */,
 				792E220C1E8CADCC00669DCE /* Pause-50.png in Resources */,
+				790694711EA3F09100D89E1A /* Undo Filled-50.png in Resources */,
 				792E22181E8F8F0200669DCE /* clear_background.png in Resources */,
 				792E221A1E8F93B000669DCE /* Open Folder-50.png in Resources */,
 				792E22061E8CADBD00669DCE /* High Importance-50.png in Resources */,
@@ -441,6 +466,7 @@
 				798D456F1E877A6100855238 /* Cool-50.png in Resources */,
 				792E220B1E8CADCC00669DCE /* Stop-50.png in Resources */,
 				792E22161E8F806800669DCE /* Alarm Clock-50.png in Resources */,
+				790C049D1E9DD87C004DBDC3 /* Delete-50 (1).png in Resources */,
 				798D45611E8772DC00855238 /* Delete-50.png in Resources */,
 				792E22001E8B65D200669DCE /* Clock Filled-50.png in Resources */,
 				799965FE1E999FE300A04C03 /* Add Property-50.png in Resources */,
@@ -455,9 +481,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				790C04A11EA083B5004DBDC3 /* QuickAddViewController.swift in Sources */,
 				791C93031E5696DB0027B49B /* taskTableViewCell.swift in Sources */,
+				790C049F1EA07C60004DBDC3 /* FiltersButtonsViewController.swift in Sources */,
 				799790D51E3D97FA00781A22 /* DoIt.xcdatamodeld in Sources */,
-				791C930D1E5805F80027B49B /* CompletedTasksViewController.swift in Sources */,
 				798491D61E668A3C00E4337C /* FiltersViewController.swift in Sources */,
 				791C93111E58D84D0027B49B /* TaskPageViewController.swift in Sources */,
 				791C931E1E60BA060027B49B /* CompletedTasksButtonView.swift in Sources */,
@@ -465,12 +492,13 @@
 				79F4AE6D1E946C2E00CE65FB /* ColorsViewController.swift in Sources */,
 				791C93191E5968D20027B49B /* TasksViewController.swift in Sources */,
 				79D5BD061E6336D600E84148 /* CreateTaskView.swift in Sources */,
-				791C930F1E581DF00027B49B /* CompletedTasksTableViewCell.swift in Sources */,
+				79AF72D01EA2A126007509DA /* SelectedCategory.swift in Sources */,
 				792E21F61E8A137700669DCE /* SortViewController.swift in Sources */,
 				79F4AE6F1E94707F00CE65FB /* ColorCircleView.swift in Sources */,
 				79916B6F1E8741F70020AC96 /* ViewListView.swift in Sources */,
+				7940BA9D1EA2FA2000B1A537 /* SortClass.swift in Sources */,
 				798491C41E63CE6A00E4337C /* CategoryTableViewCell.swift in Sources */,
-				799C08831E7F453D00011B8C /* AddItemViewController.swift in Sources */,
+				79AF72CE1EA1C3B3007509DA /* FIltersClass.swift in Sources */,
 				791C54311E3EBDB700C6234F /* CreateTaskViewController.swift in Sources */,
 				79D5BD0A1E63C63F00E84148 /* CategoriesViewController.swift in Sources */,
 			);

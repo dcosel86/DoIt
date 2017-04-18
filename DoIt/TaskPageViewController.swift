@@ -18,8 +18,8 @@ class TaskPageViewController: UIPageViewController, UIPageViewControllerDataSour
         self.delegate = self
         self.dataSource = self
         
-        let page1: UIViewController! = storyboard?.instantiateViewController(withIdentifier: "List")
-        let page2: UIViewController! = storyboard?.instantiateViewController(withIdentifier: "Create")
+        let page1: UIViewController! = storyboard?.instantiateViewController(withIdentifier: "heyHo")
+        let page2: UIViewController! = storyboard?.instantiateViewController(withIdentifier: "hey")
         
         pages.append(page1)
         pages.append(page2)

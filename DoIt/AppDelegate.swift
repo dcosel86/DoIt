@@ -18,13 +18,36 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         
             
-      UINavigationBar.appearance().barTintColor = UIColor.groupTableViewBackground
+      UINavigationBar.appearance().barTintColor = UIColor.darkGray
 
 //
 //        
-       UINavigationBar.appearance().titleTextAttributes = [NSForegroundColorAttributeName : UIColor.black]
+       UINavigationBar.appearance().titleTextAttributes = [NSForegroundColorAttributeName : UIColor.white]
 //        
-        UINavigationBar.appearance().tintColor = UIColor.black
+        UINavigationBar.appearance().tintColor = UIColor.white
+        
+        selectedCategory.getCategories()
+        
+        if selectedCategory.categories.count > 0 {
+            print("I have a category")
+            
+        }else {
+            let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
+            
+            let MiscCategory = Category(context: context)
+            
+            
+            MiscCategory.categoryName = "Misc"
+            MiscCategory.createdDate = NSDate()
+            MiscCategory.color = UIColor.white
+            //MiscCategory.isSelected = true
+            
+            
+            (UIApplication.shared.delegate as! AppDelegate).saveContext()
+           
+            
+        }
+
         
         
         /*

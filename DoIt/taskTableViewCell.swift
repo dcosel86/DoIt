@@ -45,7 +45,11 @@ class taskTableViewCell: UITableViewCell {
         importantLabel.image = importantLabel.image!.withRenderingMode(.alwaysTemplate)
         importantLabel.tintColor = UIColor.red
        
- 
+        audioLabel.image = audioLabel.image!.withRenderingMode(.alwaysTemplate)
+        audioLabel.tintColor = UIColor.darkGray
+        
+        dueDateImage.image = dueDateImage.image!.withRenderingMode(.alwaysTemplate)
+        dueDateImage.tintColor = UIColor.darkGray
 
         
       

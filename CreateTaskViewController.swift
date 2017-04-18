@@ -30,6 +30,7 @@ class CreateTaskViewController: UIViewController, UITextFieldDelegate, UIPickerV
    var toggleState = 1
     var audioTime : TimeInterval? = 0.0
     var playedTimer : String = "00:00 / 00:00"
+    let calendar = Calendar.current
    
     
    
@@ -92,20 +93,25 @@ class CreateTaskViewController: UIViewController, UITextFieldDelegate, UIPickerV
     @IBOutlet weak var colorView: UIView!
     
     
+    @IBOutlet weak var deleteButton: UIButton!
+    
+    @IBOutlet weak var undoButton: UIButton!
+    
     //functions
     
     override func viewDidLoad() {
         
         
-        UINavigationBar.appearance().barTintColor = UIColor.lightGray
+      //  UINavigationBar.appearance().barTintColor = UIColor.lightGray
         
         
         createTaskView.layer.cornerRadius = 10
         colorView.layer.cornerRadius = 10
         
-        UINavigationBar.appearance().titleTextAttributes = [NSForegroundColorAttributeName : UIColor.white]
         
-        UINavigationBar.appearance().tintColor = UIColor.white
+//        UINavigationBar.appearance().titleTextAttributes = [NSForegroundColorAttributeName : UIColor.white]
+//        
+//       UINavigationBar.appearance().tintColor = UIColor.white
         
         
         super.viewDidLoad()
@@ -170,14 +176,34 @@ class CreateTaskViewController: UIViewController, UITextFieldDelegate, UIPickerV
         if task != nil {
             
             if task?.dueDate != nil{
-            let dateFromTask = task?.dueDate
-            let dateFormatter = DateFormatter()
-            dateFormatter.dateStyle = .long
+                
+                  let dateFromTask = task?.dueDate
+                let dateFormatter = DateFormatter()
+                 dateFormatter.dateStyle = .long
+                
+                let startOfTask = calendar.startOfDay(for: dateFromTask as! Date)
+                
+                let startOfToday = calendar.startOfDay(for: Date())
+                
+                let todaysDate = dateFormatter.string(from: Date())
+                
+                let numOfDays: Int = daysBetweenDates(startDate: startOfToday , endDate: startOfTask as! Date)
+                
+                if numOfDays > 100000 {
+                    task?.dueDate = nil
+                }
+                
+                
+                
+          
+            
+           
             let dateToShow = "\(dateFormatter.string(from: dateFromTask as! Date))"
                 dueDateLabel.isHidden = false
                 dateFieldText.isHidden = false
                 dateFieldText.text = dateToShow
-            }
+                
+                           }
             
             taskNameTextField.text = task?.taskName
             notesTextField.text = task?.taskNotes
@@ -187,11 +213,48 @@ class CreateTaskViewController: UIViewController, UITextFieldDelegate, UIPickerV
            
             task!.taskPriority = task!.taskPriority
             task?.audioNote = task?.audioNote
+            
+            
+            if task?.completed == true {
+                deleteButton.isHidden = false
+                deleteButton.isEnabled = true
+                addButton.isEnabled = false
+                addButton.isHidden = true
+                didItButton.isHidden = true
+                didItButton.isEnabled = false
+                audioNoteButton.isEnabled = false
+                dueDateButton.isEnabled = false
+                importantButton.isEnabled = false
+                recordStopButton.isEnabled = false
+                taskNameTextField.isUserInteractionEnabled = false
+                notesTextField.isUserInteractionEnabled = false
+                dateFieldText.isUserInteractionEnabled = false
+                categoryTextField.isUserInteractionEnabled = false
+                undoButton.isHidden = false
+                undoButton.isEnabled = true
+                
+                
+            }else {
+                deleteButton.isHidden = true
+                deleteButton.isEnabled = false
             addButton.setTitle("Update", for: .normal)
             addButton.isEnabled = false
             addButton.isHidden = true
             didItButton.isHidden = false
             didItButton.isEnabled = true
+                audioNoteButton.isEnabled = true
+                dueDateButton.isEnabled = true
+                importantButton.isEnabled = true
+                recordStopButton.isEnabled = true
+                taskNameTextField.isUserInteractionEnabled = true
+                notesTextField.isUserInteractionEnabled = true
+                dateFieldText.isUserInteractionEnabled = true
+                categoryTextField.isUserInteractionEnabled = true
+                undoButton.isHidden = true
+                undoButton.isEnabled = false
+                
+               
+            }
             
 //            if task?.dueDate != nil {
 //                dueDateButton.setImage(UIImage(named: "Clock Filled-50.png"), for: UIControlState.normal)
@@ -265,6 +328,10 @@ class CreateTaskViewController: UIViewController, UITextFieldDelegate, UIPickerV
         
         }
         else {
+            undoButton.isHidden = true
+            undoButton.isEnabled = false
+            deleteButton.isHidden = true
+            deleteButton.isEnabled = false
             important = false
              addButton.setTitle("Add", for: .normal)
             addButton.isEnabled = false
@@ -671,6 +738,7 @@ class CreateTaskViewController: UIViewController, UITextFieldDelegate, UIPickerV
         audioRecorder?.stop()
         audioPlayer?.stop()
         self.performSegue(withIdentifier: "unwindToTasks", sender: self)
+       
     }
     
     
@@ -720,6 +788,17 @@ class CreateTaskViewController: UIViewController, UITextFieldDelegate, UIPickerV
     
     
     
+    @IBAction func deleteButtonTapped(_ sender: Any) {
+        
+        let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
+        
+        context.delete(task!)
+        (UIApplication.shared.delegate as! AppDelegate).saveContext()
+        
+        self.performSegue(withIdentifier: "unwindToTasks", sender: self)
+    }
+    
+    
     
     
     @IBAction func didItButtonTapped(_ sender: Any) {
@@ -731,6 +810,23 @@ class CreateTaskViewController: UIViewController, UITextFieldDelegate, UIPickerV
         (UIApplication.shared.delegate as! AppDelegate).saveContext()
         
         self.performSegue(withIdentifier: "unwindToTasks", sender: self)
+        
+    }
+    
+    
+    
+    @IBAction func undoButtonTapped(_ sender: Any) {
+        
+        
+        audioRecorder?.stop()
+        audioPlayer?.stop()
+        let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
+        task!.completed = false
+        
+        (UIApplication.shared.delegate as! AppDelegate).saveContext()
+        
+        self.viewDidLoad()
+        
         
     }
     
@@ -952,7 +1048,13 @@ class CreateTaskViewController: UIViewController, UITextFieldDelegate, UIPickerV
     
  */
     
-   
+    func daysBetweenDates(startDate: Date, endDate: Date) -> Int
+    {
+        let calendar = Calendar.current
+        let components = calendar.dateComponents([.day], from: startDate, to: endDate)
+        return components.day!
+    }
+
 
     
     func setUpRecorder() {
@@ -1410,6 +1512,8 @@ class CreateTaskViewController: UIViewController, UITextFieldDelegate, UIPickerV
             importantButton.tintColor = UIColor.darkGray
             dueDateButton.tintColor = UIColor.darkGray
              addButton.tintColor = UIColor.darkGray
+            undoButton.tintColor = UIColor.darkGray
+            deleteButton.tintColor = UIColor.darkGray
             
             
         } else if selectedCategory?.color == UIColor(colorLiteralRed: 255/200, green: 255/255, blue: 102/255, alpha: 1) {
@@ -1419,7 +1523,8 @@ class CreateTaskViewController: UIViewController, UITextFieldDelegate, UIPickerV
             importantButton.tintColor = UIColor.darkGray
             dueDateButton.tintColor = UIColor.darkGray
             addButton.tintColor = UIColor.darkGray
-            
+            undoButton.tintColor = UIColor.darkGray
+            deleteButton.tintColor = UIColor.darkGray
             
         } else {
           
@@ -1430,7 +1535,8 @@ class CreateTaskViewController: UIViewController, UITextFieldDelegate, UIPickerV
             
             importantButton.tintColor = UIColor.white
             dueDateButton.tintColor = UIColor.white
-            
+            undoButton.tintColor = UIColor.white
+            deleteButton.tintColor = UIColor.white
             
         }
 

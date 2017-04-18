@@ -30,12 +30,14 @@ class SortViewController: UIViewController {
     @IBOutlet weak var resetButton: UIBarButtonItem!
     
     
-    var sortSelection : Int? = 0
+    var sortSelection : Int? = 3
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
        // applyButton.title = "Cancel"
+        
+        sortSelection = sorting?.sortSelection
         
         sortView.layer.cornerRadius = 5
         
@@ -55,10 +57,14 @@ class SortViewController: UIViewController {
     
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        
+    }
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         
-        let nextVC = segue.destination as! TasksViewController
-        nextVC.sortSelection = sortSelection
+//        let nextVC = segue.destination as! TasksViewController
+//        nextVC.sortSelection = sortSelection
         
         
     }
@@ -113,6 +119,7 @@ class SortViewController: UIViewController {
     @IBAction func taskSwitchTapped(_ sender: Any) {
         if taskNameSwitch.isOn == true {
             sortSelection = 3
+            sorting?.sortSelection = sortSelection!
             determineSortState()
             applyButton.title = "Apply"
 //            taskNameSwitch.isEnabled = false
@@ -123,11 +130,14 @@ class SortViewController: UIViewController {
             taskNameSwitch.isOn = true
         
         }
+        
+        
     }
     
     @IBAction func prioritySwitchTapped(_ sender: Any) {
         if prioritySwitch.isOn == true {
             sortSelection = 0
+            sorting?.sortSelection = sortSelection!
             determineSortState()
             applyButton.title = "Apply"
 //            taskNameSwitch.isEnabled = true
@@ -143,6 +153,7 @@ class SortViewController: UIViewController {
     @IBAction func dueDateSwitchTapped(_ sender: Any) {
         if dueDateSwitch.isOn == true {
             sortSelection = 1
+            sorting?.sortSelection = sortSelection!
             determineSortState()
             applyButton.title = "Apply"
 //            taskNameSwitch.isEnabled = true
@@ -159,6 +170,7 @@ class SortViewController: UIViewController {
     @IBAction func createdDateSwitchTapped(_ sender: Any) {
         if createdDateSwitch.isOn == true {
             sortSelection = 2
+            sorting?.sortSelection = sortSelection!
             determineSortState()
             applyButton.title = "Apply"
 //            taskNameSwitch.isEnabled = true
@@ -175,6 +187,7 @@ class SortViewController: UIViewController {
     @IBAction func resetButtonTapped(_ sender: Any) {
         
         sortSelection = 3
+        sorting?.sortSelection = sortSelection!
         determineSortState()
 //        taskNameSwitch.isEnabled = false
 //        prioritySwitch.isEnabled = true
@@ -185,7 +198,16 @@ class SortViewController: UIViewController {
     
     
     @IBAction func applyButtonTapped(_ sender: Any) {
-         performSegue(withIdentifier: "unwindToTasksWithSort", sender: sortSelection)
+        sorting?.determineSortLabels()
+         performSegue(withIdentifier: "unwindToTasksWithSort", sender: self)
+        NotificationCenter.default.post(name: .reload, object: nil)
+        UINavigationBar.appearance().barTintColor = UIColor.darkGray
+        
+       
+        UINavigationBar.appearance().titleTextAttributes = [NSForegroundColorAttributeName : UIColor.white]
+        
+        UINavigationBar.appearance().tintColor = UIColor.white
+
     }
 
 

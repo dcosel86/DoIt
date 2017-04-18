@@ -9,6 +9,8 @@
 import UIKit
 import CoreData
 
+
+
 class FiltersViewController: UIViewController, UIPopoverPresentationControllerDelegate {
     
     //outlets
@@ -35,28 +37,54 @@ class FiltersViewController: UIViewController, UIPopoverPresentationControllerDe
     
     @IBOutlet weak var notCompletedSwitch: UISwitch!
     
+    @IBOutlet weak var checkedBox: UIImageView!
+    
+    @IBOutlet weak var unCheckedBox: UIImageView!
+    
+    @IBOutlet weak var exclamationPoint: UIImageView!
+    
+    
+    
     
     // 0:today 1:week 2:past 3:imp 4:audio 5:completed 6:notCompleted
+    
     var filterSelections : [Bool] = [false, false, false, false, false, true, true]
     //1:priority 2:duedate 3:created
     //var sortSelection : Int? = 0
     
+   // var category : Category? = nil
+   // var tasks : [Task] = []
+    var filterLabel : String = ""
+     let calendar = Calendar.current
+    
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        filterSelections = (filters?.filterSelections)!
         determineFilterSelections()
         
         applyButton.title = "Cancel"
      
          filterView.layer.cornerRadius = 5
         
-       UINavigationBar.appearance().barTintColor = UIColor.white
-        //
+      UINavigationBar.appearance().barTintColor = UIColor.white
+       
         //
         
         
         
         UINavigationBar.appearance().titleTextAttributes = [NSForegroundColorAttributeName : UIColor.darkGray]
+        
+       checkedBox.image = checkedBox.image!.withRenderingMode(.alwaysTemplate)
+        
+       checkedBox.tintColor = UIColor(colorLiteralRed: 75/200, green: 156/255, blue: 56/255, alpha: 1)
+        
+        
+        exclamationPoint.image = exclamationPoint.image!.withRenderingMode(.alwaysTemplate)
+        exclamationPoint.tintColor = UIColor.red
+        
         
         if filterSelections[1] == true {
             dueTodaySwitch.isEnabled = false
@@ -70,6 +98,7 @@ class FiltersViewController: UIViewController, UIPopoverPresentationControllerDe
             resetButton.isEnabled = true
         }
 
+        
         
     }
 
@@ -110,8 +139,10 @@ class FiltersViewController: UIViewController, UIPopoverPresentationControllerDe
         
        
 
-        
+
         let nextVC = segue.destination as! TasksViewController
+
+        
         nextVC.filterSelections = filterSelections
        // nextVC.sortSelection = sortSelection
         
@@ -125,7 +156,21 @@ class FiltersViewController: UIViewController, UIPopoverPresentationControllerDe
     
     @IBAction func applyButtonTapped(_ sender: Any) {
         
+       // filters?.filterSelections = filterSelections
+        filters?.filterSelections = filterSelections
+        
+        
+        print (filters?.filterSelections)
+        
+        
         performSegue(withIdentifier: "unwindToTasksWithFilter", sender: filterSelections)
+        NotificationCenter.default.post(name: .reload, object: nil)
+        UINavigationBar.appearance().barTintColor = UIColor.darkGray
+        
+        UINavigationBar.appearance().titleTextAttributes = [NSForegroundColorAttributeName : UIColor.white]
+        
+        UINavigationBar.appearance().tintColor = UIColor.white
+
         
     }
     
@@ -139,6 +184,7 @@ class FiltersViewController: UIViewController, UIPopoverPresentationControllerDe
     
     @IBAction func completedSwitchTapped(_ sender: Any) {
         
+       
         applyButton.title = "Apply"
         if completedSwitch.isOn == true {
             filterSelections[5] = true
@@ -155,6 +201,7 @@ class FiltersViewController: UIViewController, UIPopoverPresentationControllerDe
     }
     
     @IBAction func notCompletedSwitchTapped(_ sender: Any) {
+        
         
         applyButton.title = "Apply"
         if notCompletedSwitch.isOn == true {
@@ -179,7 +226,7 @@ class FiltersViewController: UIViewController, UIPopoverPresentationControllerDe
     
     @IBAction func dueTodayTapped(_ sender: Any) {
       
-
+ 
         applyButton.title = "Apply"
         if dueTodaySwitch.isOn == true {
             filterSelections[0] = true
@@ -192,12 +239,12 @@ class FiltersViewController: UIViewController, UIPopoverPresentationControllerDe
             resetButton.isEnabled = true
         }
 
-        
     }
     
     
     @IBAction func dueThisWeekTapped(_ sender: Any) {
        
+        
         applyButton.title = "Apply"
         
         
@@ -236,9 +283,10 @@ class FiltersViewController: UIViewController, UIPopoverPresentationControllerDe
             resetButton.isEnabled = true
         }
 
-    }
+}
     
     @IBAction func importantTapped(_ sender: Any) {
+        
         
       applyButton.title = "Apply"
         if isImportantSwitch.isOn == true {
@@ -252,14 +300,13 @@ class FiltersViewController: UIViewController, UIPopoverPresentationControllerDe
         } else {
             resetButton.isEnabled = true
         }
-
         
     }
     
     
     @IBAction func audioSwitchTapped(_ sender: Any) {
        
-
+ 
         applyButton.title = "Apply"
         if audioSwitch.isOn == true {
             filterSelections[4] = true
@@ -273,6 +320,7 @@ class FiltersViewController: UIViewController, UIPopoverPresentationControllerDe
             resetButton.isEnabled = true
         }
 
+       
     }
     
     
@@ -301,7 +349,7 @@ class FiltersViewController: UIViewController, UIPopoverPresentationControllerDe
 //    }
     
     
-   
-    
+
+
 
 }

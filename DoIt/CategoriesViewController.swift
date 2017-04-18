@@ -27,7 +27,8 @@ class CategoriesViewController: UIViewController, UITableViewDataSource, UITable
   
     @IBOutlet weak var selectedColorView: UIImageView!
     
-
+  
+    
     
    
     
@@ -85,7 +86,8 @@ class CategoriesViewController: UIViewController, UITableViewDataSource, UITable
     
      override func viewWillAppear(_ animated: Bool) {
         
-        getCategories()
+        selectedCategory.getCategories()
+        categories = selectedCategory.categories
         
        categories.sort(by: {Double(($0.createdDate?.timeIntervalSinceNow)!) < Double(($1.createdDate?.timeIntervalSinceNow)!)})
         
@@ -135,9 +137,11 @@ class CategoriesViewController: UIViewController, UITableViewDataSource, UITable
         
         category = categories[indexPath.row]
         //maskView.isHidden = false
-        
+        selectedCategory.category = category
         
          performSegue(withIdentifier: "unwindToSelectedCategory", sender: category)
+        
+        
     }
     
 //    @IBAction func allCategoryTapped(_ sender: Any) {
@@ -149,15 +153,15 @@ class CategoriesViewController: UIViewController, UITableViewDataSource, UITable
 //    }
     
     
-    func getCategories () {
-        
-        let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
-        do{
-            categories = try context.fetch(Category.fetchRequest())
-           
-        } catch {
-        }
-    }
+//    func getCategories () {
+//        
+//        let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
+//        do{
+//            categories = try context.fetch(Category.fetchRequest())
+//           
+//        } catch {
+//        }
+//    }
     
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -168,6 +172,37 @@ class CategoriesViewController: UIViewController, UITableViewDataSource, UITable
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         if categoryTextField.text != "" {
+            
+            if editCategory != nil {
+                
+                let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
+                
+                let category2 = editCategory
+                category2?.categoryName = newCategoryName.text
+                category2?.color = selectedColor
+                
+                (UIApplication.shared.delegate as! AppDelegate).saveContext()
+                
+                selectedCategory.getCategories()
+                categories = selectedCategory.categories
+                
+                categoriesTableView.reloadData()
+                
+                categories.sort(by: {Double(($0.createdDate?.timeIntervalSinceNow)!) < Double(($1.createdDate?.timeIntervalSinceNow)!)})
+                
+                
+                
+                newCategoryName.text = ""
+                newCategoryButton.setTitle("Add", for: .normal)
+                editCategory = nil
+                selectedColor = UIColor.white
+                self.viewDidLoad()
+                
+                
+                
+            } else {
+            
+            
             let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
             
             let category = Category(context: context)
@@ -180,7 +215,8 @@ class CategoriesViewController: UIViewController, UITableViewDataSource, UITable
             
             (UIApplication.shared.delegate as! AppDelegate).saveContext()
             
-            getCategories()
+            selectedCategory.getCategories()
+            categories = selectedCategory.categories
             
             categoriesTableView.reloadData()
             
@@ -193,7 +229,7 @@ class CategoriesViewController: UIViewController, UITableViewDataSource, UITable
             
             newCategoryName.text = ""
 
-            
+            }
         }
          categoryTextField.resignFirstResponder()
         return (true)
@@ -239,7 +275,7 @@ class CategoriesViewController: UIViewController, UITableViewDataSource, UITable
             }
             
 
-            
+            self.categoriesTableView.reloadData()
             
         });
 
@@ -304,7 +340,8 @@ class CategoriesViewController: UIViewController, UITableViewDataSource, UITable
                 
                             (UIApplication.shared.delegate as! AppDelegate).saveContext()
                 
-                            self.getCategories()
+                            selectedCategory.getCategories()
+                            self.categories = selectedCategory.categories
                 
                             self.categoriesTableView.reloadData()
                 
@@ -342,6 +379,11 @@ class CategoriesViewController: UIViewController, UITableViewDataSource, UITable
     
     //actions
     
+    
+    
+    
+    
+    
    
     @IBAction func newCategoryButtonTapped(_ sender: Any) {
         
@@ -359,7 +401,8 @@ class CategoriesViewController: UIViewController, UITableViewDataSource, UITable
                 
                  (UIApplication.shared.delegate as! AppDelegate).saveContext()
                 
-                getCategories()
+                selectedCategory.getCategories()
+                categories = selectedCategory.categories
                 
                 categoriesTableView.reloadData()
                 
@@ -370,7 +413,8 @@ class CategoriesViewController: UIViewController, UITableViewDataSource, UITable
                 newCategoryName.text = ""
                 newCategoryButton.setTitle("Add", for: .normal)
                 editCategory = nil
-            
+                selectedColor = UIColor.white
+                self.viewDidLoad()
 
                 
             } else {
@@ -390,10 +434,11 @@ class CategoriesViewController: UIViewController, UITableViewDataSource, UITable
         
          (UIApplication.shared.delegate as! AppDelegate).saveContext()
         
-        getCategories()
+        selectedCategory.getCategories()
+                categories = selectedCategory.categories
         
         categoriesTableView.reloadData()
-        
+                
         
         
             
@@ -403,6 +448,9 @@ class CategoriesViewController: UIViewController, UITableViewDataSource, UITable
         
         newCategoryName.text = ""
             } }
+        
+        self.selectedColorView.image = UIImage(named: "Full Moon-50.png")?.withRenderingMode(.alwaysTemplate)
+        self.selectedColorView.tintColor = UIColor.black
         
     }
     
@@ -496,7 +544,7 @@ class CategoriesViewController: UIViewController, UITableViewDataSource, UITable
     
     @IBAction func viewAllButtonTapped(_ sender: Any) {
         
-        self.category = nil
+        selectedCategory.category = nil
         
         performSegue(withIdentifier: "unwindToSelectedCategory", sender: category)
     }

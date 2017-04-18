@@ -44,11 +44,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "CreateTaskViewController.swift"
-            timestampString = "513397139.505648"
+            timestampString = "514090954.357204"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "183"
-            endingLineNumber = "183"
+            startingLineNumber = "209"
+            endingLineNumber = "209"
             landmarkName = "viewDidLoad()"
             landmarkType = "7">
          </BreakpointContent>
@@ -60,11 +60,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "DoIt/TasksViewController.swift"
-            timestampString = "513573911.951232"
+            timestampString = "514092629.190845"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "479"
-            endingLineNumber = "479"
+            startingLineNumber = "500"
+            endingLineNumber = "500"
             landmarkName = "tableView(_:cellForRowAt:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -134,11 +134,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "DoIt/TasksViewController.swift"
-            timestampString = "513573911.951232"
+            timestampString = "514092796.978787"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "959"
-            endingLineNumber = "959"
+            startingLineNumber = "1074"
+            endingLineNumber = "1074"
             landmarkName = "taskCount()"
             landmarkType = "7">
          </BreakpointContent>
@@ -176,11 +176,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "DoIt/TasksViewController.swift"
-            timestampString = "513578261.270075"
+            timestampString = "514092796.978787"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "3523"
-            endingLineNumber = "3523"
+            startingLineNumber = "1324"
+            endingLineNumber = "1324"
             landmarkName = "unwindToMenu(segue:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -192,11 +192,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "CreateTaskViewController.swift"
-            timestampString = "513397139.505648"
+            timestampString = "514090954.357204"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "167"
-            endingLineNumber = "167"
+            startingLineNumber = "173"
+            endingLineNumber = "173"
             landmarkName = "viewDidLoad()"
             landmarkType = "7">
          </BreakpointContent>
@@ -208,11 +208,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "CreateTaskViewController.swift"
-            timestampString = "513397139.505648"
+            timestampString = "514093807.65968"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "938"
-            endingLineNumber = "938"
+            startingLineNumber = "1034"
+            endingLineNumber = "1034"
             landmarkName = "CreateTaskViewController"
             landmarkType = "3">
          </BreakpointContent>
@@ -268,31 +268,15 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "CreateTaskViewController.swift"
-            timestampString = "513397139.505648"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "172"
-            endingLineNumber = "172"
-            landmarkName = "viewDidLoad()"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "DoIt/TasksViewController.swift"
-            timestampString = "513573911.951232"
+            timestampString = "514092629.190845"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "461"
-            endingLineNumber = "461"
+            startingLineNumber = "486"
+            endingLineNumber = "486"
             landmarkName = "tableView(_:cellForRowAt:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -304,11 +288,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "DoIt/TasksViewController.swift"
-            timestampString = "513573911.951232"
+            timestampString = "514004478.439334"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "319"
-            endingLineNumber = "319"
+            startingLineNumber = "334"
+            endingLineNumber = "334"
             landmarkName = "viewWillAppear(_:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -320,11 +304,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "DoIt/TasksViewController.swift"
-            timestampString = "513573911.951232"
+            timestampString = "514092796.978787"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "726"
-            endingLineNumber = "726"
+            startingLineNumber = "792"
+            endingLineNumber = "792"
             landmarkName = "tableView(_:moveRowAt:to:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -336,11 +320,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "DoIt/TasksViewController.swift"
-            timestampString = "513573911.951232"
+            timestampString = "514092796.978787"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "738"
-            endingLineNumber = "738"
+            startingLineNumber = "804"
+            endingLineNumber = "804"
             landmarkName = "prioritizeTasks(firstTask:lastTask:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -384,7 +368,7 @@
                   moduleName = "DoIts"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/amandacosel/Desktop/DoIt/CompletedTasksButtonView.swift"
-                  timestampString = "513392964.409089"
+                  timestampString = "514086450.645114"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "24"
@@ -399,7 +383,7 @@
                   moduleName = "DoIts"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/amandacosel/Desktop/DoIt/CompletedTasksButtonView.swift"
-                  timestampString = "513392964.412361"
+                  timestampString = "514086450.648341"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "24"
@@ -432,11 +416,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "CreateTaskViewController.swift"
-            timestampString = "513397139.505648"
+            timestampString = "514091628.027278"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "331"
-            endingLineNumber = "331"
+            startingLineNumber = "398"
+            endingLineNumber = "398"
             landmarkName = "pickerView(_:titleForRow:forComponent:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -448,11 +432,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "CreateTaskViewController.swift"
-            timestampString = "513397139.505648"
+            timestampString = "514093807.65968"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "869"
-            endingLineNumber = "869"
+            startingLineNumber = "965"
+            endingLineNumber = "965"
             landmarkName = "addButtonTapped(_:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -464,11 +448,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "DoIt/FiltersViewController.swift"
-            timestampString = "513573911.951232"
+            timestampString = "513989024.628568"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "40"
-            endingLineNumber = "40"
+            startingLineNumber = "51"
+            endingLineNumber = "51"
             landmarkName = "FiltersViewController"
             landmarkType = "3">
             <Locations>
@@ -542,11 +526,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "DoIt/FiltersViewController.swift"
-            timestampString = "513574750.517765"
+            timestampString = "513989766.709863"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "115"
-            endingLineNumber = "115"
+            startingLineNumber = "146"
+            endingLineNumber = "146"
             landmarkName = "prepare(for:sender:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -558,11 +542,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "DoIt/FiltersViewController.swift"
-            timestampString = "513574750.517765"
+            timestampString = "514010691.205789"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "128"
-            endingLineNumber = "128"
+            startingLineNumber = "168"
+            endingLineNumber = "168"
             landmarkName = "applyButtonTapped(_:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -574,43 +558,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "DoIt/TasksViewController.swift"
-            timestampString = "513578261.270075"
+            timestampString = "514004478.439334"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "1249"
-            endingLineNumber = "1249"
-            landmarkName = "determineFilters()"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "DoIt/TasksViewController.swift"
-            timestampString = "513578261.270075"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "1249"
-            endingLineNumber = "1249"
-            landmarkName = "determineFilters()"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "DoIt/TasksViewController.swift"
-            timestampString = "513573911.951232"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "281"
-            endingLineNumber = "281"
+            startingLineNumber = "296"
+            endingLineNumber = "296"
             landmarkName = "viewWillAppear(_:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -622,11 +574,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "DoIt/TasksViewController.swift"
-            timestampString = "513573911.951232"
+            timestampString = "514004478.439334"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "280"
-            endingLineNumber = "280"
+            startingLineNumber = "295"
+            endingLineNumber = "295"
             landmarkName = "viewWillAppear(_:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -638,27 +590,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "DoIt/TasksViewController.swift"
-            timestampString = "513578261.270075"
+            timestampString = "514092796.978787"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "2266"
-            endingLineNumber = "2266"
-            landmarkName = "determineFilters()"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "DoIt/TasksViewController.swift"
-            timestampString = "513573911.951232"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "719"
-            endingLineNumber = "719"
+            startingLineNumber = "785"
+            endingLineNumber = "785"
             landmarkName = "tableView(_:canMoveRowAt:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -670,11 +606,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "DoIt/TasksViewController.swift"
-            timestampString = "513573911.951232"
+            timestampString = "514092629.190845"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "443"
-            endingLineNumber = "443"
+            startingLineNumber = "451"
+            endingLineNumber = "451"
             landmarkName = "tableView(_:cellForRowAt:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -686,11 +622,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "CreateTaskViewController.swift"
-            timestampString = "513397139.505648"
+            timestampString = "514090954.357204"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "163"
-            endingLineNumber = "163"
+            startingLineNumber = "169"
+            endingLineNumber = "169"
             landmarkName = "viewDidLoad()"
             landmarkType = "7">
          </BreakpointContent>
@@ -734,11 +670,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "DoIt/TasksViewController.swift"
-            timestampString = "513573911.951232"
+            timestampString = "514092796.978787"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "1016"
-            endingLineNumber = "1016"
+            startingLineNumber = "1132"
+            endingLineNumber = "1132"
             landmarkName = "TasksViewController"
             landmarkType = "3">
          </BreakpointContent>
@@ -782,11 +718,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "DoIt/TasksViewController.swift"
-            timestampString = "513571264.532477"
+            timestampString = "514004478.439334"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "149"
-            endingLineNumber = "149"
+            startingLineNumber = "154"
+            endingLineNumber = "154"
             landmarkName = "viewDidLoad()"
             landmarkType = "7">
          </BreakpointContent>
@@ -798,11 +734,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "CreateTaskViewController.swift"
-            timestampString = "513397139.505648"
+            timestampString = "514091628.027278"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "393"
-            endingLineNumber = "393"
+            startingLineNumber = "460"
+            endingLineNumber = "460"
             landmarkName = "determineIndexOfSelectedCategory()"
             landmarkType = "7">
          </BreakpointContent>
@@ -814,11 +750,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "DoIt/TasksViewController.swift"
-            timestampString = "513573911.951232"
+            timestampString = "514004478.439334"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "186"
-            endingLineNumber = "186"
+            startingLineNumber = "191"
+            endingLineNumber = "191"
             landmarkName = "viewDidLoad()"
             landmarkType = "7">
          </BreakpointContent>
@@ -1001,11 +937,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "CreateTaskViewController.swift"
-            timestampString = "513397139.505648"
+            timestampString = "514090954.357204"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "115"
-            endingLineNumber = "115"
+            startingLineNumber = "121"
+            endingLineNumber = "121"
             landmarkName = "viewDidLoad()"
             landmarkType = "7">
          </BreakpointContent>
@@ -1033,11 +969,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "CreateTaskViewController.swift"
-            timestampString = "513397139.505648"
+            timestampString = "514091628.027278"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "648"
-            endingLineNumber = "648"
+            startingLineNumber = "715"
+            endingLineNumber = "715"
             landmarkName = "audioNoteButtonTapped(_:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -1049,11 +985,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "CreateTaskViewController.swift"
-            timestampString = "513397139.505648"
+            timestampString = "514091628.027278"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "643"
-            endingLineNumber = "643"
+            startingLineNumber = "710"
+            endingLineNumber = "710"
             landmarkName = "audioNoteButtonTapped(_:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -1065,11 +1001,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "DoIt/TasksViewController.swift"
-            timestampString = "513578261.270075"
+            timestampString = "514092796.978787"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "3404"
-            endingLineNumber = "3404"
+            startingLineNumber = "1244"
+            endingLineNumber = "1244"
             landmarkName = "determineSortOrder()"
             landmarkType = "7">
          </BreakpointContent>
@@ -1081,11 +1017,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "CreateTaskViewController.swift"
-            timestampString = "513397139.505648"
+            timestampString = "514093807.65968"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "1191"
-            endingLineNumber = "1191"
+            startingLineNumber = "1293"
+            endingLineNumber = "1293"
             landmarkName = "playPauseTapped(_:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -1097,11 +1033,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "CreateTaskViewController.swift"
-            timestampString = "513397139.505648"
+            timestampString = "514093807.65968"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "1175"
-            endingLineNumber = "1175"
+            startingLineNumber = "1277"
+            endingLineNumber = "1277"
             landmarkName = "playPauseTapped(_:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -1113,11 +1049,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "CreateTaskViewController.swift"
-            timestampString = "513397139.505648"
+            timestampString = "514090954.357204"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "243"
-            endingLineNumber = "243"
+            startingLineNumber = "306"
+            endingLineNumber = "306"
             landmarkName = "viewDidLoad()"
             landmarkType = "7">
          </BreakpointContent>
@@ -1129,11 +1065,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "CreateTaskViewController.swift"
-            timestampString = "513397139.505648"
+            timestampString = "514090954.357204"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "131"
-            endingLineNumber = "131"
+            startingLineNumber = "137"
+            endingLineNumber = "137"
             landmarkName = "viewDidLoad()"
             landmarkType = "7">
          </BreakpointContent>
@@ -1145,11 +1081,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "CreateTaskViewController.swift"
-            timestampString = "513397139.505648"
+            timestampString = "514091628.027278"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "641"
-            endingLineNumber = "641"
+            startingLineNumber = "708"
+            endingLineNumber = "708"
             landmarkName = "audioNoteButtonTapped(_:)"
             landmarkType = "7">
             <Locations>
@@ -1193,11 +1129,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "CreateTaskViewController.swift"
-            timestampString = "513397139.505648"
+            timestampString = "514093807.65968"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "1159"
-            endingLineNumber = "1159"
+            startingLineNumber = "1261"
+            endingLineNumber = "1261"
             landmarkName = "playPauseTapped(_:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -1209,13 +1145,45 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "CreateTaskViewController.swift"
-            timestampString = "513397139.505648"
+            timestampString = "514091628.027278"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "647"
-            endingLineNumber = "647"
+            startingLineNumber = "714"
+            endingLineNumber = "714"
             landmarkName = "audioNoteButtonTapped(_:)"
             landmarkType = "7">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "DoIts.CreateTaskViewController.audioNoteButtonTapped (Any) -&gt; ()"
+                  moduleName = "DoIts"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/amandacosel/Desktop/DoIt/CreateTaskViewController.swift"
+                  timestampString = "514086450.726909"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "692"
+                  endingLineNumber = "692"
+                  offsetFromSymbolStart = "4291">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "DoIts.CreateTaskViewController.(audioNoteButtonTapped (Any) -&gt; ()).(closure #1)"
+                  moduleName = "DoIts"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/amandacosel/Desktop/DoIt/CreateTaskViewController.swift"
+                  timestampString = "514086450.730201"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "692"
+                  endingLineNumber = "692"
+                  offsetFromSymbolStart = "807">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -1225,11 +1193,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "CreateTaskViewController.swift"
-            timestampString = "513397139.505648"
+            timestampString = "514091628.027278"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "586"
-            endingLineNumber = "586"
+            startingLineNumber = "653"
+            endingLineNumber = "653"
             landmarkName = "dateButtonTapped(_:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -1241,11 +1209,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "DoIt/TasksViewController.swift"
-            timestampString = "513571264.532477"
+            timestampString = "514004478.439334"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "162"
-            endingLineNumber = "162"
+            startingLineNumber = "167"
+            endingLineNumber = "167"
             landmarkName = "viewDidLoad()"
             landmarkType = "7">
          </BreakpointContent>
@@ -1273,7 +1241,7 @@
                   moduleName = "DoIts"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/amandacosel/Desktop/DoIt/ColorsViewController.swift"
-                  timestampString = "513392969.355996"
+                  timestampString = "514086450.745568"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "35"
@@ -1288,7 +1256,7 @@
                   moduleName = "DoIts"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/amandacosel/Desktop/DoIt/ColorsViewController.swift"
-                  timestampString = "513392969.35981"
+                  timestampString = "514086450.748849"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "35"
@@ -1305,11 +1273,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "CreateTaskViewController.swift"
-            timestampString = "513397139.505648"
+            timestampString = "514091628.027278"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "341"
-            endingLineNumber = "341"
+            startingLineNumber = "408"
+            endingLineNumber = "408"
             landmarkName = "pickerView(_:didSelectRow:inComponent:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -1321,11 +1289,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "DoIt/CategoriesViewController.swift"
-            timestampString = "513449613.058169"
+            timestampString = "514094266.931158"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "503"
-            endingLineNumber = "503"
+            startingLineNumber = "551"
+            endingLineNumber = "551"
             landmarkName = "CategoriesViewController"
             landmarkType = "3">
          </BreakpointContent>
@@ -1337,45 +1305,264 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "DoIt/TasksViewController.swift"
-            timestampString = "513578261.270075"
+            timestampString = "514092796.978787"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "4061"
-            endingLineNumber = "4061"
-            landmarkName = "quickAddButtonTapped(_:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "DoIt/TasksViewController.swift"
-            timestampString = "513578261.270075"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "4044"
-            endingLineNumber = "4044"
-            landmarkName = "quickAddButtonTapped(_:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "DoIt/TasksViewController.swift"
-            timestampString = "513578261.270075"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "3947"
-            endingLineNumber = "3947"
+            startingLineNumber = "1870"
+            endingLineNumber = "1870"
             landmarkName = "TasksViewController"
             landmarkType = "3">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "DoIt/TasksViewController.swift"
+            timestampString = "514092796.978787"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "1853"
+            endingLineNumber = "1853"
+            landmarkName = "TasksViewController"
+            landmarkType = "3">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(extension in DoIts):__ObjC.NSNotification.Name.reload.unsafeMutableAddressor : __ObjC.NSNotification.Name"
+                  moduleName = "DoIts"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/amandacosel/Desktop/DoIt/DoIt/TasksViewController.swift"
+                  timestampString = "514086450.757546"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "4058"
+                  endingLineNumber = "4058"
+                  offsetFromSymbolStart = "4">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "globalinit_33_7F4567FB1D6200C11BBCC7C891DAE774_func0"
+                  moduleName = "DoIts"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/amandacosel/Desktop/DoIt/DoIt/TasksViewController.swift"
+                  timestampString = "514086450.760757"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "4058"
+                  endingLineNumber = "4058"
+                  offsetFromSymbolStart = "27">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "static (extension in DoIts):__ObjC.NSNotification.Name.reload.getter : __ObjC.NSNotification.Name"
+                  moduleName = "DoIts"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/amandacosel/Desktop/DoIt/DoIt/TasksViewController.swift"
+                  timestampString = "514086450.764144"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "4058"
+                  endingLineNumber = "4058"
+                  offsetFromSymbolStart = "28">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "DoIt/TasksViewController.swift"
+            timestampString = "514092796.978787"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "1755"
+            endingLineNumber = "1755"
+            landmarkName = "TasksViewController"
+            landmarkType = "3">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "DoIt/TasksViewController.swift"
+            timestampString = "514092796.978787"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "574"
+            endingLineNumber = "574"
+            landmarkName = "tableView(_:cellForRowAt:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "DoIt/taskTableViewCell.swift"
+            timestampString = "513665856.507358"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "48"
+            endingLineNumber = "48"
+            landmarkName = "prepareForReuse()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "DoIt/AppDelegate.swift"
+            timestampString = "513971482.991011"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "5"
+            endingLineNumber = "5">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "DoIts.AppDelegate.__deallocating_deinit"
+                  moduleName = "DoIts"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/amandacosel/Desktop/DoIt/DoIt/AppDelegate.swift"
+                  timestampString = "514086450.780584"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "0"
+                  endingLineNumber = "0"
+                  offsetFromSymbolStart = "4">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "DoIts.AppDelegate.init () -&gt; DoIts.AppDelegate"
+                  moduleName = "DoIts"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/amandacosel/Desktop/DoIt/DoIt/AppDelegate.swift"
+                  timestampString = "514086450.784007"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "15"
+                  endingLineNumber = "15"
+                  offsetFromSymbolStart = "24">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "DoIts.AppDelegate.__allocating_init () -&gt; DoIts.AppDelegate"
+                  moduleName = "DoIts"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/amandacosel/Desktop/DoIt/DoIt/AppDelegate.swift"
+                  timestampString = "514086450.78715"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "0"
+                  endingLineNumber = "0"
+                  offsetFromSymbolStart = "4">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "main"
+                  moduleName = "DoIts"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/amandacosel/Desktop/DoIt/DoIt/AppDelegate.swift"
+                  timestampString = "514086450.790264"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "13"
+                  endingLineNumber = "13"
+                  offsetFromSymbolStart = "22">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "SortViewController.swift"
+            timestampString = "514010755.186506"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "204"
+            endingLineNumber = "204"
+            landmarkName = "applyButtonTapped(_:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "DoIt/TasksViewController.swift"
+            timestampString = "514092796.978787"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "1270"
+            endingLineNumber = "1270"
+            landmarkName = "determineSortOrder()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "DoIt/TasksViewController.swift"
+            timestampString = "514092796.978787"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "1270"
+            endingLineNumber = "1270"
+            landmarkName = "determineSortOrder()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "CreateTaskViewController.swift"
+            timestampString = "514090931.226505"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "193"
+            endingLineNumber = "193"
+            landmarkName = "viewDidLoad()"
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>
